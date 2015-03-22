@@ -10,7 +10,7 @@
 
 import logging
 
-import gtk
+from gi.repository import Gtk
 
 from deluge import component  # for systray
 from deluge.ui.client import client
@@ -27,7 +27,7 @@ del _
 
 class LabelMenu(Gtk.MenuItem):
     def __init__(self):
-        GObject.GObject.__init__(self, _("Label"))
+        Gtk.MenuItem.__init__(self, _("Label"))
 
         self.sub_menu = Gtk.Menu()
         self.set_submenu(self.sub_menu)

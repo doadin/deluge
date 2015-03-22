@@ -18,7 +18,7 @@ import sys
 from gi.repository import Gtk
 import gi
 from gi.repository.GLib import GError
-from gi.repository.GdkPixbuf import Pixbuf
+from gi.repository import GdkPixbuf
 
 import deluge.common
 
@@ -41,7 +41,7 @@ def get_logo(size):
     if deluge.common.windows_check() or deluge.common.osx_check():
         filename = "deluge.png"
     try:
-        return Pixbuf.new_from_file_at_size(deluge.common.get_pixmap(filename), size, size)
+        return GdkPixbuf.Pixbuf.new_from_file_at_size(deluge.common.get_pixmap(filename), size, size)
     except GError as ex:
         log.warning(ex)
 
@@ -191,7 +191,7 @@ def associate_magnet_links(overwrite=False):
     elif not deluge.common.osx_check():
         # gconf method is only available in a GNOME environment
         try:
-            import gconf
+            from gi.repository import GConf
         except ImportError:
             log.debug("gconf not available, so will not attempt to register magnet uri handler")
             return False

@@ -48,7 +48,7 @@ class Notification:
         """popups up notification of finished torrent"""
         if not deluge.common.windows_check():
             try:
-                import pynotify
+                from gi.repository import Notify
             except:
                 log.warning("pynotify is not installed")
             else:

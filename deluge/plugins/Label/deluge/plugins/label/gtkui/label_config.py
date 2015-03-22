@@ -10,7 +10,7 @@
 import logging
 import os
 
-import gtk
+from gi.repository import Gtk
 import Gtk.glade
 import pkg_resources  # access plugin egg
 

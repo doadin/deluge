@@ -12,7 +12,7 @@ import logging
 import os.path
 from hashlib import sha1 as sha
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import gi
 from twisted.internet import reactor
 from twisted.internet.error import ReactorNotRunning
@@ -29,10 +29,9 @@ gi.require_version('Gtk', '3.0')
 
 
 try:
-    import wnck
+    from gi.repository import Wnck
 except ImportError:
-    wnck = None
-
+    Wnck = None
 
 log = logging.getLogger(__name__)
 
@@ -60,7 +59,7 @@ class _GtkBuilderSignalsHolder(object):
 
 class MainWindow(component.Component):
     def __init__(self):
-        if wnck:
+        if Wnck:
             self.screen = Wnck.Screen.get_default()
         component.Component.__init__(self, "MainWindow", interval=2)
         self.config = ConfigManager("gtkui.conf")
@@ -71,6 +70,9 @@ class MainWindow(component.Component):
         # Think about splitting up the main window gtkbuilder file into the necessary parts
         # in order not to have to monkey patch GtkBuilder. Those parts would then need to
         # be added to the main window "by hand".
+
+        #self.main_builder.prev_connect_signals = copy.deepcopy(self.main_builder.connect_signals)
+        self.main_builder.prev_connect_signals = self.main_builder.connect_signals # TOFIX
 
         def patched_connect_signals(*a, **k):
             raise RuntimeError("In order to connect signals to this GtkBuilder instance please use "
@@ -116,7 +118,7 @@ class MainWindow(component.Component):
         # UI when it is minimized.
         self.is_minimized = False
 
-        self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY)
+        #self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY) # TOFIX
 
         # Connect events
         self.window.connect("window-state-event", self.on_window_state_event)
@@ -124,7 +126,7 @@ class MainWindow(component.Component):
         self.window.connect("delete-event", self.on_window_delete_event)
         self.window.connect("drag-data-received", self.on_drag_data_received_event)
         self.vpaned.connect("notify::position", self.on_vpaned_position_event)
-        self.window.connect("expose-event", self.on_expose_event)
+        #self.window.connect("expose-event", self.on_expose_event) # TOFIX
 
         self.config.register_set_function("show_rate_in_title", self._on_set_show_rate_in_title, apply_now=False)
 
@@ -143,7 +145,7 @@ class MainWindow(component.Component):
             self.vpaned.set_position(self.initial_vpaned_position)
             self.show()
             while Gtk.events_pending():
-                Gtk.main_iteration(False)
+                Gtk.main_iteration()
 
     def show(self):
         try:

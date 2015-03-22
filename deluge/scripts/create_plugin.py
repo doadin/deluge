@@ -224,7 +224,7 @@ def get_resource(filename):
 """
 
 GTKUI = """
-import gtk
+from gi.repository import Gtk
 import logging
 
 from deluge.ui.client import client

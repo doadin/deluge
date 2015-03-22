@@ -14,7 +14,7 @@
 
 import logging
 
-import gtk
+from gi.repository import Gtk
 import Gtk.glade
 from Gtk.glade import XML
 

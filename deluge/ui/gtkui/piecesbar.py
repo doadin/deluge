@@ -12,8 +12,9 @@ from math import pi
 
 import cairo
 from gi.repository import Gtk
-import pango
-import pangocairo
+from gi.repository import Pango
+#import pangocairo
+from gi.repository import PangoCairo
 
 from deluge.configmanager import ConfigManager
 
@@ -30,10 +31,10 @@ COLOR_STATES = {
 
 class PiecesBar(Gtk.DrawingArea):
     # Draw in response to an expose-event
-    __gsignals__ = {"expose-event": "override"}
+    #__gsignals__ = {"expose-event": "override"} # TOFIX
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.DrawingArea.__init__(self)
         # Get progress bar styles, in order to keep font consistency
         pb = Gtk.ProgressBar()
         pb_style = pb.get_style()
@@ -195,7 +196,7 @@ class PiecesBar(Gtk.DrawingArea):
                 cairo.FORMAT_ARGB32, self.__width, self.__height
             )
             ctx = cairo.Context(self.__text_overlay)
-            pg = pangocairo.CairoContext(ctx)
+            pg = PangoCairo.CairoContext(ctx)
             pl = pg.create_layout()
             pl.set_font_description(self.__text_font)
             pl.set_width(-1)    # No text wrapping

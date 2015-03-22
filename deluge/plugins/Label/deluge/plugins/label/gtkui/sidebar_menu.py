@@ -10,7 +10,7 @@
 
 import logging
 
-import gtk
+from gi.repository import Gtk
 import Gtk.glade
 
 import deluge.component as component

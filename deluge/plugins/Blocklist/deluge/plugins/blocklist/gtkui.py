@@ -10,7 +10,7 @@
 import logging
 from datetime import datetime
 
-import gtk
+from gi.repository import Gtk
 import Gtk.glade
 
 import deluge.common

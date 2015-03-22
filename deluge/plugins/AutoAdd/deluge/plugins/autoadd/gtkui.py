@@ -15,7 +15,7 @@
 import logging
 import os
 
-import gtk
+from gi.repository import Gtk
 import Gtk.glade
 
 import deluge.common

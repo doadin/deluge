@@ -13,7 +13,7 @@ import logging
 import os
 import warnings
 
-from gi.repository import Gtk, Gdk, cairo, Pango, PangoCairo
+from gi.repository import Gtk, Gdk, cairo, Pango, PangoCairo, GdkPixbuf
 from gi.repository.GLib import GError
 
 import deluge.component as component
@@ -68,18 +68,20 @@ class FilterTreeView(component.Component):
         column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         # icon cell
         self.cell_pix = Gtk.CellRendererPixbuf()
-        column.pack_start(self.cell_pix, False, True, 0)
+        #column.pack_start(self.cell_pix, False, True, 0)
+        column.pack_start(self.cell_pix, expand=False)
         column.add_attribute(self.cell_pix, 'pixbuf', 4)
         # label cell
         cell_label = Gtk.CellRendererText()
         cell_label.set_property('ellipsize', Pango.EllipsizeMode.END)
-        column.pack_start(cell_label, True, True, 0)
+        column.pack_start(cell_label, expand=True)
         column.set_cell_data_func(cell_label, self.render_cell_data, None)
         # count cell
         self.cell_count = Gtk.CellRendererText()
         self.cell_count.set_property('xalign', 1.0)
         self.cell_count.set_padding(3, 0)
-        column.pack_start(self.cell_count, False, True, 0)
+        column.pack_start(self.cell_count, expand=False)
+        #column.pack_start(self.cell_count, False, True, 0)
 
         self.treeview.append_column(column)
 
@@ -98,9 +100,9 @@ class FilterTreeView(component.Component):
         self.treeview.connect("button-press-event", self.on_button_press_event)
 
         # colors using current theme.
-        style = self.window.window.get_style()
-        self.colour_background = style.bg[Gtk.StateType.NORMAL]
-        self.colour_foreground = style.fg[Gtk.StateType.NORMAL]
+        style = self.window.window.get_style() # TOFIX
+        #self.colour_background = style.bg[Gtk.StateType.NORMAL]
+        #self.colour_foreground = style.fg[Gtk.StateType.NORMAL]
 
         # filtertree menu
         builder = Gtk.Builder()
@@ -252,6 +254,10 @@ class FilterTreeView(component.Component):
         pix = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
         pix.fill(0x0000000)
         return pix
+
+        # Should really give back a properly size pixbuf...
+        from deluge.ui.gtkui import torrentview_data_funcs as funcs
+        return funcs.icon_empty
 
     def set_row_image(self, cat, value, filename):
         pix = None

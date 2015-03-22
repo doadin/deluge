@@ -15,7 +15,7 @@
 import logging
 from os.path import basename
 
-import gtk
+from gi.repository import Gtk
 import Gtk.glade
 from twisted.internet import defer
 
@@ -38,7 +38,7 @@ except ImportError:
     SOUND_AVAILABLE = False
 
 try:
-    import pynotify
+    from gi.repository import Notify
     POPUP_AVAILABLE = True
     if deluge.common.windows_check():
         POPUP_AVAILABLE = False
@@ -159,7 +159,7 @@ class GtkUiNotifications(CustomNotifications):
         return defer.succeed(_("Notification Blink shown"))
 
     def __popup(self, title='', message=''):
-        import gtk
+        from gi.repository import Gtk
         if not self.config['popup_enabled']:
             return defer.succeed(_("Popup notification is not enabled."))
         if not POPUP_AVAILABLE:

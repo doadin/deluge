@@ -3,7 +3,7 @@ import os
 import shutil
 import sys
 
-import gtk
+from gi.repository import Gtk
 
 import bbfreeze.recipes
 import deluge.common

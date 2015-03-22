@@ -109,6 +109,7 @@ class SystemTray(component.Component):
                 try:
                     self.tray = Gtk.status_icon_new_from_icon_name("deluge")
                 except:
+                    self.tray = None
                     log.warning("Update PyGTK to 2.10 or greater for SystemTray..")
                     return
 
@@ -166,13 +167,14 @@ class SystemTray(component.Component):
             except Exception as ex:
                 log.debug("Unable to hide system tray menu widgets: %s", ex)
 
-            self.tray.set_tooltip(_("Deluge") + "\n" + _("Not Connected..."))
+            if self.tray:
+                self.tray.set_tooltip(_("Deluge") + "\n" + _("Not Connected..."))
 
     def shutdown(self):
         if self.config["enable_system_tray"]:
             if appindicator and self.config["enable_appindicator"]:
                 self.indicator.set_status(appindicator.STATUS_PASSIVE)
-            else:
+            elif self.tray:
                 self.tray.set_visible(False)
 
     def send_status_request(self):
@@ -231,8 +233,8 @@ class SystemTray(component.Component):
         )
 
         # Set the tooltip
-        self.tray.set_tooltip(msg)
-
+        if self.tray:
+            self.tray.set_tooltip(msg)
         self.send_status_request()
 
     def build_tray_bwsetsubmenu(self):

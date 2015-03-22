@@ -13,7 +13,7 @@
 
 import logging
 
-import gtk
+from gi.repository import Gtk
 
 import deluge.component as component
 from deluge.plugins.pluginbase import GtkPluginBase
@@ -28,7 +28,7 @@ DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 class SchedulerSelectWidget(Gtk.DrawingArea):
     def __init__(self, hover):
-        GObject.GObject.__init__(self)
+        Gtk.DrawingArea.__init__(self)
         self.set_events(Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK |
                         Gdk.EventMask.POINTER_MOTION_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK)
 

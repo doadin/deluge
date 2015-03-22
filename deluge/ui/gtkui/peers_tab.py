@@ -12,6 +12,7 @@ import os.path
 from itertools import izip
 
 from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
 import deluge.common
 import deluge.component as component

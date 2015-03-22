@@ -302,7 +302,7 @@ class CreateTorrentDialog:
 
         if is_remote:
             def torrent_created():
-                self.builder.get_object("progress_dialog").hide_all()
+                self.builder.get_object("progress_dialog").hide()
                 client.deregister_event_handler("CreateTorrentProgressEvent", on_create_torrent_progress_event)
 
             def on_create_torrent_progress_event(piece_count, num_pieces):
@@ -328,7 +328,7 @@ class CreateTorrentDialog:
         else:
 
             def hide_progress(result):
-                self.builder.get_object("progress_dialog").hide_all()
+                self.builder.get_object("progress_dialog").hide()
 
             deferToThread(self.create_torrent,
                           path.decode('utf-8'),
