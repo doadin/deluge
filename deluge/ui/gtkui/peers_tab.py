@@ -11,8 +11,7 @@ import logging
 import os.path
 from itertools import izip
 
-from gi.repository import Gtk
-from gi.repository import GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf
 
 import deluge.common
 import deluge.component as component
