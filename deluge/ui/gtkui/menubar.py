@@ -12,7 +12,7 @@
 import logging
 import os.path
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import gi
 
 import deluge.common
