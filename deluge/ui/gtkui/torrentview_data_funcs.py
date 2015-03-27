@@ -11,10 +11,10 @@ from __future__ import print_function
 
 import warnings
 
-from gi.repository import GObject, Gtk, GdkPixbuf
-
 import deluge.common as common
 import deluge.component as component
+
+from gi.repository import GObject, Gtk, GdkPixbuf
 
 # Status icons.. Create them from file only once to avoid constantly
 # re-creating them.
