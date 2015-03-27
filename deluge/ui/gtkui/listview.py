@@ -205,7 +205,6 @@ class ListView:
         #self.model_filter.set_default_sort_func(None) # TOFIX
         #self.model_filter.set_sort_func(None, None)
 
-
     def get_sort_column_from_state(self):
         """Find the first (should only be one) state with sort enabled"""
         if self.state is None:
