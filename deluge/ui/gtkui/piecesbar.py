@@ -11,7 +11,7 @@ import logging
 from math import pi
 
 import cairo
-from gi.repository import Gtk, Pango, PangoCairo
+from gi.repository import Gtk, Gdk, Pango, PangoCairo
 
 from deluge.configmanager import ConfigManager
 
