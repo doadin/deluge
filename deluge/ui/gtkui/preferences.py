@@ -12,7 +12,7 @@ import logging
 import os
 from hashlib import sha1 as sha
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import gi
 
 import deluge.common
