@@ -13,7 +13,7 @@
 
 import logging
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 import deluge.component as component
 from deluge.plugins.pluginbase import GtkPluginBase
