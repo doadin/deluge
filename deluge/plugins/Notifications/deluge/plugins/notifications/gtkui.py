@@ -15,7 +15,7 @@
 import logging
 from os.path import basename
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GdkPixbuf
 import Gtk.glade
 from twisted.internet import defer
 
