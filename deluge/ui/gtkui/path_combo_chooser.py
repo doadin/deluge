@@ -1270,9 +1270,6 @@ class PathChooserComboBox(Gtk.HBox, StoredValuesPopup, GObject.GObject):
             self.folder_name_label.set_size_request(width, height)
             self.combo_hbox.set_child_packing(self.filechooser_button, 0, 0, 0, Gtk.PACK_START)
         else:
-            self.combo_hbox.set_child_packing(self.filechooser_button, 1, 1, 0, Gtk.PACK_START)
-            self.combo_hbox.set_child_packing(self.filechooser_button, 0, 0, 0, Gtk.PackType.START)
-        else:
             self.combo_hbox.set_child_packing(self.filechooser_button, 1, 1, 0, Gtk.PackType.START)
             self.folder_name_label.set_size_request(-1, -1)
         # Update text on the button label
