@@ -107,7 +107,7 @@ class CheckedPlusInput(InputField):
         self.name = name
         self.checked = checked
         self.msglen = len(self.chkd_inact) + 1
-        child = self.get_child()
+        # child = self.get_child() TOFIX
         self.child_active = False
 
     def get_height(self):

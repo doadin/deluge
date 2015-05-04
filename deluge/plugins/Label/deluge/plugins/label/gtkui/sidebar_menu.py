@@ -15,7 +15,6 @@ import Gtk.glade
 from deluge.ui.client import client
 from gi.repository import Gtk
 
-
 log = logging.getLogger(__name__)
 
 NO_LABEL = "No Label"

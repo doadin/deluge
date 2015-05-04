@@ -8,7 +8,6 @@
 #
 
 import gi
-
 from deluge.common import get_pixmap, get_version, open_url_in_browser
 from deluge.ui.client import client
 from deluge.ui.gtkui.common import get_deluge_icon

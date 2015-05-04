@@ -16,14 +16,13 @@ from twisted.internet.error import ReactorNotRunning
 
 import deluge.common
 import deluge.component as component
-import gi
 import deluge.ui.gtkui.common
+import gi
 from deluge.configmanager import ConfigManager
 from deluge.ui.client import client
 from deluge.ui.gtkui.dialogs import PasswordDialog
 from deluge.ui.gtkui.ipcinterface import process_args
 from gi.repository import Gdk, Gtk
-
 
 gi.require_version('Gtk', '3.0')
 
@@ -71,9 +70,9 @@ class MainWindow(component.Component):
         # in order not to have to monkey patch GtkBuilder. Those parts would then need to
         # be added to the main window "by hand".
 
-        #self.main_builder.prev_connect_signals = copy.deepcopy(self.main_builder.connect_signals)
-        self.main_builder.prev_connect_signals = self.main_builder.connect_signals 
-        #TOFIX
+        # self.main_builder.prev_connect_signals = copy.deepcopy(self.main_builder.connect_signals)
+        self.main_builder.prev_connect_signals = self.main_builder.connect_signals
+        # TOFIX
 
         def patched_connect_signals(*a, **k):
             raise RuntimeError("In order to connect signals to this GtkBuilder instance please use "
@@ -119,8 +118,8 @@ class MainWindow(component.Component):
         # UI when it is minimized.
         self.is_minimized = False
 
-        #self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY) 
-		#TOFIX
+        # self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY) 
+        # TOFIX
 
         # Connect events
         self.window.connect("window-state-event", self.on_window_state_event)
@@ -128,8 +127,8 @@ class MainWindow(component.Component):
         self.window.connect("delete-event", self.on_window_delete_event)
         self.window.connect("drag-data-received", self.on_drag_data_received_event)
         self.vpaned.connect("notify::position", self.on_vpaned_position_event)
-        #self.window.connect("expose-event", self.on_expose_event) 
-		#TOFIX
+        # self.window.connect("expose-event", self.on_expose_event)
+        # TOFIX
 
         self.config.register_set_function("show_rate_in_title", self._on_set_show_rate_in_title, apply_now=False)
 
