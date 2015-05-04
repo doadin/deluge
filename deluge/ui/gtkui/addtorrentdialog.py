@@ -12,13 +12,12 @@ import logging
 import os
 from urlparse import urljoin
 
-from gi.repository import GObject, Gtk
-import gi
 import twisted.web.client
 import twisted.web.error
 
 import deluge.common
 import deluge.component as component
+import gi
 from deluge.configmanager import ConfigManager
 from deluge.httpdownloader import download_file
 from deluge.ui.client import client
@@ -27,6 +26,7 @@ from deluge.ui.gtkui.common import listview_replace_treestore, reparent_iter
 from deluge.ui.gtkui.dialogs import ErrorDialog
 from deluge.ui.gtkui.path_chooser import PathChooser
 from deluge.ui.gtkui.torrentview_data_funcs import cell_data_size
+from gi.repository import GObject, Gtk
 
 gi.require_version('Gtk', '3.0')
 

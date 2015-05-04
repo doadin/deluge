@@ -107,7 +107,7 @@ class CheckedPlusInput(InputField):
         self.name = name
         self.checked = checked
         self.msglen = len(self.chkd_inact) + 1
-        self.get_child() = child
+        child = self.get_child()
         self.child_active = False
 
     def get_height(self):
@@ -133,10 +133,10 @@ class CheckedPlusInput(InputField):
         if self.checked:
             if isinstance(self.get_child(), (TextInput, IntSpinInput, FloatSpinInput)):
                 crows = self.get_child().render(screen, row, width - self.msglen,
-                                          self.child_active and active, col + self.msglen, self.msglen)
+                                                self.child_active and active, col + self.msglen, self.msglen)
             else:
                 crows = self.get_child().render(screen, row, width - self.msglen,
-                                          self.child_active and active, col + self.msglen)
+                                                self.child_active and active, col + self.msglen)
             rows = max(rows, crows)
         else:
             self.parent.add_string(row, "(enable to view/edit value)", screen, col + self.msglen, False, True)

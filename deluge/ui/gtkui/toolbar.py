@@ -9,11 +9,10 @@
 
 import logging
 
-from gi.repository import Gtk
-import gi
-
 import deluge.component as component
+import gi
 from deluge.configmanager import ConfigManager
+from gi.repository import Gtk
 
 gi.require_version('Gtk', '3.0')
 

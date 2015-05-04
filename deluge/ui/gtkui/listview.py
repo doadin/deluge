@@ -8,18 +8,17 @@
 #
 
 import logging
+
 import gi
 
-from gi.repository import Gtk, GObject, Gdk
-import gi
-from gi.repository.GObject import SIGNAL_RUN_LAST, TYPE_NONE, signal_new
-
-from pygtkcompat.generictreemodel import GenericTreeModel
 from deluge.ui.gtkui.common import load_pickled_state_file, save_pickled_state_file
+from gi.repository import Gdk, Gtk
+from gi.repository.GObject import SIGNAL_RUN_LAST, TYPE_NONE, signal_new
+from pygtkcompat.generictreemodel import GenericTreeModel
 
 gi.require_version('Gtk', '3.0')
 
-#signal_new('button-press-event', Gtk.TreeViewColumn, SIGNAL_RUN_LAST, TYPE_NONE, (object,))
+# signal_new('button-press-event', Gtk.TreeViewColumn, SIGNAL_RUN_LAST, TYPE_NONE, (object,))
 
 signal_new('button-press-event', Gtk.TreeViewColumn, SIGNAL_RUN_LAST, TYPE_NONE, (Gdk.Event,))
 
@@ -35,6 +34,7 @@ class ListViewColumnState:
         self.visible = visible
         self.sort = sort
         self.sort_order = sort_order
+
 
 class TreeModel(GenericTreeModel):
 
@@ -103,7 +103,7 @@ class ListView:
                 button.connect('button-press-event', self.on_button_pressed)
 
         def on_button_pressed(self, widget, event):
-            #self.emit('button-press-event', event)
+            # self.emit('button-press-event', event)
             pass
 
         def set_cell_data_func_attributes(self, cell_renderer, func, func_data=None):
@@ -186,8 +186,8 @@ class ListView:
         self.model_filter = Gtk.TreeModelSort(model_filter)
 
         print "self.model_filter:", type(self.model_filter)
-        #iter_is_valid(iter)
-        #self.model_filter = TreeModel(model_filter)
+        # iter_is_valid(iter)
+        # self.model_filter = TreeModel(model_filter)
 
         self.model_filter.connect("sort-column-changed", self.on_model_sort_changed)
         self.model_filter.connect("row-inserted", self.on_model_row_inserted)
@@ -202,8 +202,8 @@ class ListView:
         # Using the default sort column
         elif self.default_sort_column_id:
             self.model_filter.set_sort_column_id(self.default_sort_column_id, Gtk.SortType.ASCENDING)
-        #self.model_filter.set_default_sort_func(None) # TOFIX
-        #self.model_filter.set_sort_func(None, None)
+        # self.model_filter.set_default_sort_func(None) # TOFIX
+        # self.model_filter.set_sort_func(None, None)
 
     def get_sort_column_from_state(self):
         """Find the first (should only be one) state with sort enabled"""
@@ -335,15 +335,15 @@ class ListView:
             self.columns[unicode(name)].column.set_visible(widget.get_active())
         return
 
-        #def callback(treeviewcolumn, user_param1, ...)'
-        #clicked
+        # def callback(treeviewcolumn, user_param1, ...)'
+        # clicked
 
     def on_treeview_header_right_clicked(self, column, event):
         print "on_treeview_header_right_clicked"
         if event.button == 3:
-            #self.menu.popup(None, None, None, event.button, event.get_time())
-            #self.menu.popup(None, None, pos, self, event.button, event.time)
-            #self.menu.popup(None, None, None, self, event.button, event.time)
+            # self.menu.popup(None, None, None, event.button, event.get_time())
+            # self.menu.popup(None, None, pos, self, event.button, event.time)
+            # self.menu.popup(None, None, None, self, event.button, event.time)
             self.menu.popup(None, None, None, None, event.button, event.get_time())
             pass
 
@@ -541,9 +541,9 @@ class ListView:
         column.set_min_width(10)
         column.set_reorderable(True)
         column.set_visible(not hidden)
-        #column.connect('button-press-event',
+        # column.connect('button-press-event',
         #               self.on_treeview_header_right_clicked)
-        #column.connect('clicked', self.on_treeview_header_right_clicked)
+        # column.connect('clicked', self.on_treeview_header_right_clicked)
 
         if tooltip:
             column.get_widget().set_tooltip_markup(tooltip)

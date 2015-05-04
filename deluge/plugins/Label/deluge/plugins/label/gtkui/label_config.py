@@ -10,11 +10,11 @@
 import logging
 import os
 
-from gi.repository import Gtk
-import Gtk.glade
 import pkg_resources  # access plugin egg
 
+import Gtk.glade
 from deluge.ui.client import client
+from gi.repository import Gtk
 
 log = logging.getLogger(__name__)
 

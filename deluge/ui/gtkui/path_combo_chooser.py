@@ -12,11 +12,10 @@ from __future__ import print_function
 
 import os
 
-from gi.repository import GObject, Gtk, Gdk
-from gi.overrides import keysyms
-
 from deluge.common import resource_filename
 from deluge.path_chooser_common import get_completion_paths
+# from gi.overrides import keysyms
+from gi.repository import Gdk, GObject, Gtk
 
 
 def is_ascii_value(keyval, ascii_key):
@@ -1026,8 +1025,8 @@ class PathChooserComboBox(Gtk.HBox, StoredValuesPopup, GObject.GObject):
 
     def __init__(self, max_visible_rows=20, auto_complete=True, use_completer_popup=True):
         Gtk.HBox.__init__(self)
-        #gobject.GObject.__init__(self)
-        #GObject.GObject.__init__(self)
+        # gobject.GObject.__init__(self)
+        # GObject.GObject.__init__(self)
         GObject.GObject.__init__(self)
         self._stored_values_popping_down = False
         self.filechooser_visible = True
@@ -1089,7 +1088,7 @@ class PathChooserComboBox(Gtk.HBox, StoredValuesPopup, GObject.GObject):
         old_text = self.text_entry.get_text()
         # We must block the "delete-text" signal to avoid the signal handler being called
         self.text_entry.handler_block_by_func(self.auto_completer.on_entry_text_delete_text)
-        #print("set_text:", text)
+        # print("set_text:", text)
         self.text_entry.set_text(text)
         self.text_entry.handler_unblock_by_func(self.auto_completer.on_entry_text_delete_text)
 

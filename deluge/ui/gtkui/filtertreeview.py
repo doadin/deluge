@@ -13,13 +13,12 @@ import logging
 import os
 import warnings
 
-from gi.repository import Gtk, Gdk, cairo, Pango, PangoCairo, GdkPixbuf
-from gi.repository.GLib import GError
-
 import deluge.component as component
 from deluge.common import TORRENT_STATE, get_pixmap, resource_filename
 from deluge.configmanager import ConfigManager
 from deluge.ui.client import client
+from gi.repository import GdkPixbuf, Gtk, Pango
+from gi.repository.GLib import GError
 
 log = logging.getLogger(__name__)
 
@@ -68,7 +67,7 @@ class FilterTreeView(component.Component):
         column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         # icon cell
         self.cell_pix = Gtk.CellRendererPixbuf()
-        #column.pack_start(self.cell_pix, False, True, 0)
+        # column.pack_start(self.cell_pix, False, True, 0)
         column.pack_start(self.cell_pix, expand=False)
         column.add_attribute(self.cell_pix, 'pixbuf', 4)
         # label cell
@@ -81,7 +80,7 @@ class FilterTreeView(component.Component):
         self.cell_count.set_property('xalign', 1.0)
         self.cell_count.set_padding(3, 0)
         column.pack_start(self.cell_count, expand=False)
-        #column.pack_start(self.cell_count, False, True, 0)
+        # column.pack_start(self.cell_count, False, True, 0)
 
         self.treeview.append_column(column)
 
@@ -100,9 +99,10 @@ class FilterTreeView(component.Component):
         self.treeview.connect("button-press-event", self.on_button_press_event)
 
         # colors using current theme.
-        style = self.window.window.get_style() # TOFIX
-        #self.colour_background = style.bg[Gtk.StateType.NORMAL]
-        #self.colour_foreground = style.fg[Gtk.StateType.NORMAL]
+        # style = self.window.window.get_style() 
+        # TOFIX
+        # self.colour_background = style.bg[Gtk.StateType.NORMAL]
+        # self.colour_foreground = style.fg[Gtk.StateType.NORMAL]
 
         # filtertree menu
         builder = Gtk.Builder()

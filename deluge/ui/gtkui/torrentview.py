@@ -10,20 +10,21 @@
 """The torrent view component that lists all torrents in the session."""
 
 import logging
+import warnings
 
-from gi.repository import GObject, Gtk, Gdk
-import gi
 from twisted.internet import reactor
 
 import deluge.component as component
+import gi
+
 from deluge.ui.client import client
 from deluge.ui.gtkui import torrentview_data_funcs as funcs
 from deluge.ui.gtkui.listview import ListView
 from deluge.ui.gtkui.removetorrentdialog import RemoveTorrentDialog
 
-import warnings
+from gi.repository import GObject, Gtk, Gdk
 warnings.filterwarnings('error', category=UnicodeWarning)
-#warnings.filterwarnings('error', message='*equal comparison failed*')
+# warnings.filterwarnings('error', message='*equal comparison failed*')
 
 gi.require_version('Gtk', '3.0')
 
@@ -401,7 +402,7 @@ class TorrentView(ListView, component.Component):
     def send_status_request(self, columns=None, select_row=False):
         # Store the 'status_fields' we need to send to core
         status_keys = self.set_columns_to_update(columns)
-        #print "status_keys:", status_keys
+        # print "status_keys:", status_keys
 
         # If there is nothing in status_keys then we must not continue
         if status_keys is []:
@@ -463,7 +464,7 @@ class TorrentView(ListView, component.Component):
                     if status_field in status[torrent_id]:
                         fields_to_update.append((column_index[i], status_field))
 
-        #print "fields_to_update:", fields_to_update
+        # print "fields_to_update:", fields_to_update
 
         for row in self.liststore:
             torrent_id = row[self.columns["torrent_id"].column_indices[0]]
@@ -492,16 +493,16 @@ class TorrentView(ListView, component.Component):
                 for i, status_field in fields_to_update:
                     row_value = status[torrent_id][status_field]
                     try:
-                        #if row[i] != row_value:
+                        # if row[i] != row_value:
                         to_update.append(i)
                         to_update.append(row_value)
-                    except UnicodeWarning as E:
-                        #print "UnicodeWarning:", E
-                        #print "row_value: (%s) '%s'" % (type(row_value), row_value)
-                        #print "row[%d]: (%s): '%s'" % (i, type(row[i]), row[i])
+                    except UnicodeWarning:
+                        # print "UnicodeWarning:", E
+                        # print "row_value: (%s) '%s'" % (type(row_value), row_value)
+                        # print "row[%d]: (%s): '%s'" % (i, type(row[i]), row[i])
                         pass
 
-                        #raise
+                        # raise
                 # Update fields in the liststore
                 if to_update:
                     self.liststore.set(row.iter, *to_update)
@@ -625,17 +626,17 @@ class TorrentView(ListView, component.Component):
 
             row = self.model_filter.get_iter(path[0])
             print "row:", row
-            #print "row:", dir(row)
+            # print "row:", dir(row)
             print "stamp:", row.stamp
 
             print "VALID:", self.model_filter.iter_is_valid(row)
 
-            #print "model:", type(self.treeview.get_model())
-            #print "model:", dir(self.treeview.get_model())
+            # print "model:", type(self.treeview.get_model())
+            # print "model:", dir(self.treeview.get_model())
             print "string_from_iter:", self.treeview.get_model().get_string_from_iter(row)
-            #print "path2:", self.treeview.get_path(row)
+            # print "path2:", self.treeview.get_path(row)
 
-            #print "VAL:", self.liststore.get_value(row, 0)
+            # print "VAL:", self.liststore.get_value(row, 0)
 
             if self.get_selected_torrents():
                 if self.model_filter.get_value(row, self.columns["torrent_id"].column_indices[0]) \
@@ -645,12 +646,12 @@ class TorrentView(ListView, component.Component):
             else:
                 self.treeview.get_selection().select_iter(row)
             torrentmenu = component.get("MenuBar").torrentmenu
-            #torrentmenu.popup(None, None, None, event.button, event.time, None)
-            #def pos(menu, icon):
+            # torrentmenu.popup(None, None, None, event.button, event.time, None)
+            # def pos(menu, icon):
             #    return (Gtk.StatusIcon.position_menu(menu, icon))
-            #torrentmenu.popup_for_device(None, None, pos, self, event.button, event.time)
+            # torrentmenu.popup_for_device(None, None, pos, self, event.button, event.time)
             torrentmenu.popup(None, None, None, None, event.button, event.time)
-            #torrentmenu.popup(None, None, pos, self, event.button, event.time)
+            # torrentmenu.popup(None, None, pos, self, event.button, event.time)
             return True
 
     def on_selection_changed(self, treeselection):

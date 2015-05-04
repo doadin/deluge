@@ -3,12 +3,11 @@ import os
 import shutil
 import sys
 
-from gi.repository import Gtk
-
 import bbfreeze.recipes
 import deluge.common
 import icon
 from bbfreeze import Freezer
+from gi.repository import Gtk
 
 # Get build_version from installed deluge
 build_version = deluge.common.get_version()

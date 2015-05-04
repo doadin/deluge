@@ -10,13 +10,12 @@
 import logging
 import os.path
 
-from gi.repository import GObject, Gtk
-
 import deluge.common
 import deluge.component as component
 from deluge.configmanager import ConfigManager
 from deluge.ui.gtkui.common import get_logo
 from deluge.ui.gtkui.ipcinterface import process_args
+from gi.repository import GObject, Gtk
 
 log = logging.getLogger(__name__)
 

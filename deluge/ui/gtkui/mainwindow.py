@@ -7,23 +7,23 @@
 # See LICENSE for more details.
 #
 
-import copy
 import logging
 import os.path
 from hashlib import sha1 as sha
 
-from gi.repository import Gtk, Gdk
-import gi
 from twisted.internet import reactor
 from twisted.internet.error import ReactorNotRunning
 
 import deluge.common
 import deluge.component as component
+import gi
 import deluge.ui.gtkui.common
 from deluge.configmanager import ConfigManager
 from deluge.ui.client import client
 from deluge.ui.gtkui.dialogs import PasswordDialog
 from deluge.ui.gtkui.ipcinterface import process_args
+from gi.repository import Gdk, Gtk
+
 
 gi.require_version('Gtk', '3.0')
 
@@ -72,7 +72,8 @@ class MainWindow(component.Component):
         # be added to the main window "by hand".
 
         #self.main_builder.prev_connect_signals = copy.deepcopy(self.main_builder.connect_signals)
-        self.main_builder.prev_connect_signals = self.main_builder.connect_signals # TOFIX
+        self.main_builder.prev_connect_signals = self.main_builder.connect_signals 
+        #TOFIX
 
         def patched_connect_signals(*a, **k):
             raise RuntimeError("In order to connect signals to this GtkBuilder instance please use "
@@ -118,7 +119,8 @@ class MainWindow(component.Component):
         # UI when it is minimized.
         self.is_minimized = False
 
-        #self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY) # TOFIX
+        #self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY) 
+		#TOFIX
 
         # Connect events
         self.window.connect("window-state-event", self.on_window_state_event)
@@ -126,7 +128,8 @@ class MainWindow(component.Component):
         self.window.connect("delete-event", self.on_window_delete_event)
         self.window.connect("drag-data-received", self.on_drag_data_received_event)
         self.vpaned.connect("notify::position", self.on_vpaned_position_event)
-        #self.window.connect("expose-event", self.on_expose_event) # TOFIX
+        #self.window.connect("expose-event", self.on_expose_event) 
+		#TOFIX
 
         self.config.register_set_function("show_rate_in_title", self._on_set_show_rate_in_title, apply_now=False)
 
@@ -340,7 +343,7 @@ class MainWindow(component.Component):
             bool: True if on active workspace (or wnck module not available), otherwise False.
 
         """
-        if not wnck:
+        if not Wnck:
             return True
         win = Wnck.window_get(self.window.window.xid)
         active_wksp = win.get_screen().get_active_workspace()

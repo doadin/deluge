@@ -159,7 +159,6 @@ class GtkUiNotifications(CustomNotifications):
         return defer.succeed(_("Notification Blink shown"))
 
     def __popup(self, title='', message=''):
-        from gi.repository import Gtk
         if not self.config['popup_enabled']:
             return defer.succeed(_("Popup notification is not enabled."))
         if not POPUP_AVAILABLE:

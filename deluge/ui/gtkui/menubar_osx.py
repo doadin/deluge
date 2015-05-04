@@ -7,9 +7,8 @@
 # See LICENSE for more details.
 #
 
-from gi.repository import Gtk, Gdk
-
 from deluge.configmanager import ConfigManager
+from gi.repository import Gdk, Gtk
 
 
 def accel_swap(item, group, skey, smod, dkey, dmod):

@@ -12,15 +12,14 @@
 import logging
 import os.path
 
-from gi.repository import Gtk, Gdk
-import gi
-
 import deluge.common
 import deluge.component as component
+import gi
 from deluge.configmanager import ConfigManager
 from deluge.ui.client import client
 from deluge.ui.gtkui.dialogs import ErrorDialog, OtherDialog
 from deluge.ui.gtkui.path_chooser import PathChooser
+from gi.repository import Gtk
 
 gi.require_version('Gtk', '3.0')
 

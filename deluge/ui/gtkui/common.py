@@ -15,12 +15,11 @@ import os
 import shutil
 import sys
 
-from gi.repository import Gtk
-import gi
-from gi.repository.GLib import GError
-from gi.repository import GdkPixbuf
-
 import deluge.common
+import gi
+from gi.repository import GdkPixbuf, Gtk
+from gi.repository.GLib import GError
+
 
 gi.require_version('Gtk', '3.0')
 
