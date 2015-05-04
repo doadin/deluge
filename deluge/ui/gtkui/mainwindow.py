@@ -118,7 +118,7 @@ class MainWindow(component.Component):
         # UI when it is minimized.
         self.is_minimized = False
 
-        # self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY) 
+        # self.window.drag_dest_set(Gtk.DestDefaults.ALL, [('text/uri-list', 0, 80)], Gdk.DragAction.COPY)
         # TOFIX
 
         # Connect events
