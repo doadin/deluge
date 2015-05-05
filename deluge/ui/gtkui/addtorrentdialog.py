@@ -26,7 +26,7 @@ from deluge.ui.gtkui.common import listview_replace_treestore, reparent_iter
 from deluge.ui.gtkui.dialogs import ErrorDialog
 from deluge.ui.gtkui.path_chooser import PathChooser
 from deluge.ui.gtkui.torrentview_data_funcs import cell_data_size
-from gi.repository import GObject, Gtk
+from gi.repository import Gdk, GObject, Gtk
 
 gi.require_version('Gtk', '3.0')
 
@@ -579,8 +579,8 @@ class AddTorrentDialog(component.Component):
         dialog.set_transient_for(self.dialog)
         entry.grab_focus()
 
-        text = (Gtk.clipboard_get(selection='PRIMARY').wait_for_text() or
-                Gtk.clipboard_get().wait_for_text())
+        text = (Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD).wait_for_text() or
+                Gtk.Clipboard.get().wait_for_text())
         if text:
             text = text.strip()
             if deluge.common.is_url(text) or deluge.common.is_magnet(text):
