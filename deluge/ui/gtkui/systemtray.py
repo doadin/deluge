@@ -103,15 +103,15 @@ class SystemTray(component.Component):
 
         else:
             log.debug("Enabling the system tray icon..")
-            # if deluge.common.windows_check() or deluge.common.osx_check():
-            #     self.tray = Gtk.status_icon_new_from_pixbuf(get_logo(32))
-            # else:
-            #     try:
-            #         self.tray = Gtk.status_icon_new_from_icon_name("deluge")
-            #     except:
-            #         self.tray = None
-            #         log.warning("Update PyGTK to 2.10 or greater for SystemTray..")
-            #         return
+            if deluge.common.windows_check() or deluge.common.osx_check():
+                self.tray = Gtk.StatusIcon.new_from_pixbuf(get_logo(32))
+            else:
+                try:
+                    self.tray = Gtk.StatusIcon.new_from_icon_name("deluge")
+                except:
+                    self.tray = None
+                    log.warning("Update PyGTK to 2.10 or greater for SystemTray..")
+                    return
 
             # self.tray.connect("activate", self.on_tray_clicked)
             # self.tray.connect("popup-menu", self.on_tray_popup)
@@ -234,7 +234,7 @@ class SystemTray(component.Component):
 
         # Set the tooltip
         if self.tray:
-            self.tray.set_tooltip(msg)
+            self.tray.set_tooltip_text(msg)
         self.send_status_request()
 
     def build_tray_bwsetsubmenu(self):
