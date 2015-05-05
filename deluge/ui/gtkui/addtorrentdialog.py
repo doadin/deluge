@@ -620,7 +620,7 @@ class AddTorrentDialog(component.Component):
         dialog.set_transient_for(self.dialog)
 
         pb = Gtk.ProgressBar()
-        dialog.vbox.pack_start(pb, True, True)
+        dialog.vbox.pack_start(pb, True, True, 0)
         dialog.show_all()
 
         # Create a tmp file path
