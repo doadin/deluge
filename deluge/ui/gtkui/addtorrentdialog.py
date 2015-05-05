@@ -615,7 +615,7 @@ class AddTorrentDialog(component.Component):
     def add_from_url(self, url):
         dialog = Gtk.Dialog(
             _("Downloading..."),
-            flags=Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.NO_SEPARATOR,
+            flags=Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             parent=self.dialog)
         dialog.set_transient_for(self.dialog)
 
