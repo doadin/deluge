@@ -31,7 +31,7 @@ class BaseDialog(Gtk.Dialog):
         super(BaseDialog, self).__init__(
             title=header,
             parent=parent if parent else component.get("MainWindow").window,
-            flags=Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.NO_SEPARATOR,
+            flags=Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             buttons=buttons)
 
         self.set_icon(get_deluge_icon())
@@ -53,15 +53,15 @@ class BaseDialog(Gtk.Dialog):
         else:
             image.set_from_stock(icon, Gtk.IconSize.DIALOG)
         image.set_alignment(0.5, 0.0)
-        hbox.pack_start(image, False, False)
+        hbox.pack_start(image, False, False, 0)
         vbox = Gtk.VBox(spacing=5)
         tlabel = Gtk.Label(label=text)
         tlabel.set_use_markup(True)
         tlabel.set_line_wrap(True)
         tlabel.set_alignment(0.0, 0.5)
-        vbox.pack_start(tlabel, False, False)
-        hbox.pack_start(vbox, False, False)
-        self.vbox.pack_start(hbox, False, False)
+        vbox.pack_start(tlabel, False, False, 0)
+        hbox.pack_start(vbox, False, False, 0)
+        self.vbox.pack_start(hbox, False, False, 0)
         self.vbox.set_spacing(5)
         self.vbox.show_all()
 
@@ -338,11 +338,11 @@ class OtherDialog(BaseDialog):
             parent)
 
         hbox = Gtk.HBox(spacing=5)
-        alignment_spacer = Gtk.Alignment.new()
+        alignment_spacer = Gtk.Alignment.new(1, 0.5, 1, 1)
         hbox.pack_start(alignment_spacer, True, True, 0)
         alignment_spin = Gtk.Alignment.new(1, 0.5, 1, 1)
         adjustment_spin = Gtk.Adjustment(value=-1, lower=-1, upper=2097151, step_incr=1, page_incr=10)
-        self.spinbutton = Gtk.SpinButton(adjustment_spin)
+        self.spinbutton = Gtk.SpinButton()
         self.spinbutton.set_value(default)
         self.spinbutton.select_region(0, -1)
         self.spinbutton.set_width_chars(6)
