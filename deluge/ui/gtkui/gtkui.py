@@ -12,7 +12,7 @@ import os
 import sys
 import warnings
 
-from gi.repository import GObject, Gdk
+from gi.repository import GObject, Gdk, Gtk
 from twisted.internet import gtk3reactor
 from twisted.internet.error import ReactorAlreadyInstalledError
 
@@ -269,8 +269,8 @@ class GtkUI(object):
         component.stop()
 
         # Process any pending gtk events since the mainloop has been quit
-        # while Gtk.events_pending(): TOFIX
-        #    Gtk.main_iteration(0)
+        while Gtk.events_pending():
+           Gtk.main_iteration()
 
         # Shutdown all components
         component.shutdown()
