@@ -20,7 +20,7 @@ class AboutDialog:
     def __init__(self):
         def url_hook(dialog, url):
             open_url_in_browser(url)
-        Gtk.about_dialog_set_url_hook(url_hook)
+        # Gtk.about_dialog_set_url_hook(url_hook) TODO
         self.about = Gtk.AboutDialog()
         self.about.set_position(Gtk.WindowPosition.CENTER)
         self.about.set_name("Deluge")
