@@ -1052,8 +1052,7 @@ class PathChooserComboBox(Gtk.HBox, StoredValuesPopup, GObject.GObject):
         # Change the parent of the hbox from the glade Window to this hbox.
         self.combo_hbox.reparent(self)
         StoredValuesPopup.__init__(self, self.builder, self, max_visible_rows, self.combo_hbox)
-        self.tooltips = Gtk.Tooltips()
-
+        self.tooltips = Gtk.Tooltip()
         self.auto_completer = PathAutoCompleter(self.builder, self, max_visible_rows)
         self.auto_completer.set_use_popup(use_completer_popup)
         self.auto_completer.auto_complete_enabled = auto_complete
