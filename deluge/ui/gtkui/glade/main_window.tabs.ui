@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkAdjustment" id="spin_max_connections_adjustment">
     <property name="lower">-1</property>
     <property name="upper">999999</property>
@@ -47,8 +46,6 @@
           <object class="GtkScrolledWindow" id="status_tab">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkViewport" id="viewport1">
                 <property name="visible">True</property>
@@ -124,8 +121,8 @@
                               <object class="GtkProgressBar" id="progressbar">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="show_text">True</property>
                                 <property name="pulse_step">0.10000000149</property>
+                                <property name="show_text">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -151,6 +148,18 @@
                             <property name="n_columns">8</property>
                             <property name="column_spacing">10</property>
                             <property name="row_spacing">5</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
                             <child>
                               <object class="GtkLabel" id="summary_availability">
                                 <property name="visible">True</property>
@@ -614,18 +623,6 @@
                                 <property name="x_options">GTK_FILL</property>
                               </packing>
                             </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -656,8 +653,6 @@
           <object class="GtkScrolledWindow" id="details_tab">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkViewport" id="viewport2">
                 <property name="visible">True</property>
@@ -713,7 +708,7 @@
                             <property name="left_attach">3</property>
                             <property name="right_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -727,7 +722,7 @@
                             <property name="left_attach">4</property>
                             <property name="right_attach">5</property>
                             <property name="x_options">GTK_SHRINK | GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -746,7 +741,7 @@
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -761,7 +756,7 @@
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -780,7 +775,7 @@
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -797,7 +792,7 @@
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -816,7 +811,7 @@
                             <property name="top_attach">5</property>
                             <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -833,7 +828,7 @@
                             <property name="top_attach">5</property>
                             <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -850,7 +845,7 @@
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -868,7 +863,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -885,7 +880,7 @@
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -903,7 +898,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -920,7 +915,7 @@
                             <property name="top_attach">5</property>
                             <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -937,7 +932,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">5</property>
                             <property name="bottom_attach">6</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -964,7 +959,7 @@
                           </object>
                           <packing>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -981,7 +976,7 @@
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -996,7 +991,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1013,7 +1008,7 @@
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1028,7 +1023,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1047,7 +1042,7 @@
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1064,7 +1059,7 @@
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1083,7 +1078,7 @@
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1098,7 +1093,7 @@
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_SHRINK | GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                       </object>
@@ -1128,12 +1123,13 @@
           <object class="GtkScrolledWindow" id="files_tab">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkTreeView" id="files_listview">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
               </object>
             </child>
           </object>
@@ -1157,12 +1153,13 @@
           <object class="GtkScrolledWindow" id="peers_tab">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkTreeView" id="peers_listview">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection2"/>
+                </child>
               </object>
             </child>
           </object>
@@ -1186,8 +1183,6 @@
           <object class="GtkScrolledWindow" id="options_tab">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkViewport" id="viewport3">
                 <property name="visible">True</property>
@@ -1215,7 +1210,7 @@
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="right_attach">2</property>
-                            <property name="x_options"></property>
+                            <property name="x_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1226,7 +1221,7 @@
                           <packing>
                             <property name="left_attach">3</property>
                             <property name="right_attach">4</property>
-                            <property name="x_options"></property>
+                            <property name="x_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1252,6 +1247,12 @@
                                     <property name="column_spacing">4</property>
                                     <property name="row_spacing">2</property>
                                     <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
                                       <object class="GtkSpinButton" id="spin_max_connections">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
@@ -1261,8 +1262,6 @@
                                         <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                         <property name="adjustment">spin_max_connections_adjustment</property>
                                         <property name="numeric">True</property>
                                       </object>
@@ -1271,8 +1270,8 @@
                                         <property name="right_attach">2</property>
                                         <property name="top_attach">2</property>
                                         <property name="bottom_attach">3</property>
-                                        <property name="x_options"></property>
-                                        <property name="y_options"></property>
+                                        <property name="x_options"/>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1285,8 +1284,6 @@
                                         <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                         <property name="adjustment">spin_max_upload_adjustment</property>
                                         <property name="digits">1</property>
                                         <property name="numeric">True</property>
@@ -1296,8 +1293,8 @@
                                         <property name="right_attach">2</property>
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
-                                        <property name="x_options"></property>
-                                        <property name="y_options"></property>
+                                        <property name="x_options"/>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1310,8 +1307,6 @@
                                         <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                         <property name="adjustment">spin_max_download_adjustment</property>
                                         <property name="climb_rate">1</property>
                                         <property name="digits">1</property>
@@ -1320,8 +1315,8 @@
                                       <packing>
                                         <property name="left_attach">1</property>
                                         <property name="right_attach">2</property>
-                                        <property name="x_options"></property>
-                                        <property name="y_options"></property>
+                                        <property name="x_options"/>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1335,7 +1330,7 @@
                                         <property name="top_attach">2</property>
                                         <property name="bottom_attach">3</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1349,7 +1344,7 @@
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1361,7 +1356,7 @@
                                       </object>
                                       <packing>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1373,8 +1368,8 @@
                                       <packing>
                                         <property name="left_attach">2</property>
                                         <property name="right_attach">3</property>
-                                        <property name="x_options"></property>
-                                        <property name="y_options"></property>
+                                        <property name="x_options"/>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1388,8 +1383,8 @@
                                         <property name="right_attach">3</property>
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
-                                        <property name="x_options"></property>
-                                        <property name="y_options"></property>
+                                        <property name="x_options"/>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1403,7 +1398,7 @@
                                         <property name="top_attach">3</property>
                                         <property name="bottom_attach">4</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -1416,8 +1411,6 @@
                                         <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                         <property name="adjustment">spin_max_upload_slots_adjustment</property>
                                         <property name="numeric">True</property>
                                       </object>
@@ -1426,15 +1419,9 @@
                                         <property name="right_attach">2</property>
                                         <property name="top_attach">3</property>
                                         <property name="bottom_attach">4</property>
-                                        <property name="x_options"></property>
-                                        <property name="y_options"></property>
+                                        <property name="x_options"/>
+                                        <property name="y_options"/>
                                       </packing>
-                                    </child>
-                                    <child>
-                                      <placeholder/>
-                                    </child>
-                                    <child>
-                                      <placeholder/>
                                     </child>
                                   </object>
                                 </child>
@@ -1452,7 +1439,7 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="x_options"></property>
+                            <property name="x_options"/>
                             <property name="y_options">GTK_FILL</property>
                           </packing>
                         </child>
@@ -1469,10 +1456,10 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_shared">
                                     <property name="label" translatable="yes">Shared</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_chk_toggled" swapped="no"/>
                                   </object>
@@ -1485,10 +1472,10 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_prioritize_first_last">
                                     <property name="label" translatable="yes">Prioritize First/Last</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_chk_toggled" swapped="no"/>
                                   </object>
@@ -1501,10 +1488,10 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_sequential_download">
                                     <property name="label" translatable="yes">Sequential Download</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_chk_toggled" swapped="no"/>
                                   </object>
@@ -1517,10 +1504,10 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_move_completed">
                                     <property name="label" translatable="yes">Move completed:</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_chk_move_completed_toggled" swapped="no"/>
                                   </object>
@@ -1566,10 +1553,10 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_auto_managed">
                                     <property name="label" translatable="yes">Auto Managed</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_chk_toggled" swapped="no"/>
                                   </object>
@@ -1582,10 +1569,10 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_stop_at_ratio">
                                     <property name="label" translatable="yes">Stop seed at ratio:</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_chk_stop_at_ratio_toggled" swapped="no"/>
                                   </object>
@@ -1610,8 +1597,6 @@
                                         <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                         <property name="adjustment">spin_stop_ratio_adjustment</property>
                                         <property name="digits">1</property>
                                         <property name="numeric">True</property>
@@ -1632,10 +1617,10 @@
                                     <child>
                                       <object class="GtkCheckButton" id="chk_remove_at_ratio">
                                         <property name="label" translatable="yes">Remove at ratio</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_chk_toggled" swapped="no"/>
                                       </object>
@@ -1668,7 +1653,6 @@
                                     <child>
                                       <object class="GtkButton" id="button_apply">
                                         <property name="label">gtk-apply</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="sensitive">False</property>
                                         <property name="can_focus">True</property>
@@ -1720,8 +1704,6 @@
           <object class="GtkScrolledWindow" id="trackers_tab">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkViewport" id="viewport4">
                 <property name="visible">True</property>
@@ -1757,7 +1739,7 @@
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1772,7 +1754,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1789,7 +1771,7 @@
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1804,7 +1786,7 @@
                             <property name="right_attach">2</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1822,7 +1804,7 @@
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1851,7 +1833,6 @@
                             <property name="top_padding">5</property>
                             <child>
                               <object class="GtkButton" id="button_edit_trackers">
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -1874,7 +1855,7 @@
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -1889,7 +1870,7 @@
                           </object>
                           <packing>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>

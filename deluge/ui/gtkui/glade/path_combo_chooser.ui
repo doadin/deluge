@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkAction" id="action1"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">100</property>
@@ -29,7 +28,7 @@
     <signal name="key-release-event" handler="on_completion_config_dialog_key_release_event" swapped="no"/>
     <signal name="delete-event" handler="on_completion_config_dialog_delete_event" swapped="no"/>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox1">
+      <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">5</property>
@@ -70,8 +69,6 @@
                         <property name="max_length">2</property>
                         <property name="primary_icon_activatable">False</property>
                         <property name="secondary_icon_activatable">False</property>
-                        <property name="primary_icon_sensitive">True</property>
-                        <property name="secondary_icon_sensitive">True</property>
                         <property name="adjustment">adjustment3</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
@@ -122,10 +119,10 @@
                     <child>
                       <object class="GtkCheckButton" id="show_path_entry_checkbutton">
                         <property name="label" translatable="yes">Show path entry</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_show_path_entry_checkbutton_toggled" swapped="no"/>
                       </object>
@@ -138,10 +135,10 @@
                     <child>
                       <object class="GtkCheckButton" id="show_filechooser_checkbutton">
                         <property name="label" translatable="yes">Show file chooser</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_show_filechooser_checkbutton_toggled" swapped="no"/>
                       </object>
@@ -159,10 +156,10 @@
                         <child>
                           <object class="GtkCheckButton" id="show_folder_name_on_button_checkbutton">
                             <property name="label" translatable="yes">Show folder name</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                             <signal name="toggled" handler="on_show_folder_name_on_button_checkbutton_toggled" swapped="no"/>
                           </object>
@@ -218,12 +215,15 @@
                     <property name="column_spacing">5</property>
                     <property name="row_spacing">5</property>
                     <child>
+                      <placeholder/>
+                    </child>
+                    <child>
                       <object class="GtkCheckButton" id="enable_auto_completion_checkbutton">
                         <property name="label" translatable="yes">Enable  autocomplete</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_enable_auto_completion_checkbutton_toggled" swapped="no"/>
                       </object>
@@ -231,7 +231,6 @@
                     <child>
                       <object class="GtkToggleButton" id="set_completion_accelerator_button">
                         <property name="label" translatable="yes">Set new key</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -247,7 +246,6 @@
                     <child>
                       <object class="GtkCheckButton" id="show_hidden_files_checkbutton">
                         <property name="label" translatable="yes">Show hidden files</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -259,9 +257,6 @@
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                   </object>
                 </child>
@@ -477,14 +472,13 @@
           </packing>
         </child>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="config_dialog_button_close">
                 <property name="label" translatable="yes">Close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -542,8 +536,6 @@
             <property name="can_default">True</property>
             <property name="has_default">True</property>
             <property name="receives_default">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="completion_treeview">
@@ -559,6 +551,9 @@
                 <signal name="key-press-event" handler="on_completion_treeview_key_press_event" swapped="no"/>
                 <signal name="motion-notify-event" handler="on_completion_treeview_motion_notify_event" swapped="no"/>
                 <signal name="scroll-event" handler="on_completion_treeview_scroll_event" swapped="no"/>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
                 <child>
                   <object class="GtkTreeViewColumn" id="completion_treeview_column">
                     <property name="sizing">autosize</property>
@@ -594,19 +589,18 @@
     <property name="action">select-folder</property>
     <property name="preview_widget_active">False</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox2">
+      <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area2">
+          <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="filechooser_button_cancel">
                 <property name="label" translatable="yes">Cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -620,7 +614,6 @@
             <child>
               <object class="GtkButton" id="filechooser_button_open">
                 <property name="label" translatable="yes">Open</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -682,7 +675,6 @@
             <property name="has_default">True</property>
             <property name="receives_default">True</property>
             <property name="hscrollbar_policy">never</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="stored_values_treeview">
@@ -697,6 +689,9 @@
                 <signal name="key-release-event" handler="on_stored_values_treeview_key_release_event" swapped="no"/>
                 <signal name="key-press-event" handler="on_stored_values_treeview_key_press_event" swapped="no"/>
                 <signal name="scroll-event" handler="on_stored_values_treeview_scroll_event" swapped="no"/>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection2"/>
+                </child>
                 <child>
                   <object class="GtkTreeViewColumn" id="stored_values_treeview_column">
                     <property name="sizing">autosize</property>
@@ -736,7 +731,6 @@
                 <child>
                   <object class="GtkButton" id="button_add">
                     <property name="label" translatable="yes">Add</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -752,7 +746,6 @@
                 <child>
                   <object class="GtkButton" id="button_edit">
                     <property name="label" translatable="yes">Edit</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -768,7 +761,6 @@
                 <child>
                   <object class="GtkButton" id="button_remove">
                     <property name="label" translatable="yes">Remove</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -784,7 +776,6 @@
                 <child>
                   <object class="GtkButton" id="button_up">
                     <property name="label" translatable="yes">Up</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -800,7 +791,6 @@
                 <child>
                   <object class="GtkButton" id="button_down">
                     <property name="label" translatable="yes">Down</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -816,7 +806,6 @@
                 <child>
                   <object class="GtkButton" id="button_default">
                     <property name="label" translatable="yes">Default</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
@@ -832,7 +821,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="button_properties">
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -899,7 +887,6 @@
         </child>
         <child>
           <object class="GtkButton" id="button_open_dialog">
-            <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -953,8 +940,6 @@
             <property name="invisible_char_set">True</property>
             <property name="primary_icon_activatable">False</property>
             <property name="secondary_icon_activatable">False</property>
-            <property name="primary_icon_sensitive">True</property>
-            <property name="secondary_icon_sensitive">True</property>
             <signal name="changed" handler="on_entry_text_changed" swapped="no"/>
             <signal name="insert-text" handler="on_entry_text_insert_text" swapped="no"/>
             <signal name="key-press-event" handler="on_entry_text_key_press_event" swapped="no"/>
@@ -970,7 +955,6 @@
         </child>
         <child>
           <object class="GtkToggleButton" id="button_toggle_dropdown">
-            <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>

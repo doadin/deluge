@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy toplevel-contextual -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkDialog" id="connection_manager">
     <property name="can_focus">False</property>
     <property name="has_focus">True</property>
@@ -15,12 +14,12 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox2">
+      <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area2">
+          <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="sensitive">False</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
@@ -87,13 +86,14 @@
                   <object class="GtkScrolledWindow" id="scrolledwindow1">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
                     <child>
                       <object class="GtkTreeView" id="hostlist">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <signal name="row-activated" handler="on_hostlist_row_activated" swapped="no"/>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="treeview-selection1"/>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -120,7 +120,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_stock">True</property>
                         <signal name="clicked" handler="on_button_addhost_clicked" swapped="no"/>
                       </object>
@@ -136,7 +135,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_stock">True</property>
                         <signal name="clicked" handler="on_button_edithost_clicked" swapped="no"/>
                       </object>
@@ -152,7 +150,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_stock">True</property>
                         <signal name="clicked" handler="on_button_removehost_clicked" swapped="no"/>
                       </object>
@@ -174,7 +171,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
                     <signal name="clicked" handler="on_button_startdaemon_clicked" swapped="no"/>
                     <child>
                       <object class="GtkHBox" id="hbox4">
@@ -222,7 +218,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="use_stock">True</property>
                     <signal name="clicked" handler="on_button_refresh_clicked" swapped="no"/>
                   </object>
@@ -269,7 +264,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -284,7 +279,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -299,7 +294,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -337,7 +332,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_button_close_clicked" swapped="no"/>
               </object>
@@ -353,7 +347,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_button_connect_clicked" swapped="no"/>
               </object>
