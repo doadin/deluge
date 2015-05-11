@@ -1045,6 +1045,7 @@ class PathChooserComboBox(Gtk.HBox, StoredValuesPopup, GObject.GObject):
         self.open_filechooser_dialog_button = self.builder.get_object("button_open_dialog")
         self.filechooser_button = self.open_filechooser_dialog_button
         self.filechooserdialog = self.builder.get_object("filechooserdialog")
+        self.filechooserdialog.set_transient_for(Gtk.Window(Gtk.WindowType.TOPLEVEL))
         self.folder_name_label = self.builder.get_object("folder_name_label")
         self.default_text = None
         self.button_properties = self.builder.get_object("button_properties")
