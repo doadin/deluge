@@ -126,8 +126,7 @@ class MainWindow(component.Component):
         self.window.connect("delete-event", self.on_window_delete_event)
         self.window.connect("drag-data-received", self.on_drag_data_received_event)
         self.vpaned.connect("notify::position", self.on_vpaned_position_event)
-        # self.window.connect("expose-event", self.on_expose_event)
-        # TOFIX
+        self.window.connect("draw", self.on_expose_event)
 
         self.config.register_set_function("show_rate_in_title", self._on_set_show_rate_in_title, apply_now=False)
 
