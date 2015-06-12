@@ -15,8 +15,7 @@ import deluge.component as component
 from deluge.configmanager import ConfigManager
 from deluge.ui.client import client
 from deluge.ui.gtkui import dialogs
-from deluge.ui.gtkui.common import build_menu_radio_list
-# get_logo
+from deluge.ui.gtkui.common import build_menu_radio_list, get_logo
 from gi.repository import Gtk
 
 try:
