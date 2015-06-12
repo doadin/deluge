@@ -11,9 +11,8 @@ import logging
 
 import gi
 from deluge.ui.gtkui.common import load_pickled_state_file, save_pickled_state_file
-from gi.repository import Gdk, Gtk
+from gi.repository import Gdk, Gtk, GObject
 from gi.repository.GObject import SIGNAL_RUN_LAST, TYPE_NONE, signal_new
-from pygtkcompat.generictreemodel import GenericTreeModel
 
 gi.require_version('Gtk', '3.0')
 
@@ -35,10 +34,10 @@ class ListViewColumnState:
         self.sort_order = sort_order
 
 
-class TreeModel(GenericTreeModel):
+class TreeModel(GObject.Object, Gtk.TreeModel):
 
     def __init__(self, filter):
-        GenericTreeModel.__init__(self, filter)
+        Gtk.TreeModel.__init__(self, filter)
 
 
 class ListView:
