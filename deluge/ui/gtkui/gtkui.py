@@ -211,7 +211,10 @@ class GtkUI(object):
         self.ipcinterface = IPCInterface(args)
 
         # Initialize gdk threading
-        Gdk.threads_init()
+        # TOFIX Threading in glib 2.4x
+        # causes crashes in windows
+        # glib 2.4x is current for pygi
+        # Gdk.threads_init()
 
         # We make sure that the UI components start once we get a core URI
         client.set_disconnect_callback(self.__on_disconnect)
