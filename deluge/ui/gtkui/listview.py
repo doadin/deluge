@@ -13,6 +13,7 @@ import gi
 from deluge.ui.gtkui.common import load_pickled_state_file, save_pickled_state_file
 from gi.repository import Gdk, Gtk
 from gi.repository.GObject import SIGNAL_RUN_LAST, TYPE_NONE, signal_new
+from pygtkcompat.generictreemodel import GenericTreeModel
 
 gi.require_version('Gtk', '3.0')
 
