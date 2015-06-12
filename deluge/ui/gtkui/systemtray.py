@@ -112,7 +112,7 @@ class SystemTray(component.Component):
                     log.warning("Update PyGTK to 2.10 or greater for SystemTray..")
                     return
 
-            # self.tray.connect("activate", self.on_tray_clicked)
+            self.tray.connect("activate", self.on_tray_clicked)
             # self.tray.connect("popup-menu", self.on_tray_popup)
 
         self.builder.get_object("download-limit-image").set_from_file(
