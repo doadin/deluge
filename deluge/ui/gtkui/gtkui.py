@@ -272,8 +272,8 @@ class GtkUI(object):
         component.stop()
 
         # Process any pending gtk events since the mainloop has been quit
-        while Gdk.events_pending:
-            Gtk.main_iteration()
+        # while Gdk.events_pending:
+        #    Gtk.main_iteration()
 
         # Shutdown all components
         component.shutdown()
