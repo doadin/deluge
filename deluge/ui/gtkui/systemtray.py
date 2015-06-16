@@ -113,7 +113,7 @@ class SystemTray(component.Component):
                     return
 
             self.tray.connect("activate", self.on_tray_clicked)
-            # self.tray.connect("popup-menu", self.on_tray_popup)
+            self.tray.connect("popup-menu", self.on_tray_popup)
 
         self.builder.get_object("download-limit-image").set_from_file(
             deluge.common.get_pixmap("downloading16.png"))
@@ -324,11 +324,11 @@ class SystemTray(component.Component):
         else:
             self.builder.get_object("menuitem_show_deluge").set_active(False)
 
-        popup_function = Gtk.status_icon_position_menu
+        popup_function = Gtk.StatusIcon.position_menu
         if deluge.common.windows_check():
             popup_function = None
             button = 0
-        self.tray_menu.popup(None, None, popup_function, button, activate_time, status_icon)
+        self.tray_menu.popup(None, None, None, popup_function, button, activate_time)
 
     def on_menuitem_show_deluge_activate(self, menuitem):
         log.debug("on_menuitem_show_deluge_activate")
