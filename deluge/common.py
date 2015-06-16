@@ -957,16 +957,17 @@ def setup_translations(setup_gettext=True, setup_pygtk=False):
 
             if windows_check():
                 import ctypes
-                libintl = ctypes.cdll.intl
+                libintl = ctypes.cdll.LoadLibrary('libintl-8.dll')
                 libintl.bindtextdomain(domain, translations_path.encode(sys.getfilesystemencoding()))
                 libintl.textdomain(domain)
                 libintl.bind_textdomain_codeset(domain, "UTF-8")
                 libintl.gettext.restype = ctypes.c_char_p
 
             # Use glade for plugins that still uses it
-            import Gtk.glade
-            Gtk.glade.bindtextdomain(domain, translations_path)  # TOFIX
-            Gtk.glade.textdomain(domain)
+            # Gtk.glade no longer available change plugins
+            # import Gtk.glade
+            # Gtk.glade.bindtextdomain(domain, translations_path)  # TOFIX
+            # Gtk.glade.textdomain(domain)
         except Exception as ex:
             log.error("Unable to initialize glade translation!")
             log.exception(ex)
