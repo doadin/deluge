@@ -389,38 +389,21 @@ class StatusBar(component.Component):
             set_value(value)
 
     def _on_download_item_clicked(self, widget, event):
-        menu = common.build_menu_radio_list(
-            self.config["tray_download_speed_list"],
-            self._on_set_download_speed,
-            self.max_download_speed,
-            _("KiB/s"), show_notset=True, show_other=True)
-        menu.show_all()
-        menu.popup(None, None, None, menu.show_all, event.button, event.time)
+        component.get("Preferences").show("Bandwidth")
 
     def _on_set_download_speed(self, widget):
         log.debug("_on_set_download_speed")
         self.set_limit_value(widget, "max_download_speed")
 
     def _on_upload_item_clicked(self, widget, event):
-        menu = common.build_menu_radio_list(
-            self.config["tray_upload_speed_list"],
-            self._on_set_upload_speed,
-            self.max_upload_speed,
-            _("KiB/s"), show_notset=True, show_other=True)
-        menu.show_all()
-        menu.popup(None, None, None, menu.show_all, event.button, event.time)
+        component.get("Preferences").show("Bandwidth")
 
     def _on_set_upload_speed(self, widget):
         log.debug("_on_set_upload_speed")
         self.set_limit_value(widget, "max_upload_speed")
 
     def _on_connection_item_clicked(self, widget, event):
-        menu = common.build_menu_radio_list(
-            self.config["connection_limit_list"],
-            self._on_set_connection_limit,
-            self.max_connections_global, show_notset=True, show_other=True)
-        menu.show_all()
-        menu.popup(None, None, None, menu.show_all, event.button, event.time)
+        component.get("Preferences").show("Bandwidth")
 
     def _on_set_connection_limit(self, widget):
         log.debug("_on_set_connection_limit")
