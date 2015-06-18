@@ -76,13 +76,11 @@ def build_menu_radio_list(value_list, callback, pref_value=None, suffix=None, sh
             item_text += " " + suffix
         menuitem = Gtk.RadioMenuItem(item_text)
         group = menuitem
-        print group
         if pref_value and value == pref_value:
             menuitem.set_active(True)
         if callback:
             menuitem.connect("toggled", callback)
         menu.append(menuitem)
-        print menuitem
 
     if show_notset:
         menuitem = Gtk.RadioMenuItem(notset_label)
