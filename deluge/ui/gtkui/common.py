@@ -74,16 +74,18 @@ def build_menu_radio_list(value_list, callback, pref_value=None, suffix=None, sh
         item_text = str(value)
         if suffix:
             item_text += " " + suffix
-        menuitem = Gtk.RadioMenuItem(group, item_text)
+        menuitem = Gtk.RadioMenuItem(item_text)
         group = menuitem
+        print group
         if pref_value and value == pref_value:
             menuitem.set_active(True)
         if callback:
             menuitem.connect("toggled", callback)
         menu.append(menuitem)
+        print menuitem
 
     if show_notset:
-        menuitem = Gtk.RadioMenuItem(group, notset_label)
+        menuitem = Gtk.RadioMenuItem(notset_label)
         menuitem.set_name("unlimited")
         if pref_value and pref_value < notset_lessthan:
             menuitem.set_active(True)
