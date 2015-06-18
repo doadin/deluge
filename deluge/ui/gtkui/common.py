@@ -74,7 +74,7 @@ def build_menu_radio_list(value_list, callback, pref_value=None, suffix=None, sh
         item_text = str(value)
         if suffix:
             item_text += " " + suffix
-        menuitem = Gtk.RadioMenuItem(item_text)
+        menuitem = Gtk.RadioMenuItem(item_text, group)
         group = menuitem
         if pref_value and value == pref_value:
             menuitem.set_active(True)
