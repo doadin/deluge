@@ -496,7 +496,7 @@ class FilesTab(Tab):
             for widget in self.file_menu_priority_items:
                 widget.set_sensitive(not (self.__compact or self.__is_seed))
 
-            self.file_menu.popup(None, None, None, event.button, event.time)
+            self.file_menu.popup(None, None, None, None, event.button, event.time)
             return True
 
     def _on_key_press_event(self, widget, event):
@@ -806,7 +806,7 @@ class FilesTab(Tab):
 
     def _on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
         try:
-            selected = cPickle.loads(selection.data)
+            selected = cPickle.loads(selection)
         except cPickle.UnpicklingError:
             log.debug("Invalid selection data: %s", selection.data)
             return
