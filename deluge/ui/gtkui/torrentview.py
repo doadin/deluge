@@ -580,7 +580,7 @@ class TorrentView(ListView, component.Component):
                     log.debug("Unable to get iter from path: %s", ex)
                     continue
 
-                child_row = self.treeview.get_model().convert_iter_to_child_iter(None, row)
+                child_row = self.treeview.get_model().convert_iter_to_child_iter(row)
                 child_row = self.treeview.get_model().get_model().convert_iter_to_child_iter(child_row)
                 if self.liststore.iter_is_valid(child_row):
                     try:
