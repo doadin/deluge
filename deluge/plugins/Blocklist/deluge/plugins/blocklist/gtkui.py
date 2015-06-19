@@ -11,7 +11,6 @@ import logging
 from datetime import datetime
 
 from gi.repository import Gtk
-import Gtk.glade
 
 import deluge.common
 import deluge.component as component
@@ -19,6 +18,7 @@ from deluge.plugins.pluginbase import GtkPluginBase
 from deluge.ui.client import client
 
 from . import common
+from .common import get_resource
 
 log = logging.getLogger(__name__)
 
@@ -65,9 +65,9 @@ class GtkUI(GtkPluginBase):
         def _on_get_status(status):
             if status["state"] == "Downloading":
                 self.table_info.hide()
-                self.glade.get_widget("button_check_download").set_sensitive(False)
-                self.glade.get_widget("button_force_download").set_sensitive(False)
-                self.glade.get_widget("image_up_to_date").hide()
+                self.main_builder.get_object("button_check_download").set_sensitive(False)
+                self.main_builder.get_object("button_force_download").set_sensitive(False)
+                self.main_builder.get_object("image_up_to_date").hide()
 
                 self.status_item.set_text(
                     "Downloading %.2f%%" % (status["file_progress"] * 100))
@@ -77,9 +77,9 @@ class GtkUI(GtkPluginBase):
 
             elif status["state"] == "Importing":
                 self.table_info.hide()
-                self.glade.get_widget("button_check_download").set_sensitive(False)
-                self.glade.get_widget("button_force_download").set_sensitive(False)
-                self.glade.get_widget("image_up_to_date").hide()
+                self.main_builder.get_object("button_check_download").set_sensitive(False)
+                self.main_builder.get_object("button_force_download").set_sensitive(False)
+                self.main_builder.get_object("image_up_to_date").hide()
 
                 self.status_item.set_text(
                     "Importing " + str(status["num_blocked"]))
@@ -89,22 +89,22 @@ class GtkUI(GtkPluginBase):
 
             elif status["state"] == "Idle":
                 self.progress_bar.hide()
-                self.glade.get_widget("button_check_download").set_sensitive(True)
-                self.glade.get_widget("button_force_download").set_sensitive(True)
+                self.main_builder.get_object("button_check_download").set_sensitive(True)
+                self.main_builder.get_object("button_force_download").set_sensitive(True)
                 if status["up_to_date"]:
-                    self.glade.get_widget("image_up_to_date").show()
+                    self.main_builder.get_object("image_up_to_date").show()
                 else:
-                    self.glade.get_widget("image_up_to_date").hide()
+                    self.main_builder.get_object("image_up_to_date").hide()
 
                 self.table_info.show()
                 self.status_item.set_text("%(num_blocked)s/%(num_whited)s" % status)
 
-                self.glade.get_widget("label_filesize").set_text(
+                self.main_builder.get_object("label_filesize").set_text(
                     deluge.common.fsize(status["file_size"]))
-                self.glade.get_widget("label_modified").set_text(
+                self.main_builder.get_object("label_modified").set_text(
                     datetime.fromtimestamp(status["file_date"]).strftime("%c"))
-                self.glade.get_widget("label_type").set_text(status["file_type"])
-                self.glade.get_widget("label_url").set_text(
+                self.main_builder.get_object("label_type").set_text(status["file_type"])
+                self.main_builder.get_object("label_url").set_text(
                     status["file_url"])
 
         client.blocklist.get_status().addCallback(_on_get_status)
@@ -112,18 +112,18 @@ class GtkUI(GtkPluginBase):
     def _on_show_prefs(self):
         def _on_get_config(config):
             log.trace("Loaded config: %s", config)
-            self.glade.get_widget("entry_url").set_text(config["url"])
-            self.glade.get_widget("spin_check_days").set_value(config["check_after_days"])
-            self.glade.get_widget("chk_import_on_start").set_active(config["load_on_start"])
+            self.main_builder.get_object("entry_url").set_text(config["url"])
+            self.main_builder.get_object("spin_check_days").set_value(config["check_after_days"])
+            self.main_builder.get_object("chk_import_on_start").set_active(config["load_on_start"])
             self.populate_whitelist(config["whitelisted"])
 
         client.blocklist.get_config().addCallback(_on_get_config)
 
     def _on_apply_prefs(self):
         config = {}
-        config["url"] = self.glade.get_widget("entry_url").get_text()
-        config["check_after_days"] = self.glade.get_widget("spin_check_days").get_value_as_int()
-        config["load_on_start"] = self.glade.get_widget("chk_import_on_start").get_active()
+        config["url"] = self.main_builder.get_object("entry_url").get_text()
+        config["check_after_days"] = self.main_builder.get_object("spin_check_days").get_value_as_int()
+        config["load_on_start"] = self.main_builder.get_object("chk_import_on_start").get_active()
         config["whitelisted"] = [ip[0] for ip in self.whitelist_model if ip[0] != 'IP HERE']
         client.blocklist.set_config(config)
 
@@ -141,11 +141,12 @@ class GtkUI(GtkPluginBase):
     def load_preferences_page(self):
         """Initializes the preferences page and adds it to the preferences dialog"""
         # Load the preferences page
-        self.glade = Gtk.glade.XML(common.get_resource("blocklist_pref.glade"))
+        self.main_builder = Gtk.Builder()
+        self.glade = self.main_builder.add_from_file(get_resource("blocklist_pref.glade"))
 
-        self.whitelist_frame = self.glade.get_widget("whitelist_frame")
-        self.progress_bar = self.glade.get_widget("progressbar")
-        self.table_info = self.glade.get_widget("table_info")
+        self.whitelist_frame = self.main_builder.get_object("whitelist_frame")
+        self.progress_bar = self.main_builder.get_object("progressbar")
+        self.table_info = self.main_builder.get_object("table_info")
 
         # Hide the progress bar initially
         self.progress_bar.hide()
@@ -164,10 +165,10 @@ class GtkUI(GtkPluginBase):
         })
 
         # Set button icons
-        self.glade.get_widget("image_download").set_from_file(
+        self.main_builder.get_object("image_download").set_from_file(
             common.get_resource("blocklist_download24.png"))
 
-        self.glade.get_widget("image_import").set_from_file(
+        self.main_builder.get_object("image_import").set_from_file(
             common.get_resource("blocklist_import24.png"))
 
         # Update the preferences page with config values from the core
@@ -176,10 +177,10 @@ class GtkUI(GtkPluginBase):
         # Add the page to the preferences dialog
         self.plugin.add_preferences_page(
             _("Blocklist"),
-            self.glade.get_widget("blocklist_prefs_box"))
+            self.main_builder.get_object("blocklist_prefs_box"))
 
     def build_whitelist_model_treeview(self):
-        self.whitelist_treeview = self.glade.get_widget("whitelist_treeview")
+        self.whitelist_treeview = self.main_builder.get_object("whitelist_treeview")
         treeview_selection = self.whitelist_treeview.get_selection()
         treeview_selection.connect(
             "changed", self.on_whitelist_treeview_selection_changed
@@ -209,10 +210,10 @@ class GtkUI(GtkPluginBase):
     def on_whitelist_treeview_selection_changed(self, selection):
         model, selected_connection_iter = selection.get_selected()
         if selected_connection_iter:
-            self.glade.get_widget("whitelist_delete").set_property('sensitive',
+            self.main_builder.get_object("whitelist_delete").set_property('sensitive',
                                                                    True)
         else:
-            self.glade.get_widget("whitelist_delete").set_property('sensitive',
+            self.main_builder.get_object("whitelist_delete").set_property('sensitive',
                                                                    False)
 
     def on_add_button_clicked(self, widget, treeview):

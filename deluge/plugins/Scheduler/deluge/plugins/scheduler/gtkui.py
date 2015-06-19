@@ -18,8 +18,12 @@ from gi.repository import Gtk, Gdk
 import deluge.component as component
 from deluge.plugins.pluginbase import GtkPluginBase
 from deluge.ui.client import client
+from gi import pygtkcompat
 
 from .common import get_resource
+
+pygtkcompat.enable() 
+pygtkcompat.enable_gtk(version='3.0')
 
 log = logging.getLogger(__name__)
 
@@ -32,7 +36,7 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
         self.set_events(Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK |
                         Gdk.EventMask.POINTER_MOTION_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK)
 
-        self.connect("expose_event", self.expose)
+        self.connect("draw", self.expose)
         self.connect("button_press_event", self.mouse_down)
         self.connect("button_release_event", self.mouse_up)
         self.connect("motion_notify_event", self.mouse_hover)

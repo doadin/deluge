@@ -15,8 +15,6 @@
 import logging
 
 from gi.repository import Gtk, Gdk
-import Gtk.glade
-from Gtk.glade import XML
 
 import deluge
 from deluge import component
@@ -78,10 +76,10 @@ def gtk_to_graph_color(color):
 class GraphsTab(Tab):
     def __init__(self, glade, colors):
         Tab.__init__(self)
-        self.glade = glade
-        self.window = self.glade.get_widget('graph_tab')
-        self.notebook = self.glade.get_widget('graph_notebook')
-        self.label = self.glade.get_widget('graph_label')
+        self.main_builder = Gtk.Builder()
+        self.window = self.main_builder.get_object('graph_tab')
+        self.notebook = self.main_builder.get_object('graph_notebook')
+        self.label = self.main_builder.get_object('graph_label')
 
         self._name = 'Graphs'
         self._child_widget = self.window
@@ -89,13 +87,13 @@ class GraphsTab(Tab):
 
         self.colors = colors
 
-        self.bandwidth_graph = self.glade.get_widget('bandwidth_graph')
+        self.bandwidth_graph = self.main_builder.get_object('bandwidth_graph')
         self.bandwidth_graph.connect('expose_event', self.graph_expose)
 
-        self.connections_graph = self.glade.get_widget('connections_graph')
+        self.connections_graph = self.main_builder.get_object('connections_graph')
         self.connections_graph.connect('expose_event', self.graph_expose)
 
-        self.seeds_graph = self.glade.get_widget('seeds_graph')
+        self.seeds_graph = self.main_builder.get_object('seeds_graph')
         self.seeds_graph.connect('expose_event', self.graph_expose)
 
         self.notebook.connect('switch-page', self._on_notebook_switch_page)
@@ -107,7 +105,7 @@ class GraphsTab(Tab):
         self.label.unparent()
 
         self.intervals = None
-        self.intervals_combo = self.glade.get_widget('combo_intervals')
+        self.intervals_combo = self.main_builder.get_object('combo_intervals')
         cell = Gtk.CellRendererText()
         self.intervals_combo.pack_start(cell, True)
         self.intervals_combo.set_cell_data_func(cell, neat_time)
@@ -216,8 +214,8 @@ class GtkUI(GtkPluginBase):
     def enable(self):
         log.debug("Stats plugin enable called")
         self.config = deluge.configmanager.ConfigManager("stats.gtkui.conf", DEFAULT_CONF)
-        self.glade = XML(common.get_resource("config.glade"))
-        component.get("Preferences").add_page("Stats", self.glade.get_widget("prefs_box"))
+        self.glade = self.main_builder.add_from_file(get_resource("config.glade"))
+        component.get("Preferences").add_page("Stats", self.main_builder.get_object("prefs_box"))
         component.get("PluginManager").register_hook("on_apply_prefs", self.on_apply_prefs)
         component.get("PluginManager").register_hook("on_show_prefs", self.on_show_prefs)
         self.on_show_prefs()
@@ -239,7 +237,7 @@ class GtkUI(GtkPluginBase):
             gtkconf[graph] = {}
             for value, color in colors.items():
                 try:
-                    color_btn = self.glade.get_widget("%s_%s_color" % (graph, value))
+                    color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
                     gtkconf[graph][value] = str(color_btn.get_color())
                 except:
                     gtkconf[graph][value] = DEFAULT_CONF['colors'][graph][value]
@@ -253,7 +251,7 @@ class GtkUI(GtkPluginBase):
         for graph, colors in self.config['colors'].items():
             for value, color in colors.items():
                 try:
-                    color_btn = self.glade.get_widget("%s_%s_color" % (graph, value))
+                    color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
                     color_btn.set_color(Gdk.Color(color))
                 except:
                     log.debug("Unable to set %s %s %s" % (graph, value, color))

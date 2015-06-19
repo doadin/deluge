@@ -14,7 +14,6 @@
 import logging
 
 from gi.repository import Gtk
-import Gtk.glade
 
 import deluge.component as component
 from deluge.plugins.pluginbase import GtkPluginBase
@@ -27,9 +26,10 @@ log = logging.getLogger(__name__)
 
 class GtkUI(GtkPluginBase):
     def enable(self):
-        self.glade = Gtk.glade.XML(get_resource("config.glade"))
+        self.main_builder = Gtk.Builder()
+        self.glade = self.main_builder.add_from_file(get_resource("config.glade"))
 
-        component.get("Preferences").add_page(_("WebUi"), self.glade.get_widget("prefs_box"))
+        component.get("Preferences").add_page(_("WebUi"), self.main_builder.get_object("prefs_box"))
         component.get("PluginManager").register_hook("on_apply_prefs", self.on_apply_prefs)
         component.get("PluginManager").register_hook("on_show_prefs", self.on_show_prefs)
         client.webui.get_config().addCallback(self.cb_get_config)
@@ -45,9 +45,9 @@ class GtkUI(GtkPluginBase):
             return
         log.debug("applying prefs for WebUi")
         config = {
-            "enabled": self.glade.get_widget("enabled_checkbutton").get_active(),
-            "ssl": self.glade.get_widget("ssl_checkbutton").get_active(),
-            "port": self.glade.get_widget("port_spinbutton").get_value_as_int()
+            "enabled": self.main_builder.get_object("enabled_checkbutton").get_active(),
+            "ssl": self.main_builder.get_object("ssl_checkbutton").get_active(),
+            "port": self.main_builder.get_object("port_spinbutton").get_value_as_int()
         }
         client.webui.set_config(config)
 
@@ -56,17 +56,17 @@ class GtkUI(GtkPluginBase):
 
     def cb_get_config(self, config):
         "callback for on show_prefs"
-        self.glade.get_widget("enabled_checkbutton").set_active(config["enabled"])
-        self.glade.get_widget("ssl_checkbutton").set_active(config["ssl"])
-        self.glade.get_widget("port_spinbutton").set_value(config["port"])
+        self.main_builder.get_object("enabled_checkbutton").set_active(config["enabled"])
+        self.main_builder.get_object("ssl_checkbutton").set_active(config["ssl"])
+        self.main_builder.get_object("port_spinbutton").set_value(config["port"])
 
     def cb_chk_deluge_web(self, have_web):
         self.have_web = have_web
         if have_web:
             return
-        self.glade.get_widget("settings_vbox").set_sensitive(False)
+        self.main_builder.get_object("settings_vbox").set_sensitive(False)
 
-        vbox = self.glade.get_widget("prefs_box")
+        vbox = self.main_builder.get_object("prefs_box")
 
         hbox = Gtk.HBox()
         icon = Gtk.Image.new_from_stock(Gtk.STOCK_DIALOG_ERROR, Gtk.IconSize.SMALL_TOOLBAR)
