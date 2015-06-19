@@ -193,7 +193,7 @@ class EditTrackersDialog:
         textview = self.builder.get_object("textview_trackers")
         trackers = []
         b = textview.get_buffer()
-        lines = b.get_text(b.get_start_iter(), b.get_end_iter()).strip().split("\n")
+        lines = b.get_text(b.get_start_iter(), b.get_end_iter(), True).strip().split("\n")
         for l in lines:
             if is_url(l):
                 trackers.append(l)
