@@ -40,9 +40,9 @@ class LabelSidebarMenu(object):
         sep = Gtk.SeparatorMenuItem()
         self.items.append(sep)
         self.menu.prepend(sep)
-        self._add_item("options", _("Label _Options"), Gtk.STOCK_PREFERENCES)
-        self._add_item("remove", _("_Remove Label"), Gtk.STOCK_REMOVE)
-        self._add_item("add", _("_Add Label"), Gtk.STOCK_ADD)
+        self._add_item("options", _("Label Options"), Gtk.STOCK_PREFERENCES)
+        self._add_item("remove", _("Remove Label"), Gtk.STOCK_REMOVE)
+        self._add_item("add", _("Add Label"), Gtk.STOCK_ADD)
 
         self.menu.show_all()
         # dialogs:
@@ -151,10 +151,10 @@ class OptionsDialog(object):
 
     def show(self, label):
         self.label = label
+        self.main_builder = Gtk.Builder()
         self.glade = self.main_builder.add_from_file(get_resource("label_options.glade"))
         self.dialog = self.main_builder.get_object("dlg_label_options")
         self.dialog.set_transient_for(component.get("MainWindow").window)
-        self.main_builder = Gtk.Builder()
         self.main_builder.connect_signals({
             "on_options_ok": self.on_ok,
             "on_options_cancel": self.on_cancel,
