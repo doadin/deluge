@@ -15,7 +15,6 @@ import pkg_resources  # access plugin egg
 from deluge.ui.client import client
 from gi.repository import Gtk
 
-from . import common
 from .common import get_resource
 
 log = logging.getLogger(__name__)

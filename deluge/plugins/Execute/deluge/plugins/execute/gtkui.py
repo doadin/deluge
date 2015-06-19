@@ -15,7 +15,6 @@ import deluge.component as component
 from deluge.plugins.pluginbase import GtkPluginBase
 from deluge.ui.client import client
 
-from . import common
 from .common import get_resource
 
 # Relative import

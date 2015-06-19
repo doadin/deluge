@@ -270,34 +270,27 @@ class GtkUI(GtkPluginBase, GtkUiNotifications):
                                                      self.on_show_prefs)
 
         if not POPUP_AVAILABLE:
-            self.main_builder.get_object("popup_enabled").set_property('sensitive',
-                                                                False)
+            self.main_builder.get_object("popup_enabled").set_property('sensitive', False)
         if not SOUND_AVAILABLE:
             # for widget_name in ('sound_enabled', 'sound_path', 'sounds_page', 'sounds_page_label'):
             #    self.main_builder.get_object(widget_name).set_property('sensitive', False)
-            self.main_builder.get_object("sound_enabled").set_property('sensitive',
-                                                                False)
+            self.main_builder.get_object("sound_enabled").set_property('sensitive', False)
             self.main_builder.get_object('sound_path').set_property('sensitive', False)
-            self.main_builder.get_object('sounds_page').set_property('sensitive',
-                                                              False)
-            self.main_builder.get_object('sounds_page_label').set_property('sensitive',
-                                                                    False)
+            self.main_builder.get_object('sounds_page').set_property('sensitive', False)
+            self.main_builder.get_object('sounds_page_label').set_property('sensitive', False)
 
         self.systray = component.get("SystemTray")
         if not hasattr(self.systray, 'tray'):
             # Tray is not beeing used
-            self.main_builder.get_object('blink_enabled').set_property('sensitive',
-                                                                False)
+            self.main_builder.get_object('blink_enabled').set_property('sensitive', False)
 
         GtkUiNotifications.enable(self)
 
     def disable(self):
         GtkUiNotifications.disable(self)
         component.get("Preferences").remove_page(_("Notifications"))
-        component.get("PluginManager").deregister_hook("on_apply_prefs",
-                                                       self.on_apply_prefs)
-        component.get("PluginManager").deregister_hook("on_show_prefs",
-                                                       self.on_show_prefs)
+        component.get("PluginManager").deregister_hook("on_apply_prefs", self.on_apply_prefs)
+        component.get("PluginManager").deregister_hook("on_show_prefs", self.on_show_prefs)
 
     def build_recipients_model_populate_treeview(self):
         # SMTP Recipients treeview/model
@@ -566,20 +559,16 @@ class GtkUI(GtkPluginBase, GtkUiNotifications):
     def on_recipients_treeview_selection_changed(self, selection):
         model, selected_connection_iter = selection.get_selected()
         if selected_connection_iter:
-            self.main_builder.get_object("delete_button").set_property('sensitive',
-                                                                True)
+            self.main_builder.get_object("delete_button").set_property('sensitive', True)
         else:
-            self.main_builder.get_object("delete_button").set_property('sensitive',
-                                                                False)
+            self.main_builder.get_object("delete_button").set_property('sensitive', False)
 
     def on_subscriptions_treeview_selection_changed(self, selection):
         model, selected_connection_iter = selection.get_selected()
         if selected_connection_iter:
-            self.main_builder.get_object("delete_button").set_property('sensitive',
-                                                                True)
+            self.main_builder.get_object("delete_button").set_property('sensitive', True)
         else:
-            self.main_builder.get_object("delete_button").set_property('sensitive',
-                                                                False)
+            self.main_builder.get_object("delete_button").set_property('sensitive', False)
 
     def on_sounds_treeview_selection_changed(self, selection):
         model, iter = selection.get_selected()
@@ -643,16 +632,12 @@ class GtkUI(GtkPluginBase, GtkUiNotifications):
     def on_sound_enabled_toggled(self, widget):
         if widget.get_active():
             self.main_builder.get_object('sound_path').set_property('sensitive', True)
-            self.main_builder.get_object('sounds_page').set_property('sensitive',
-                                                              True)
-            self.main_builder.get_object('sounds_page_label').set_property('sensitive',
-                                                                    True)
+            self.main_builder.get_object('sounds_page').set_property('sensitive', True)
+            self.main_builder.get_object('sounds_page_label').set_property('sensitive', True)
         else:
             self.main_builder.get_object('sound_path').set_property('sensitive', False)
-            self.main_builder.get_object('sounds_page').set_property('sensitive',
-                                                              False)
-            self.main_builder.get_object('sounds_page_label').set_property('sensitive',
-                                                                    False)
+            self.main_builder.get_object('sounds_page').set_property('sensitive', False)
+            self.main_builder.get_object('sounds_page_label').set_property('sensitive', False)
 
 #        for widget_name in ('sounds_path', 'sounds_page', 'sounds_page_label'):
 #            self.main_builder.get_object(widget_name).set_property('sensitive',

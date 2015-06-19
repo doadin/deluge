@@ -23,7 +23,6 @@ from deluge.plugins.pluginbase import GtkPluginBase
 from deluge.ui.client import client
 from deluge.ui.gtkui.torrentdetails import Tab
 
-from . import common
 from .common import get_resource
 from .graph import Graph, size_formatter_scale
 
@@ -107,7 +106,7 @@ class GraphsTab(Tab):
 
         self.intervals = None
         self.intervals_combo = self.main_builder.get_object('combo_intervals')
-        cell = Gtk.CellRendererText()
+        # cell = Gtk.CellRendererText() TOFIX
         # self.intervals_combo.pack_start(cell, True) TOFIX
         # self.intervals_combo.set_cell_data_func(cell, neat_time) TOFIX
         # self.intervals_combo.connect("changed", self._on_selected_interval_changed) TOFIX
