@@ -692,13 +692,12 @@ class TorrentView(ListView, component.Component):
                         continue
                     row[self.get_column_index(name)[idx]] = state
 
-            # TOFIX
-            # if self.filter.get('state', None) is not None:
+            if self.filter.get('state', None) is not None:
                 # We have a filter set, let's see if theres anything to hide
                 # and remove from status
-            #    if torrent_id in self.status and self.status[torrent_id]['state'] != state:
-            #        row[self.columns["filter"].column_indices[0]] = False
-            #        del self.status[torrent_id]
+                if torrent_id in self.status and self.status[torrent_id]['state'] != state:
+                    row[self.columns["filter"].column_indices[0]] = False
+                    del self.status[torrent_id]
 
         self.mark_dirty(torrent_id)
 
