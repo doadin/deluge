@@ -24,21 +24,22 @@ from deluge.ui.client import client
 from deluge.ui.gtkui.torrentdetails import Tab
 
 from . import common
+from .common import get_resource
 from .graph import Graph, size_formatter_scale
 
 log = logging.getLogger(__name__)
 
 DEFAULT_CONF = {'version': 1,
                 'colors': {
-                    'bandwidth_graph': {'upload_rate': str(Gdk.Color("blue")),
-                                        'download_rate': str(Gdk.Color("green")),
+                    'bandwidth_graph': {'upload_rate': str(Gdk.Color(red=65535, green=59881, blue=20303)),
+                                        'download_rate': str(Gdk.Color(red=65535, green=55255, blue=0)),
                                         },
-                    'connections_graph': {'dht_nodes': str(Gdk.Color("orange")),
-                                          'dht_cache_nodes': str(Gdk.Color("blue")),
-                                          'dht_torrents': str(Gdk.Color("green")),
-                                          'num_connections': str(Gdk.Color("darkred")),
+                    'connections_graph': {'dht_nodes': str(Gdk.Color(red=65535, green=65535, blue=65535)),
+                                          'dht_cache_nodes': str(Gdk.Color(red=65535, green=55255, blue=0)),
+                                          'dht_torrents': str(Gdk.Color(red=65535, green=59881, blue=20303)),
+                                          'num_connections': str(Gdk.Color(red=65535, green=65535, blue=65535)),
                                           },
-                    'seeds_graph': {'num_peers': str(Gdk.Color("blue")),
+                    'seeds_graph': {'num_peers': str(Gdk.Color(red=65535, green=55255, blue=0)),
                                     },
                 }
                 }
@@ -214,6 +215,7 @@ class GtkUI(GtkPluginBase):
     def enable(self):
         log.debug("Stats plugin enable called")
         self.config = deluge.configmanager.ConfigManager("stats.gtkui.conf", DEFAULT_CONF)
+        self.main_builder = Gtk.Builder()
         self.glade = self.main_builder.add_from_file(get_resource("config.glade"))
         component.get("Preferences").add_page("Stats", self.main_builder.get_object("prefs_box"))
         component.get("PluginManager").register_hook("on_apply_prefs", self.on_apply_prefs)
@@ -228,7 +230,7 @@ class GtkUI(GtkPluginBase):
         component.get("Preferences").remove_page("Stats")
         component.get("PluginManager").deregister_hook("on_apply_prefs", self.on_apply_prefs)
         component.get("PluginManager").deregister_hook("on_show_prefs", self.on_show_prefs)
-        self.torrent_details.remove_tab(self.graphs_tab.get_name())
+        # self.torrent_details.remove_tab(self.graphs_tab.get_name()) TOFIX
 
     def on_apply_prefs(self):
         log.debug("applying prefs for Stats")
