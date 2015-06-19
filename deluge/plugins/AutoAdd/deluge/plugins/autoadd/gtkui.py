@@ -99,9 +99,9 @@ class OptionsDialog():
         combobox.set_model(self.accounts)
 
         label_widget = self.main_builder.get_object('label')
-        label_widget.get_child().set_text(options.get('label', ''))
+        # label_widget.get_child().set_text(options.get('label', '')) TOFIX
         label_widget.set_model(self.labels)
-        label_widget.set_text_column(0)
+        # label_widget.set_text_column(0) TOFIX
         self.main_builder.get_object('label_toggle').set_active(options.get('label_toggle', False))
 
         for id in self.spin_ids + self.spin_int_ids:
@@ -228,7 +228,7 @@ class OptionsDialog():
         [self.on_toggle_toggled(self.main_builder.get_object(x + "_toggle")) for x in maintoggles]
 
     def on_toggle_toggled(self, tb):
-        toggle = str(tb.name).replace("_toggle", "")
+        toggle = str(tb.get_name).replace("_toggle", "")
         isactive = tb.get_active()
         if toggle == 'download_location':
             self.main_builder.get_object('download_location_chooser').set_sensitive(isactive)
@@ -317,7 +317,7 @@ class OptionsDialog():
             options['copy_torrent'] = self.main_builder.get_object(
                 'copy_torrent_entry').get_text()
 
-        options['label'] = self.main_builder.get_object('label').get_child().get_text().lower()
+        # options['label'] = self.main_builder.get_object('label').get_child().get_text().lower() TOFIX
         options['append_extension'] = self.main_builder.get_object('append_extension').get_text()
         options['owner'] = self.accounts[
             self.main_builder.get_object('OwnerCombobox').get_active()][0]
