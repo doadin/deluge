@@ -610,29 +610,29 @@ class TorrentView(ListView, component.Component):
     def on_button_press_event(self, widget, event):
         """This is a callback for showing the right-click context menu."""
         log.debug("on_button_press_event")
-        print "widget:", widget
-        print "event:", type(event)
-        print "event:", dir(event)
+        # print "widget:", widget
+        # print "event:", type(event)
+        # print "event:", dir(event)
         # We only care about right-clicks
         if event.button == 3:
             x, y = event.get_coords()
-            print "X: %d, Y: %d" % (x, y)
+            # print "X: %d, Y: %d" % (x, y)
             path = self.treeview.get_path_at_pos(int(x), int(y))
-            print "Path:", path
-            print "Path:", dir(path)
+            # print "Path:", path
+            # print "Path:", dir(path)
             if not path:
                 return
 
             row = self.model_filter.get_iter(path[0])
-            print "row:", row
+            # print "row:", row
             # print "row:", dir(row)
-            print "stamp:", row.stamp
+            # print "stamp:", row.stamp
 
-            print "VALID:", self.model_filter.iter_is_valid(row)
+            # print "VALID:", self.model_filter.iter_is_valid(row)
 
             # print "model:", type(self.treeview.get_model())
             # print "model:", dir(self.treeview.get_model())
-            print "string_from_iter:", self.treeview.get_model().get_string_from_iter(row)
+            # print "string_from_iter:", self.treeview.get_model().get_string_from_iter(row)
             # print "path2:", self.treeview.get_path(row)
 
             # print "VAL:", self.liststore.get_value(row, 0)
