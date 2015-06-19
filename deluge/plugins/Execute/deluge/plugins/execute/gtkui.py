@@ -43,7 +43,7 @@ class ExecutePreferences(object):
         log.debug("Adding Execute Preferences page")
         self.main_builder = Gtk.Builder()
         self.glade = self.main_builder.add_from_file(get_resource("execute_prefs.glade"))
-        self.glade.signal_autoconnect({
+        self.main_builder.connect_signals({
             "on_add_button_clicked": self.on_add_button_clicked
         })
 

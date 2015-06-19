@@ -245,7 +245,7 @@ class GtkUI(GtkPluginBase, GtkUiNotifications):
             self.popuplate_what_needs_handled_events
         )
 
-        self.glade.signal_autoconnect({
+        self.main_builder.connect_signals({
             'on_add_button_clicked': (self.on_add_button_clicked,
                                       self.recipients_treeview),
             'on_delete_button_clicked': (self.on_delete_button_clicked,

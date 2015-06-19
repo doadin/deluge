@@ -52,14 +52,14 @@ class GtkUI(GtkPluginBase):
         self.plugin.remove_preferences_page(_("Blocklist"))
 
         # Remove status item
-        component.get("StatusBar").remove_item(self.status_item)
-        del self.status_item
+        # component.get("StatusBar").remove_item(self.status_item)
+        # del self.status_item
 
         # Deregister the hooks
         self.plugin.deregister_hook("on_apply_prefs", self._on_apply_prefs)
         self.plugin.deregister_hook("on_show_prefs", self._on_show_prefs)
 
-        del self.glade
+        # del self.glade
 
     def update(self):
         def _on_get_status(status):
@@ -155,7 +155,7 @@ class GtkUI(GtkPluginBase):
         # Create the whitelisted model
         self.build_whitelist_model_treeview()
 
-        self.glade.signal_autoconnect({
+        self.main_builder.connect_signals({
             "on_button_check_download_clicked": self._on_button_check_download_clicked,
             "on_button_force_download_clicked": self._on_button_force_download_clicked,
             'on_whitelist_add_clicked': (self.on_add_button_clicked,

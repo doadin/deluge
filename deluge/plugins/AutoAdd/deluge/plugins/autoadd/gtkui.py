@@ -46,7 +46,7 @@ class OptionsDialog():
     def show(self, options={}, watchdir_id=None):
         self.main_builder = Gtk.Builder()
         self.glade = self.main_builder.add_from_file(get_resource("autoadd_options.glade"))
-        self.glade.signal_autoconnect({
+        self.main_builder.connect_signals({
             "on_opts_add": self.on_add,
             "on_opts_apply": self.on_apply,
             "on_opts_cancel": self.on_cancel,

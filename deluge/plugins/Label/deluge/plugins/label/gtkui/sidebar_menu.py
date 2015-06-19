@@ -115,7 +115,7 @@ class AddDialog(object):
         self.dialog = self.main_builder.get_object("dlg_label_add")
         self.dialog.set_transient_for(component.get("MainWindow").window)
 
-        self.glade.signal_autoconnect({
+        self.main_builder.connect_signals({
             "on_add_ok": self.on_ok,
             "on_add_cancel": self.on_cancel,
         })
@@ -151,10 +151,11 @@ class OptionsDialog(object):
 
     def show(self, label):
         self.label = label
-        self.glade = Gtk.glade.XML(get_resource("label_options.glade"))
+        self.glade = self.main_builder.add_from_file(get_resource("label_options.glade"))
         self.dialog = self.main_builder.get_object("dlg_label_options")
         self.dialog.set_transient_for(component.get("MainWindow").window)
-        self.glade.signal_autoconnect({
+        self.main_builder = Gtk.Builder()
+        self.main_builder.connect_signals({
             "on_options_ok": self.on_ok,
             "on_options_cancel": self.on_cancel,
         })
