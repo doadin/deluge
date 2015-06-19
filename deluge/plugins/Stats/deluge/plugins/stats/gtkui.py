@@ -67,7 +67,7 @@ def int_str(number):
 def gtk_to_graph_color(color):
     """Turns a Gdk.Color into a tuple with range 0-1 as used by the graph"""
     max_val = float(65535)
-    gtk_color = Gdk.Color(color)
+    gtk_color = Gdk.Color(red=0, green=0, blue=0)
     red = gtk_color.red / max_val
     green = gtk_color.green / max_val
     blue = gtk_color.blue / max_val
@@ -89,28 +89,28 @@ class GraphsTab(Tab):
         self.colors = colors
 
         self.bandwidth_graph = self.main_builder.get_object('bandwidth_graph')
-        self.bandwidth_graph.connect('expose_event', self.graph_expose)
+        # self.bandwidth_graph.connect('draw', self.graph_expose) TOFIX
 
-        self.connections_graph = self.main_builder.get_object('connections_graph')
-        self.connections_graph.connect('expose_event', self.graph_expose)
+        # self.connections_graph = self.main_builder.get_object('connections_graph') TOFIX
+        # self.connections_graph.connect('expose_event', self.graph_expose) TOFIX
 
         self.seeds_graph = self.main_builder.get_object('seeds_graph')
-        self.seeds_graph.connect('expose_event', self.graph_expose)
+        # self.seeds_graph.connect('expose_event', self.graph_expose) TOFIX
 
-        self.notebook.connect('switch-page', self._on_notebook_switch_page)
+        # self.notebook.connect('switch-page', self._on_notebook_switch_page) TOFIX
 
         self.selected_interval = 1  # Should come from config or similar
         self.select_bandwidth_graph()
 
-        self.window.unparent()
-        self.label.unparent()
+        # self.window.unparent() TOFIX
+        # self.label.unparent() TOFIX
 
         self.intervals = None
         self.intervals_combo = self.main_builder.get_object('combo_intervals')
         cell = Gtk.CellRendererText()
-        self.intervals_combo.pack_start(cell, True)
-        self.intervals_combo.set_cell_data_func(cell, neat_time)
-        self.intervals_combo.connect("changed", self._on_selected_interval_changed)
+        # self.intervals_combo.pack_start(cell, True) TOFIX
+        # self.intervals_combo.set_cell_data_func(cell, neat_time) TOFIX
+        # self.intervals_combo.connect("changed", self._on_selected_interval_changed) TOFIX
         self.update_intervals()
 
     def graph_expose(self, widget, event):
@@ -182,13 +182,13 @@ class GraphsTab(Tab):
         liststore = Gtk.ListStore(int)
         for inter in intervals:
             liststore.append([inter])
-        self.intervals_combo.set_model(liststore)
+        # self.intervals_combo.set_model(liststore) TOFIX
         try:
             current = intervals.index(self.selected_interval)
         except:
             current = 0
         # should select the value saved in config
-        self.intervals_combo.set_active(current)
+        # self.intervals_combo.set_active(current) TOFIX
 
     def _on_selected_interval_changed(self, combobox):
         model = combobox.get_model()
@@ -222,7 +222,7 @@ class GtkUI(GtkPluginBase):
         component.get("PluginManager").register_hook("on_show_prefs", self.on_show_prefs)
         self.on_show_prefs()
 
-        self.graphs_tab = GraphsTab(XML(common.get_resource("tabs.glade")), self.config['colors'])
+        self.graphs_tab = GraphsTab(self.main_builder.add_from_file(get_resource("tabs.glade")), self.config['colors'])
         self.torrent_details = component.get('TorrentDetails')
         self.torrent_details.add_tab(self.graphs_tab)
 
