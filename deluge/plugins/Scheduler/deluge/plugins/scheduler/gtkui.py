@@ -63,7 +63,7 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
     # redraw the whole thing
     def expose(self, widget, event):
         self.context = self.window.cairo_create()
-        self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
+        # self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height) TOFIX
         self.context.clip()
 
         width = self.window.get_size()[0]
@@ -82,9 +82,8 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
 
     # coordinates --> which box
     def get_point(self, event):
-        size = self.window.get_size()
-        x = int((event.x - size[0] * 0.5 / 145.0) / (6 * size[0] / 145.0))
-        y = int((event.y - size[1] * 0.5 / 43.0) / (6 * size[1] / 43.0))
+        x = int((event.x * 0.5 / 145.0) / (6 / 145.0))
+        y = int((event.y * 0.5 / 43.0) / (6 / 43.0))
 
         if x > 23:
             x = 23
