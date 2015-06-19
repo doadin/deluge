@@ -22,6 +22,8 @@
                   <object class="GtkTable" id="table2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <property name="n_rows">10</property>
                     <property name="n_columns">2</property>
                     <property name="column_spacing">15</property>
