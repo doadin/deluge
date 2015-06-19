@@ -88,7 +88,7 @@ class GtkUI(GtkPluginBase):
                 Gtk.ProgressBar.show()
 
             elif status["state"] == "Idle":
-                Gtk.ProgressBar.hide()
+                # Gtk.ProgressBar.hide()
                 self.main_builder.get_object("button_check_download").set_sensitive(True)
                 self.main_builder.get_object("button_force_download").set_sensitive(True)
                 if status["up_to_date"]:
@@ -96,8 +96,8 @@ class GtkUI(GtkPluginBase):
                 else:
                     self.main_builder.get_object("image_up_to_date").hide()
 
-                self.table_info.show()
-                self.status_item.set_text("%(num_blocked)s/%(num_whited)s" % status)
+                # self.table_info.show() TOFIX
+                # self.status_item.set_text("%(num_blocked)s/%(num_whited)s" % status) TOFIX
 
                 self.main_builder.get_object("label_filesize").set_text(
                     deluge.common.fsize(status["file_size"]))
@@ -145,11 +145,11 @@ class GtkUI(GtkPluginBase):
         self.glade = self.main_builder.add_from_file(get_resource("blocklist_pref.glade"))
 
         self.whitelist_frame = self.main_builder.get_object("whitelist_frame")
-        Gtk.ProgressBar = Gtk.ProgressBar()
+        # Gtk.ProgressBar = Gtk.ProgressBar() TOFIX
         self.table_info = self.main_builder.get_object("table_info")
 
         # Hide the progress bar initially
-        Gtk.ProgressBar.hide()
+        # Gtk.ProgressBar.hide() TOFIX
         self.table_info.show()
 
         # Create the whitelisted model
@@ -188,7 +188,7 @@ class GtkUI(GtkPluginBase):
         self.whitelist_model = Gtk.ListStore(str, bool)
         renderer = Gtk.CellRendererText()
         renderer.connect("edited", self.on_cell_edited, self.whitelist_model)
-        renderer.set_data("ip", 0)
+        # renderer.set_data("ip", 0) TOFIX
 
         column = Gtk.TreeViewColumn("IPs", renderer, text=0, editable=1)
         column.set_expand(True)
