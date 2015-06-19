@@ -71,9 +71,9 @@ class GtkUI(GtkPluginBase):
 
                 self.status_item.set_text(
                     "Downloading %.2f%%" % (status["file_progress"] * 100))
-                self.progress_bar.set_text("Downloading %.2f%%" % (status["file_progress"] * 100))
-                self.progress_bar.set_fraction(status["file_progress"])
-                self.progress_bar.show()
+                Gtk.ProgressBar.set_text("Downloading %.2f%%" % (status["file_progress"] * 100))
+                Gtk.ProgressBar.set_fraction(status["file_progress"])
+                Gtk.ProgressBar.show()
 
             elif status["state"] == "Importing":
                 self.table_info.hide()
@@ -83,12 +83,12 @@ class GtkUI(GtkPluginBase):
 
                 self.status_item.set_text(
                     "Importing " + str(status["num_blocked"]))
-                self.progress_bar.set_text("Importing %s" % (status["num_blocked"]))
-                self.progress_bar.pulse()
-                self.progress_bar.show()
+                Gtk.ProgressBar.set_text("Importing %s" % (status["num_blocked"]))
+                Gtk.ProgressBar.pulse()
+                Gtk.ProgressBar.show()
 
             elif status["state"] == "Idle":
-                self.progress_bar.hide()
+                Gtk.ProgressBar.hide()
                 self.main_builder.get_object("button_check_download").set_sensitive(True)
                 self.main_builder.get_object("button_force_download").set_sensitive(True)
                 if status["up_to_date"]:
@@ -145,11 +145,11 @@ class GtkUI(GtkPluginBase):
         self.glade = self.main_builder.add_from_file(get_resource("blocklist_pref.glade"))
 
         self.whitelist_frame = self.main_builder.get_object("whitelist_frame")
-        self.progress_bar = self.main_builder.get_object("progressbar")
+        Gtk.ProgressBar = Gtk.ProgressBar()
         self.table_info = self.main_builder.get_object("table_info")
 
         # Hide the progress bar initially
-        self.progress_bar.hide()
+        Gtk.ProgressBar.hide()
         self.table_info.show()
 
         # Create the whitelisted model
