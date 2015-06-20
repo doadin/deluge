@@ -22,7 +22,7 @@ from gi import pygtkcompat
 
 from .common import get_resource
 
-pygtkcompat.enable() 
+pygtkcompat.enable()
 pygtkcompat.enable_gtk(version='3.0')
 
 log = logging.getLogger(__name__)
@@ -63,13 +63,14 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
     # redraw the whole thing
     def expose(self, widget, event):
         self.context = self.window.cairo_create()
-        self.context.rectangle(10, 10, 1000, 1000)
+        # self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
+        self.context.rectangle(0, 0, 700, 700)
         self.context.clip()
-
+        
         # width = self.window.get_size()[0] TOFIX
         # height = self.window.get_size()[1] TOFIX
-        width = 100
-        height = 100
+        width = 400
+        height = 270
 
         for y in xrange(7):
             for x in xrange(24):
