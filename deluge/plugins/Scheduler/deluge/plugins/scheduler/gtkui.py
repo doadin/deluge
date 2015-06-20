@@ -22,7 +22,7 @@ from gi import pygtkcompat
 
 from .common import get_resource
 
-pygtkcompat.enable() 
+pygtkcompat.enable()
 pygtkcompat.enable_gtk(version='3.0')
 
 log = logging.getLogger(__name__)

@@ -210,11 +210,9 @@ class GtkUI(GtkPluginBase):
     def on_whitelist_treeview_selection_changed(self, selection):
         model, selected_connection_iter = selection.get_selected()
         if selected_connection_iter:
-            self.main_builder.get_object("whitelist_delete").set_property('sensitive',
-                                                                   True)
+            self.main_builder.get_object("whitelist_delete").set_property('sensitive', True)
         else:
-            self.main_builder.get_object("whitelist_delete").set_property('sensitive',
-                                                                   False)
+            self.main_builder.get_object("whitelist_delete").set_property('sensitive', False)
 
     def on_add_button_clicked(self, widget, treeview):
         model = treeview.get_model()

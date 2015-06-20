@@ -626,8 +626,7 @@ class GtkUI(GtkPluginBase, GtkUiNotifications):
         for widget_name in ('smtp_host', 'smtp_port', 'smtp_user', 'smtp_pass',
                             'smtp_pass', 'smtp_tls', 'smtp_from',
                             'smtp_recipients'):
-            self.main_builder.get_object(widget_name).set_property('sensitive',
-                                                            widget.get_active())
+            self.main_builder.get_object(widget_name).set_property('sensitive', widget.get_active())
 
     def on_sound_enabled_toggled(self, widget):
         if widget.get_active():
