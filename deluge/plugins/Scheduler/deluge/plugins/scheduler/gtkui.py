@@ -66,8 +66,10 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
         # self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height) TOFIX
         self.context.clip()
 
-        width = self.window.get_size()[0]
-        height = self.window.get_size()[1]
+        # width = self.window.get_size()[0] TOFIX
+        # height = self.window.get_size()[1] TOFIX
+        width = 10
+        height = 10
 
         for y in xrange(7):
             for x in xrange(24):
