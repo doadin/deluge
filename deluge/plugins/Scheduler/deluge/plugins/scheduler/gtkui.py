@@ -64,12 +64,12 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
     def expose(self, widget, event):
         self.context = self.window.cairo_create()
         # self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-        self.context.rectangle(0, 0, 400, 280)
+        self.context.rectangle(0, 0, 290, 280)
         self.context.clip()
         
         # width = self.window.get_size()[0] TOFIX
         # height = self.window.get_size()[1] TOFIX
-        width = 400
+        width = 290
         height = 280
 
         for y in xrange(7):
