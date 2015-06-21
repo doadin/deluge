@@ -3,10 +3,11 @@ import os
 import shutil
 import sys
 
-import bbfreeze.recipes
+#import bbfreeze.recipes
 import deluge.common
 import icon
 from bbfreeze import Freezer
+from bbfreeze import recipes
 from gi.repository import Gtk
 
 # Get build_version from installed deluge
@@ -18,11 +19,11 @@ if python_path.endswith("Scripts"):
 python_path += os.path.sep
 
 print "Python Path: %s" % python_path
-gtk_root = os.path.join(Gtk.__path__[0], "..\\runtime\\")
+gtk_root = "C:\\Python27\\Lib\\site-packages\\gnome"
 
 # Include python modules not picked up automatically by bbfreeze
-includes = ("libtorrent", "cairo", "pangocairo", "atk", "pango", "twisted.internet.utils",
-            "gio", "gzip", "email.mime.multipart", "email.mime.text")
+includes = ("libtorrent", "cairo", "twisted.internet.utils",
+            "gzip", "email.mime.multipart", "email.mime.text")
 excludes = ("numpy", "OpenGL", "psyco", "win32ui")
 
 dst = "..\\build-win32\\deluge-bbfreeze-" + build_version + "\\"
@@ -32,7 +33,7 @@ dst = "..\\build-win32\\deluge-bbfreeze-" + build_version + "\\"
 # in the installer so users don't require a separate GTK+ installation.
 def recipe_gtk_override(mf):
     return True
-bbfreeze.recipes.recipe_gtk_and_friends = recipe_gtk_override
+# bbfreeze.recipes.recipe_gtk_and_friends = recipe_gtk_override
 
 f = Freezer(dst, includes=includes, excludes=excludes)
 f.include_py = False
@@ -83,7 +84,6 @@ shutil.copytree(gtk_locale, os.path.join(dst, 'share/locale'), ignore=ignored_fi
 # copy gtk theme files
 theme_include_list = [
     [gtk_root, "share/icons/hicolor/index.theme"],
-    [gtk_root, "lib/gtk-2.0/2.10.0/engines"],
     [gtk_root, "share/themes/MS-Windows"],
     ["DelugeStart Theme", "lib/gtk-2.0/2.10.0/engines/libmurrine.dll"],
     ["DelugeStart Theme", "share/themes/DelugeStart"],
