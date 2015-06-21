@@ -92,9 +92,23 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
             x = 23
         elif x < 0:
             x = 0
-        if y > 6:
+        if y <= 3:
+            y = 0 # Monday
+        elif y > 3 and y <= 6:
+            y = 1 # Tuesday
+        elif y >= 4 and y <= 9:
+            y = 2 # Wednsday
+        elif y >= 10 and y <= 12:
+            y = 3 # Thursday
+        elif y >= 13 and y <= 15:
+            y = 4 # Friday
+        elif y >= 16 and y <= 17:
+            y = 5 # Saturday
+        elif y >= 18 and y <= 22:
+            y = 6 # Sunday
+        elif y > 22:
             y = 6
-        elif y < 0:
+        if y < 0:
             y = 0
 
         return [x, y]
