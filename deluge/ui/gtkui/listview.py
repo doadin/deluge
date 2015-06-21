@@ -183,7 +183,7 @@ class ListView:
             self.columns["filter"].column_indices[0])
         self.model_filter = Gtk.TreeModelSort(model_filter)
 
-        print "self.model_filter:", type(self.model_filter)
+        # print "self.model_filter:", type(self.model_filter)
         # iter_is_valid(iter)
         # self.model_filter = TreeModel(model_filter)
 
