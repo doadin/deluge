@@ -3,9 +3,9 @@ import os
 import shutil
 import sys
 
-#import bbfreeze.recipes
 import deluge.common
 import icon
+import bbfreeze
 from bbfreeze import Freezer
 from bbfreeze import recipes
 from gi.repository import Gtk
@@ -33,7 +33,7 @@ dst = "..\\build-win32\\deluge-bbfreeze-" + build_version + "\\"
 # in the installer so users don't require a separate GTK+ installation.
 def recipe_gtk_override(mf):
     return True
-# bbfreeze.recipes.recipe_gtk_and_friends = recipe_gtk_override
+bbfreeze.recipes.recipe_gtk_and_friends = recipe_gtk_override
 
 f = Freezer(dst, includes=includes, excludes=excludes)
 f.include_py = False
