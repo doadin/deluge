@@ -287,7 +287,7 @@ class AddTorrentDialog(component.Component):
                     file, file["path"], i, file["download"], split_files
                 )
             self.add_files(None, split_files)
-        self.listview_files.expand_row("0", False)
+        # self.listview_files.expand_row("0", False) TOFIX
 
     def prepare_file(self, file, file_name, file_num, download, files_storage):
         first_slash_index = file_name.find(os.path.sep)

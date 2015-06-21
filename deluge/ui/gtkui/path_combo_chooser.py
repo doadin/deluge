@@ -11,12 +11,14 @@
 from __future__ import print_function
 
 import os
+import warnings
 
 from deluge.common import resource_filename
 from deluge.path_chooser_common import get_completion_paths
 # from gi.overrides import keysyms
 from gi.repository import Gdk, GObject, Gtk
 
+warnings.filterwarnings('ignore')
 
 def is_ascii_value(keyval, ascii_key):
     try:
