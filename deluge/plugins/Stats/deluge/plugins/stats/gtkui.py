@@ -76,7 +76,7 @@ def gtk_to_graph_color(color):
 class GraphsTab(Tab):
     def __init__(self, glade, colors):
         Tab.__init__(self)
-        self.main_builder = Gtk.Builder()
+        self.main_builder = glade
         self.window = self.main_builder.get_object('graph_tab')
         self.notebook = self.main_builder.get_object('graph_notebook')
         self.label = self.main_builder.get_object('graph_label')
@@ -221,7 +221,8 @@ class GtkUI(GtkPluginBase):
         component.get("PluginManager").register_hook("on_show_prefs", self.on_show_prefs)
         self.on_show_prefs()
 
-        self.graphs_tab = GraphsTab(self.main_builder.add_from_file(get_resource("tabs.glade")), self.config['colors'])
+        self.main_builder.add_from_file(get_resource("tabs.glade"))
+        self.graphs_tab = GraphsTab(self.main_builder, self.config['colors'])
         self.torrent_details = component.get('TorrentDetails')
         self.torrent_details.add_tab(self.graphs_tab)
 

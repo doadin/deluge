@@ -100,18 +100,11 @@ def cell_data_statusicon(column, cell, model, row, data):
 # w.add(gtk.Image.new_from_pixbuf(l.get_pixbuf()))
 
 def create_blank_pixbuf():
-    # i = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
-    # i = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
-    # i = GdkPixbuf.Pixbuf.new_from_data(data, colorspace, has_alpha, bits_per_sample, width, height, rowstride)
-    i = GdkPixbuf.Pixbuf.new_from_inline(GdkPixbuf.Pixdata(), False)
-    # i.fill(0x00000000)
-    return i
-
+    return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
 
 def set_icon(icon, cell):
     if icon:
         pixbuf = icon.get_cached_icon()
-        print("icon:", icon.get_filename())
         if pixbuf is None:
             try:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(icon.get_filename(), 16, 16)
