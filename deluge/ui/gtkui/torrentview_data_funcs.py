@@ -115,7 +115,8 @@ def set_icon(icon, cell):
             finally:
                 icon.set_cached_icon(pixbuf)
     else:
-        pixbuf = create_blank_pixbuf()
+        pixbuf = icon_empty
+        #pixbuf = create_blank_pixbuf()
 
     # Suppress Warning: g_object_set_qdata: assertion `G_IS_OBJECT (object)' failed
     with warnings.catch_warnings():
