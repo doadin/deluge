@@ -11,20 +11,22 @@
   <object class="GtkWindow" id="window">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkVBox" id="prefs_box">
+      <object class="GtkBox" id="prefs_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+		<property name="orientation">vertical</property>
         <child>
           <object class="GtkViewport" id="viewport1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="resize_mode">queue</property>
             <child>
-              <object class="GtkVBox" id="vbox4">
+              <object class="GtkBox" id="vbox4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+				<property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkVBox" id="vbox3">
+                  <object class="GtkBox" id="vbox3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -75,9 +77,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <child>
-                          <object class="GtkVBox" id="vbox2">
+                          <object class="GtkBox" id="vbox2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+							<property name="orientation">vertical</property>
                             <child>
                               <object class="GtkFrame" id="frame2">
                                 <property name="visible">True</property>
@@ -90,9 +93,10 @@
                                     <property name="can_focus">False</property>
                                     <property name="left_padding">12</property>
                                     <child>
-                                      <object class="GtkVBox" id="vbox1">
+                                      <object class="GtkBox" id="vbox1">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+										<property name="orientation">vertical</property>
                                         <child>
                                           <object class="GtkCheckButton" id="blink_enabled">
                                             <property name="label" translatable="yes">Tray icon blinks enabled</property>
@@ -124,7 +128,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkHBox" id="hbox2">
+                                          <object class="GtkBox" id="hbox2">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <child>
@@ -334,7 +338,7 @@
                                                 <property name="can_focus">False</property>
                                                 <property name="left_padding">12</property>
                                                 <child>
-                                                  <object class="GtkHBox" id="hbox1">
+                                                  <object class="GtkBox" id="hbox1">
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">False</property>
                                                     <property name="spacing">2</property>
@@ -522,9 +526,10 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox5">
+                          <object class="GtkBox" id="vbox5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+							<property name="orientation">vertical</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -581,7 +586,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="sounds_page">
+                          <object class="GtkBox" id="sounds_page">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>

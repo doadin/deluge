@@ -12,10 +12,11 @@
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkVBox" id="blocklist_prefs_box">
+      <object class="GtkBox" id="blocklist_prefs_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">5</property>
+		<property name="orientation">vertical</property>
         <child>
           <object class="GtkFrame" id="frame1">
             <property name="visible">True</property>
@@ -28,7 +29,7 @@
                 <property name="can_focus">False</property>
                 <property name="left_padding">12</property>
                 <child>
-                  <object class="GtkHBox" id="hbox2">
+                  <object class="GtkBox" id="hbox2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">5</property>
@@ -90,10 +91,11 @@
                 <property name="can_focus">False</property>
                 <property name="left_padding">12</property>
                 <child>
-                  <object class="GtkVBox" id="vbox1">
+                  <object class="GtkBox" id="vbox1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">5</property>
+					<property name="orientation">vertical</property>
                     <child>
                       <object class="GtkTable" id="table1">
                         <property name="visible">True</property>
@@ -198,13 +200,14 @@
                 <property name="xscale">0</property>
                 <property name="left_padding">12</property>
                 <child>
-                  <object class="GtkHBox" id="hbox3">
+                  <object class="GtkBox" id="hbox3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkVBox" id="vbox3">
+                      <object class="GtkBox" id="vbox3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+						<property name="orientation">vertical</property>
                         <child>
                           <object class="GtkButton" id="button_check_download">
                             <property name="visible">True</property>
@@ -213,7 +216,7 @@
                             <property name="tooltip_text" translatable="yes">Download the blocklist file if necessary and import the file.</property>
                             <signal name="clicked" handler="on_button_check_download_clicked" swapped="no"/>
                             <child>
-                              <object class="GtkHBox" id="hbox4">
+                              <object class="GtkBox" id="hbox4">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="spacing">5</property>
@@ -258,7 +261,7 @@
                             <property name="tooltip_text" translatable="yes">Download a new blocklist file and import it.</property>
                             <signal name="clicked" handler="on_button_force_download_clicked" swapped="no"/>
                             <child>
-                              <object class="GtkHBox" id="hbox5">
+                              <object class="GtkBox" id="hbox5">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="spacing">5</property>
@@ -349,9 +352,10 @@
                 <property name="top_padding">5</property>
                 <property name="left_padding">12</property>
                 <child>
-                  <object class="GtkVBox" id="vbox4">
+                  <object class="GtkBox" id="vbox4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+					<property name="orientation">vertical</property>
                     <child>
                       <object class="GtkProgressBar" id="progressbar">
                         <property name="visible">True</property>
@@ -508,7 +512,7 @@
                 <property name="can_focus">False</property>
                 <property name="left_padding">12</property>
                 <child>
-                  <object class="GtkHBox" id="hbox1">
+                  <object class="GtkBox" id="hbox1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
