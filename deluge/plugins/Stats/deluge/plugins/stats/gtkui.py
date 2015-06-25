@@ -91,10 +91,10 @@ class GraphsTab(Tab):
         # self.bandwidth_graph.connect('draw', self.graph_expose) TOFIX
 
         # self.connections_graph = self.main_builder.get_object('connections_graph') TOFIX
-        # self.connections_graph.connect('expose_event', self.graph_expose) TOFIX
+        # self.connections_graph.connect('draw', self.graph_expose) TOFIX
 
         self.seeds_graph = self.main_builder.get_object('seeds_graph')
-        # self.seeds_graph.connect('expose_event', self.graph_expose) TOFIX
+        # self.seeds_graph.connect('draw', self.graph_expose) TOFIX
 
         # self.notebook.connect('switch-page', self._on_notebook_switch_page) TOFIX
 
