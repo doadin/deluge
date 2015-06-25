@@ -52,7 +52,7 @@ class GtkUI(GtkPluginBase):
         self.plugin.remove_preferences_page(_("Blocklist"))
 
         # Remove status item
-        # component.get("StatusBar").remove_item(self.status_item)
+        component.get("StatusBar").remove_item(self.status_item)
         # del self.status_item
 
         # Deregister the hooks
