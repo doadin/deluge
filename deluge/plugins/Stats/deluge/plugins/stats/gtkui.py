@@ -115,11 +115,15 @@ class GraphsTab(Tab):
     def graph_expose(self, widget, event):
         context = self.graph_widget.get_property('window').cairo_create()
         # set a clip region
-        context.rectangle(0, 0, 600, 200)
+        # width = Gtk.DrawingArea.get_allocated_width(widget)
+        # hight = Gtk.DrawingArea.get_allocated_hight(widget)
+        alloc = Gtk.DrawingArea.get_allocation(widget)
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        context.rectangle(0, 0, w, h)
         context.clip()
         self.graph.draw_to_context(context,
-                                   600,
-                                   200)
+                                   w,
+                                   h)
         # Do not propagate the event
         return False
 
