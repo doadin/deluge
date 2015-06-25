@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="connection_manager">
     <property name="can_focus">False</property>
     <property name="has_focus">True</property>
@@ -117,6 +118,7 @@
                     <child>
                       <object class="GtkButton" id="button_addhost">
                         <property name="label">gtk-add</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -132,6 +134,7 @@
                     <child>
                       <object class="GtkButton" id="button_edithost">
                         <property name="label">gtk-edit</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -147,6 +150,7 @@
                     <child>
                       <object class="GtkButton" id="button_removehost">
                         <property name="label">gtk-remove</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -168,6 +172,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="button_startdaemon">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -215,6 +220,7 @@
                 <child>
                   <object class="GtkButton" id="button_refresh">
                     <property name="label">gtk-refresh</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -261,6 +267,7 @@
                     <child>
                       <object class="GtkCheckButton" id="chk_autoconnect">
                         <property name="label" translatable="yes">Automatically connect to selected host on start-up</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -276,6 +283,7 @@
                     <child>
                       <object class="GtkCheckButton" id="chk_autostart">
                         <property name="label" translatable="yes">Automatically start localhost if needed</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -291,6 +299,7 @@
                     <child>
                       <object class="GtkCheckButton" id="chk_donotshow">
                         <property name="label" translatable="yes">Do not show this dialog on start-up</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -329,6 +338,7 @@
             <child>
               <object class="GtkButton" id="button_close">
                 <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -344,6 +354,7 @@
             <child>
               <object class="GtkButton" id="button_connect">
                 <property name="label">gtk-connect</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

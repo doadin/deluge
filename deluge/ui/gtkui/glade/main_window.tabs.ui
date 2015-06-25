@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkAdjustment" id="spin_max_connections_adjustment">
     <property name="lower">-1</property>
     <property name="upper">999999</property>
@@ -524,6 +525,8 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="xalign">0</property>
+                                <property name="wrap">True</property>
+                                <property name="wrap_mode">char</property>
                               </object>
                               <packing>
                                 <property name="left_attach">7</property>
@@ -1257,7 +1260,6 @@
                                         <property name="invisible_char">•</property>
                                         <property name="width_chars">6</property>
                                         <property name="xalign">1</property>
-                                        <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
                                         <property name="adjustment">spin_max_connections_adjustment</property>
@@ -1279,7 +1281,6 @@
                                         <property name="invisible_char">•</property>
                                         <property name="width_chars">6</property>
                                         <property name="xalign">1</property>
-                                        <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
                                         <property name="adjustment">spin_max_upload_adjustment</property>
@@ -1302,7 +1303,6 @@
                                         <property name="invisible_char">•</property>
                                         <property name="width_chars">6</property>
                                         <property name="xalign">1</property>
-                                        <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
                                         <property name="adjustment">spin_max_download_adjustment</property>
@@ -1406,7 +1406,6 @@
                                         <property name="invisible_char">•</property>
                                         <property name="width_chars">6</property>
                                         <property name="xalign">1</property>
-                                        <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
                                         <property name="adjustment">spin_max_upload_slots_adjustment</property>
@@ -1454,6 +1453,7 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_shared">
                                     <property name="label" translatable="yes">Shared</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
@@ -1470,6 +1470,7 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_prioritize_first_last">
                                     <property name="label" translatable="yes">Prioritize First/Last</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
@@ -1486,6 +1487,7 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_sequential_download">
                                     <property name="label" translatable="yes">Sequential Download</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
@@ -1502,6 +1504,7 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_move_completed">
                                     <property name="label" translatable="yes">Move completed:</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
@@ -1551,6 +1554,7 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_auto_managed">
                                     <property name="label" translatable="yes">Auto Managed</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
@@ -1567,6 +1571,7 @@
                                 <child>
                                   <object class="GtkCheckButton" id="chk_stop_at_ratio">
                                     <property name="label" translatable="yes">Stop seed at ratio:</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
@@ -1592,7 +1597,6 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">•</property>
-                                        <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
                                         <property name="adjustment">spin_stop_ratio_adjustment</property>
@@ -1615,6 +1619,7 @@
                                     <child>
                                       <object class="GtkCheckButton" id="chk_remove_at_ratio">
                                         <property name="label" translatable="yes">Remove at ratio</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
@@ -1651,6 +1656,7 @@
                                     <child>
                                       <object class="GtkButton" id="button_apply">
                                         <property name="label">gtk-apply</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="visible">True</property>
                                         <property name="sensitive">False</property>
                                         <property name="can_focus">True</property>
@@ -1831,6 +1837,7 @@
                             <property name="top_padding">5</property>
                             <child>
                               <object class="GtkButton" id="button_edit_trackers">
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>

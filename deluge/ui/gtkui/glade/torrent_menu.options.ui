@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkImage" id="download-limit-image">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -10,7 +11,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-network</property>
-    <property name="icon-size">1</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="upload-limit-image">
     <property name="visible">True</property>
@@ -21,7 +22,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-sort-ascending</property>
-    <property name="icon-size">1</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkMenu" id="options_torrent_menu">
     <property name="visible">True</property>
@@ -29,6 +30,7 @@
     <child>
       <object class="GtkImageMenuItem" id="menuitem_down_speed">
         <property name="label" translatable="yes">_Download Speed Limit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_underline">True</property>
@@ -39,6 +41,7 @@
     <child>
       <object class="GtkImageMenuItem" id="menuitem_up_speed">
         <property name="label" translatable="yes">_Upload Speed Limit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_underline">True</property>
@@ -49,6 +52,7 @@
     <child>
       <object class="GtkImageMenuItem" id="menuitem_max_connections">
         <property name="label" translatable="yes">_Connection Limit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_underline">True</property>
@@ -59,6 +63,7 @@
     <child>
       <object class="GtkImageMenuItem" id="menuitem_upload_slots">
         <property name="label" translatable="yes">Upload _Slot Limit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_underline">True</property>
@@ -68,6 +73,7 @@
     </child>
     <child>
       <object class="GtkMenuItem" id="menuitem_stop_seed_at_ratio">
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">Stop seed at _ratio</property>
@@ -76,6 +82,7 @@
     </child>
     <child>
       <object class="GtkMenuItem" id="menuitem_auto_managed">
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">_Auto Managed</property>
@@ -84,6 +91,7 @@
     </child>
     <child>
       <object class="GtkMenuItem" id="menuitem_change_owner">
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">_Change Ownership</property>
