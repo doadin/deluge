@@ -345,16 +345,13 @@ class MainWindow(component.Component):
         if not Wnck:
             return True
 
-        try:
-            win = Wnck.window_get(self.window.window.xid)
-            screen = win.get_screen()
-        except:
-            # TODO: Linux specific code required? Above code fails on Ubuntu 14.04...
-            # Necessary to import this for get_xid() to work, at least when testing on Ubuntu 14.04
-            from gi.repository import Gtk, GdkX11
-            screen = Wnck.Screen.get_default()
-            xid = self.window.get_window().get_xid()
-            win = Wnck.Window.get(xid)
+        # TODO: Linux specific code required? Above code fails on Ubuntu 14.04...
+        # Necessary to import this for get_xid() to work, at least when testing on Ubuntu 14.04
+        from gi.repository import Gtk, GdkX11
+        screen = Wnck.Screen.get_default()
+        xid = self.window.get_window().get_xid()
+        win = Wnck.Window.get(xid)
+
         active_wksp = screen.get_active_workspace()
         if active_wksp:
             return win.is_on_workspace(active_wksp)
