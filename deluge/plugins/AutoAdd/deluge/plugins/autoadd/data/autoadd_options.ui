@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="2.24"/>
-  <!-- interface-naming-policy toplevel-contextual -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">-1</property>
     <property name="upper">10000</property>
@@ -43,9 +43,9 @@
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-		<property name="orientation">vertical</property>
+        <property name="orientation">vertical</property>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
@@ -109,7 +109,7 @@
           <object class="GtkBox" id="vbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-			<property name="orientation">vertical</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkNotebook" id="notebook1">
                 <property name="visible">True</property>
@@ -119,7 +119,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">6</property>
-					<property name="orientation">vertical</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkFrame" id="frame2">
                         <property name="visible">True</property>
@@ -135,7 +135,7 @@
                               <object class="GtkBox" id="vbox6">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-								<property name="orientation">vertical</property>
+                                <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkBox" id="hbox3">
                                     <property name="visible">True</property>
@@ -149,8 +149,6 @@ it will be added to the session.</property>
                                         <property name="invisible_char">●</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                       </object>
                                       <packing>
                                         <property name="expand">True</property>
@@ -187,6 +185,7 @@ it will be added to the session.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_enabled_toggle_toggled" swapped="no"/>
                                   </object>
@@ -237,7 +236,7 @@ it will be added to the session.</property>
                                   <object class="GtkBox" id="vbox7">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-									<property name="orientation">vertical</property>
+                                    <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkRadioButton" id="isnt_append_extension">
                                         <property name="label" translatable="yes">Delete .torrent after adding</property>
@@ -246,6 +245,7 @@ it will be added to the session.</property>
                                         <property name="receives_default">False</property>
                                         <property name="tooltip_text" translatable="yes">Once the torrent is added to the session,
 the .torrent will be deleted.</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                       </object>
@@ -268,6 +268,7 @@ the .torrent will be deleted.</property>
                                             <property name="tooltip_text" translatable="yes">Once the torrent is added to the session,
 an extension will be appended to the .torrent
 and it will remain in the same directory.</property>
+                                            <property name="xalign">0.5</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">isnt_append_extension</property>
                                             <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
@@ -286,8 +287,6 @@ and it will remain in the same directory.</property>
                                             <property name="text" translatable="yes">.added</property>
                                             <property name="primary_icon_activatable">False</property>
                                             <property name="secondary_icon_activatable">False</property>
-                                            <property name="primary_icon_sensitive">True</property>
-                                            <property name="secondary_icon_sensitive">True</property>
                                           </object>
                                           <packing>
                                             <property name="expand">True</property>
@@ -317,6 +316,7 @@ and it will remain in the same directory.</property>
                                             <property name="tooltip_text" translatable="yes">Once the torrent is added to the session,
 the .torrent will copied to the chosen directory
 and deleted from the watch folder.</property>
+                                            <property name="xalign">0.5</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">isnt_append_extension</property>
                                             <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
@@ -333,8 +333,6 @@ and deleted from the watch folder.</property>
                                                 <property name="invisible_char">•</property>
                                                 <property name="primary_icon_activatable">False</property>
                                                 <property name="secondary_icon_activatable">False</property>
-                                                <property name="primary_icon_sensitive">True</property>
-                                                <property name="secondary_icon_sensitive">True</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">True</property>
@@ -370,6 +368,7 @@ and deleted from the watch folder.</property>
                                             <property name="has_tooltip">True</property>
                                             <property name="tooltip_text" translatable="yes">Once the torrent is deleted from the session,
 also delete the .torrent file used to add it.</property>
+                                            <property name="xalign">0.5</property>
                                             <property name="draw_indicator">True</property>
                                           </object>
                                           <packing>
@@ -422,7 +421,7 @@ also delete the .torrent file used to add it.</property>
                               <object class="GtkBox" id="vbox3">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-								<property name="orientation">vertical</property>
+                                <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="download_location_toggle">
                                     <property name="label" translatable="yes">Set download folder</property>
@@ -431,6 +430,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="receives_default">False</property>
                                     <property name="tooltip_text" translatable="yes">This folder will be where the torrent data is downloaded to.</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -451,8 +451,6 @@ also delete the .torrent file used to add it.</property>
                                         <property name="invisible_char">●</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                       </object>
                                       <packing>
                                         <property name="expand">True</property>
@@ -514,7 +512,7 @@ also delete the .torrent file used to add it.</property>
                               <object class="GtkBox" id="vbox4">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-								<property name="orientation">vertical</property>
+                                <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="move_completed_toggle">
                                     <property name="label" translatable="yes">Set move completed folder</property>
@@ -522,6 +520,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -542,8 +541,6 @@ also delete the .torrent file used to add it.</property>
                                         <property name="invisible_char">●</property>
                                         <property name="primary_icon_activatable">False</property>
                                         <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
                                       </object>
                                       <packing>
                                         <property name="expand">True</property>
@@ -570,6 +567,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">False</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -626,6 +624,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -636,18 +635,9 @@ also delete the .torrent file used to add it.</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkComboBoxEntry" id="label">
+                                  <object class="GtkComboBox" id="label">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <child internal-child="entry">
-                                      <object class="GtkEntry" id="comboboxentry-entry2">
-                                        <property name="can_focus">False</property>
-                                        <property name="primary_icon_activatable">False</property>
-                                        <property name="secondary_icon_activatable">False</property>
-                                        <property name="primary_icon_sensitive">True</property>
-                                        <property name="secondary_icon_sensitive">True</property>
-                                      </object>
-                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">True</property>
@@ -691,8 +681,8 @@ also delete the .torrent file used to add it.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">6</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">5</property>
-					<property name="orientation">vertical</property>
                     <child>
                       <object class="GtkFrame" id="OwnerFrame">
                         <property name="visible">True</property>
@@ -762,6 +752,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -779,6 +770,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -796,6 +788,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -812,8 +805,6 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
-                                    <property name="primary_icon_sensitive">True</property>
-                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">adjustment1</property>
                                     <property name="climb_rate">1</property>
                                     <property name="digits">1</property>
@@ -830,8 +821,6 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
-                                    <property name="primary_icon_sensitive">True</property>
-                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">adjustment2</property>
                                     <property name="climb_rate">1</property>
                                     <property name="digits">1</property>
@@ -850,8 +839,6 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
-                                    <property name="primary_icon_sensitive">True</property>
-                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">adjustment3</property>
                                     <property name="climb_rate">1</property>
                                   </object>
@@ -869,8 +856,6 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
-                                    <property name="primary_icon_sensitive">True</property>
-                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">adjustment4</property>
                                     <property name="climb_rate">1</property>
                                   </object>
@@ -921,6 +906,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -990,6 +976,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                       </object>
@@ -1015,6 +1002,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
                                     </child>
@@ -1031,6 +1019,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -1047,6 +1036,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1065,6 +1055,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1084,8 +1075,6 @@ also delete the .torrent file used to add it.</property>
                                     <property name="invisible_char">●</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
-                                    <property name="primary_icon_sensitive">True</property>
-                                    <property name="secondary_icon_sensitive">True</property>
                                     <property name="adjustment">adjustment5</property>
                                     <property name="climb_rate">1</property>
                                     <property name="digits">1</property>
@@ -1110,6 +1099,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_stock">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -1126,6 +1116,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_stock">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <property name="group">auto_managed</property>
                                       </object>
@@ -1151,6 +1142,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1172,6 +1164,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -1188,6 +1181,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_stock">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -1204,6 +1198,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_stock">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <property name="group">add_paused</property>
                                       </object>
@@ -1225,6 +1220,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_toggle_toggled" swapped="no"/>
                                   </object>
@@ -1244,6 +1240,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                       </object>
@@ -1259,6 +1256,7 @@ also delete the .torrent file used to add it.</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <property name="group">queue_to_top</property>
                                       </object>
@@ -1283,6 +1281,7 @@ also delete the .torrent file used to add it.</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
