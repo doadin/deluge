@@ -62,12 +62,13 @@
                     <property name="left_padding">10</property>
                     <property name="right_padding">10</property>
                     <child>
-                      <object class="GtkVBox" id="vbox3">
+                      <object class="GtkBox" id="vbox3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">5</property>
+						<property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkHBox" id="hbox3">
+                          <object class="GtkBox" id="hbox3">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
@@ -115,9 +116,10 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="status_progress_vbox">
+                          <object class="GtkBox" id="status_progress_vbox">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+							<property name="orientation">vertical</property>
                             <child>
                               <object class="GtkProgressBar" id="progressbar">
                                 <property name="visible">True</property>
@@ -1447,9 +1449,10 @@
                             <property name="xalign">0</property>
                             <property name="left_padding">10</property>
                             <child>
-                              <object class="GtkVBox" id="vbox1">
+                              <object class="GtkBox" id="vbox1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+								<property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="chk_shared">
                                     <property name="label" translatable="yes">Shared</property>
@@ -1519,7 +1522,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkHBox" id="hbox_move_completed_path_chooser">
+                                  <object class="GtkBox" id="hbox_move_completed_path_chooser">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <child>
@@ -1548,9 +1551,10 @@
                             <property name="left_padding">5</property>
                             <property name="right_padding">5</property>
                             <child>
-                              <object class="GtkVBox" id="vbox6">
+                              <object class="GtkBox" id="vbox6">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+								<property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="chk_auto_managed">
                                     <property name="label" translatable="yes">Auto Managed</property>

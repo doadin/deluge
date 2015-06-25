@@ -75,7 +75,7 @@
                 <property name="left_padding">15</property>
                 <property name="right_padding">10</property>
                 <child>
-                  <object class="GtkHBox" id="hbox3">
+                  <object class="GtkBox" id="hbox3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -142,9 +142,10 @@
                 <property name="left_padding">12</property>
                 <property name="right_padding">5</property>
                 <child>
-                  <object class="GtkVBox" id="vbox4">
+                  <object class="GtkBox" id="vbox4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+					<property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="show_path_entry_checkbutton">
                         <property name="label" translatable="yes">Show path entry</property>
@@ -532,11 +533,12 @@
     <signal name="focus-out-event" handler="on_completion_popup_window_focus_out_event" swapped="no"/>
     <signal name="key-press-event" handler="on_completion_popup_window_key_press_event" swapped="no"/>
     <child>
-      <object class="GtkVBox" id="popup_content_box1">
+      <object class="GtkBox" id="popup_content_box1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="border_width">3</property>
         <property name="spacing">1</property>
+		<property name="orientation">vertical</property>
         <child>
           <object class="GtkScrolledWindow" id="completion_scrolled_window">
             <property name="visible">True</property>
@@ -672,7 +674,7 @@
     <signal name="focus-out-event" handler="on_stored_values_popup_window_focus_out_event" swapped="no"/>
     <signal name="hide" handler="on_stored_values_popup_window_hide" swapped="no"/>
     <child>
-      <object class="GtkHBox" id="hbox1">
+      <object class="GtkBox" id="hbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="border_width">3</property>
@@ -728,9 +730,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox2">
+          <object class="GtkBox" id="vbox2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+			<property name="orientation">vertical</property>
             <child>
               <object class="GtkVButtonBox" id="buttonbox">
                 <property name="visible">True</property>
@@ -881,7 +884,7 @@
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkHBox" id="entry_combobox_hbox">
+      <object class="GtkBox" id="entry_combobox_hbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">3</property>
@@ -911,7 +914,7 @@
             <property name="xalign">0.50999999046325684</property>
             <signal name="clicked" handler="on_button_open_dialog_clicked" swapped="no"/>
             <child>
-              <object class="GtkHBox" id="hbox2">
+              <object class="GtkBox" id="hbox2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
@@ -982,11 +985,12 @@
             <signal name="scroll-event" handler="on_button_toggle_dropdown_scroll_event" swapped="no"/>
             <signal name="toggled" handler="on_button_toggle_dropdown_toggled" swapped="no"/>
             <child>
-              <object class="GtkVBox" id="vbox1">
+              <object class="GtkBox" id="vbox1">
                 <property name="height_request">15</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="homogeneous">True</property>
+				<property name="orientation">vertical</property>
                 <child>
                   <object class="GtkArrow" id="arrow1">
                     <property name="visible">True</property>

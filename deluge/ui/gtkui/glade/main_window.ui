@@ -10,9 +10,10 @@
       <group name="accelgroup1"/>
     </accel-groups>
     <child>
-      <object class="GtkVBox" id="vbox1">
+      <object class="GtkBox" id="vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+		<property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
@@ -556,11 +557,12 @@ This will filter torrents for the current selection on the sidebar.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkVBox" id="vbox2">
+                      <object class="GtkBox" id="vbox2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+						<property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkHBox" id="search_box">
+                          <object class="GtkBox" id="search_box">
                             <property name="can_focus">False</property>
                             <child>
                               <object class="GtkButton" id="close_search_button">
