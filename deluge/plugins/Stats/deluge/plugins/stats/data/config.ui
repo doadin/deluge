@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <child>
@@ -22,8 +23,6 @@
                   <object class="GtkTable" id="table2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
                     <property name="n_rows">10</property>
                     <property name="n_columns">2</property>
                     <property name="column_spacing">15</property>
@@ -32,7 +31,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#8a89e2e13433</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -71,7 +70,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#72729f9fcfcf</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -112,7 +111,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#f5f579780000</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -139,7 +138,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#72729f9fcfcf</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -190,7 +189,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#8a89e2e13433</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -205,7 +204,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#cccc00000000</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -234,7 +233,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="color">#72729f9fcfcf</property>
+                        <property name="color">#000000000000</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -258,6 +257,14 @@
                     </child>
                   </object>
                 </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="label3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">&lt;b&gt;Graph Colors&lt;/b&gt;</property>
+                <property name="use_markup">True</property>
               </object>
             </child>
           </object>

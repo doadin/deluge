@@ -41,7 +41,7 @@ class ExecutePreferences(object):
     def load(self):
         log.debug("Adding Execute Preferences page")
         self.main_builder = Gtk.Builder()
-        self.glade = self.main_builder.add_from_file(get_resource("execute_prefs.glade"))
+        self.glade = self.main_builder.add_from_file(get_resource("execute_prefs.ui"))
         self.main_builder.connect_signals({
             "on_add_button_clicked": self.on_add_button_clicked
         })
@@ -85,9 +85,9 @@ class ExecutePreferences(object):
         img.set_from_stock(Gtk.STOCK_REMOVE, Gtk.IconSize.BUTTON)
         button.set_image(img)
 
-        hbox.pack_start(label, False, False, 0)
+        hbox.pack_start(label, False, False)
         hbox.pack_start(entry, True, True, 0)
-        hbox.pack_start(button, False, False, 0)
+        hbox.pack_start(button, False, False)
         hbox.show_all()
         vbox.pack_start(hbox, True, True, 0)
 

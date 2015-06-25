@@ -115,11 +115,11 @@ class GraphsTab(Tab):
     def graph_expose(self, widget, event):
         context = self.graph_widget.get_property('window').cairo_create()
         # set a clip region
-        context.rectangle(0, 0, 290, 280)
+        context.rectangle(0, 0, 600, 200)
         context.clip()
         self.graph.draw_to_context(context,
-                                   290,
-                                   280)
+                                   600,
+                                   200)
         # Do not propagate the event
         return False
 
@@ -215,13 +215,13 @@ class GtkUI(GtkPluginBase):
         log.debug("Stats plugin enable called")
         self.config = deluge.configmanager.ConfigManager("stats.gtkui.conf", DEFAULT_CONF)
         self.main_builder = Gtk.Builder()
-        self.glade = self.main_builder.add_from_file(get_resource("config.glade"))
+        self.glade = self.main_builder.add_from_file(get_resource("config.ui"))
         component.get("Preferences").add_page("Stats", self.main_builder.get_object("prefs_box"))
         component.get("PluginManager").register_hook("on_apply_prefs", self.on_apply_prefs)
         component.get("PluginManager").register_hook("on_show_prefs", self.on_show_prefs)
         self.on_show_prefs()
 
-        self.main_builder.add_from_file(get_resource("tabs.glade"))
+        self.main_builder.add_from_file(get_resource("tabs.ui"))
         self.graphs_tab = GraphsTab(self.main_builder, self.config['colors'])
         self.torrent_details = component.get('TorrentDetails')
         self.torrent_details.add_tab(self.graphs_tab)

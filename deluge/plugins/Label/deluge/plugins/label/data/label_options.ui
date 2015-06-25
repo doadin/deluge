@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="lower">-1</property>
+    <property name="upper">9999</property>
+    <property name="value">-1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment2">
+    <property name="lower">-1</property>
+    <property name="upper">9999</property>
+    <property name="value">-1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment3">
+    <property name="lower">-1</property>
+    <property name="upper">9999</property>
+    <property name="value">-1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment4">
+    <property name="lower">-1</property>
+    <property name="upper">9999</property>
+    <property name="value">-1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment5">
+    <property name="lower">0.10000000000000001</property>
+    <property name="upper">100</property>
+    <property name="value">2</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkDialog" id="dlg_label_add">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -166,6 +202,9 @@
       <action-widget response="0">button2</action-widget>
       <action-widget response="0">button1</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkTextBuffer" id="textbuffer1">
+    <property name="text" translatable="yes">tracker1.org</property>
   </object>
   <object class="GtkDialog" id="dlg_label_options">
     <property name="can_focus">False</property>
@@ -335,6 +374,7 @@
                             <property name="can_focus">True</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
+                            <property name="adjustment">adjustment1</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -364,6 +404,7 @@
                             <property name="can_focus">True</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
+                            <property name="adjustment">adjustment2</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -434,6 +475,7 @@
                             <property name="can_focus">True</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
+                            <property name="adjustment">adjustment3</property>
                             <property name="numeric">True</property>
                           </object>
                           <packing>
@@ -465,6 +507,7 @@
                             <property name="can_focus">True</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
+                            <property name="adjustment">adjustment4</property>
                             <property name="numeric">True</property>
                           </object>
                           <packing>
@@ -492,16 +535,25 @@
                     </child>
                   </object>
                 </child>
+                <child type="label">
+                  <object class="GtkCheckButton" id="apply_max">
+                    <property name="label" translatable="yes">Apply per torrent max settings:</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0.5</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                </child>
               </object>
             </child>
-            <child>
+            <child type="tab">
               <object class="GtkLabel" id="label7">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Maximum</property>
               </object>
               <packing>
-                <property name="position">1</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
@@ -600,6 +652,7 @@
                             <property name="can_focus">True</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
+                            <property name="adjustment">adjustment5</property>
                             <property name="digits">2</property>
                           </object>
                           <packing>
@@ -630,12 +683,22 @@
                     </child>
                   </object>
                 </child>
+                <child type="label">
+                  <object class="GtkCheckButton" id="apply_queue">
+                    <property name="label" translatable="yes">Apply Queue settings:</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0.5</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="position">1</property>
               </packing>
             </child>
-            <child>
+            <child type="tab">
               <object class="GtkLabel" id="label8">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -720,12 +783,22 @@
                     </child>
                   </object>
                 </child>
+                <child type="label">
+                  <object class="GtkCheckButton" id="apply_move_completed">
+                    <property name="label" translatable="yes">Apply folder settings:</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0.5</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="position">2</property>
               </packing>
             </child>
-            <child>
+            <child type="tab">
               <object class="GtkLabel" id="label21">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -761,6 +834,7 @@
                               <object class="GtkTextView" id="auto_add_trackers">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="buffer">textbuffer1</property>
                               </object>
                             </child>
                           </object>
@@ -787,12 +861,23 @@
                     </child>
                   </object>
                 </child>
+                <child type="label">
+                  <object class="GtkCheckButton" id="auto_add">
+                    <property name="label" translatable="yes">Automatically apply label:</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0.5</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="position">3</property>
               </packing>
             </child>
-            <child>
+            <child type="tab">
               <object class="GtkLabel" id="label99">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>

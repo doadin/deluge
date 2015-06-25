@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="lower">1</property>
+    <property name="upper">65535</property>
+    <property name="value">25</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkWindow" id="window">
     <property name="can_focus">False</property>
     <child>
@@ -161,6 +168,15 @@
                                     </child>
                                   </object>
                                 </child>
+                                <child type="label">
+                                  <object class="GtkLabel" id="label6">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="xpad">5</property>
+                                    <property name="label" translatable="yes">&lt;b&gt;UI Notifications&lt;/b&gt;</property>
+                                    <property name="use_markup">True</property>
+                                  </object>
+                                </child>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -207,6 +223,8 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="invisible_char">●</property>
+                                            <property name="primary_icon_activatable">False</property>
+                                            <property name="secondary_icon_activatable">False</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">1</property>
@@ -236,6 +254,9 @@
                                             <property name="max_length">65535</property>
                                             <property name="invisible_char">●</property>
                                             <property name="width_chars">5</property>
+                                            <property name="primary_icon_activatable">False</property>
+                                            <property name="secondary_icon_activatable">False</property>
+                                            <property name="adjustment">adjustment1</property>
                                             <property name="climb_rate">1</property>
                                             <property name="snap_to_ticks">True</property>
                                             <property name="numeric">True</property>
@@ -264,6 +285,8 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="invisible_char">●</property>
+                                            <property name="primary_icon_activatable">False</property>
+                                            <property name="secondary_icon_activatable">False</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">1</property>
@@ -289,6 +312,8 @@
                                             <property name="can_focus">True</property>
                                             <property name="visibility">False</property>
                                             <property name="invisible_char">●</property>
+                                            <property name="primary_icon_activatable">False</property>
+                                            <property name="secondary_icon_activatable">False</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">1</property>
@@ -385,6 +410,14 @@
                                                 </child>
                                               </object>
                                             </child>
+                                            <child type="label">
+                                              <object class="GtkLabel" id="label5">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="label" translatable="yes">&lt;b&gt;Recipients&lt;/b&gt;</property>
+                                                <property name="use_markup">True</property>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="right_attach">4</property>
@@ -432,6 +465,8 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="invisible_char">●</property>
+                                            <property name="primary_icon_activatable">False</property>
+                                            <property name="secondary_icon_activatable">False</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">1</property>
@@ -458,6 +493,15 @@
                                     </child>
                                   </object>
                                 </child>
+                                <child type="label">
+                                  <object class="GtkLabel" id="label7">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="xpad">5</property>
+                                    <property name="label" translatable="yes">&lt;b&gt;Email Notifications&lt;/b&gt;</property>
+                                    <property name="use_markup">True</property>
+                                  </object>
+                                </child>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -467,14 +511,13 @@
                             </child>
                           </object>
                         </child>
-                        <child>
+                        <child type="tab">
                           <object class="GtkLabel" id="settings_page_label">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Settings</property>
                           </object>
                           <packing>
-                            <property name="position">1</property>
                             <property name="tab_fill">False</property>
                           </packing>
                         </child>
@@ -526,7 +569,7 @@
                             <property name="position">1</property>
                           </packing>
                         </child>
-                        <child>
+                        <child type="tab">
                           <object class="GtkLabel" id="subscriptions_page_label">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -612,7 +655,7 @@
                             <property name="position">2</property>
                           </packing>
                         </child>
-                        <child>
+                        <child type="tab">
                           <object class="GtkLabel" id="sounds_page_label">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
