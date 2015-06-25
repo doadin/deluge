@@ -88,38 +88,38 @@ class GraphsTab(Tab):
         self.colors = colors
 
         self.bandwidth_graph = self.main_builder.get_object('bandwidth_graph')
-        # self.bandwidth_graph.connect('draw', self.graph_expose) TOFIX
+        self.bandwidth_graph.connect('draw', self.graph_expose)
 
-        # self.connections_graph = self.main_builder.get_object('connections_graph') TOFIX
-        # self.connections_graph.connect('draw', self.graph_expose) TOFIX
+        self.connections_graph = self.main_builder.get_object('connections_graph')
+        self.connections_graph.connect('draw', self.graph_expose)
 
         self.seeds_graph = self.main_builder.get_object('seeds_graph')
-        # self.seeds_graph.connect('draw', self.graph_expose) TOFIX
+        self.seeds_graph.connect('draw', self.graph_expose)
 
-        # self.notebook.connect('switch-page', self._on_notebook_switch_page) TOFIX
+        self.notebook.connect('switch-page', self._on_notebook_switch_page)
 
         self.selected_interval = 1  # Should come from config or similar
         self.select_bandwidth_graph()
 
-        # self.window.unparent() TOFIX
-        # self.label.unparent() TOFIX
+        self.window.unparent()
+        self.label.unparent()
 
         self.intervals = None
         self.intervals_combo = self.main_builder.get_object('combo_intervals')
-        # cell = Gtk.CellRendererText() TOFIX
-        # self.intervals_combo.pack_start(cell, True) TOFIX
-        # self.intervals_combo.set_cell_data_func(cell, neat_time) TOFIX
-        # self.intervals_combo.connect("changed", self._on_selected_interval_changed) TOFIX
+        cell = Gtk.CellRendererText()
+        self.intervals_combo.pack_start(cell, True)
+        self.intervals_combo.set_cell_data_func(cell, neat_time)
+        self.intervals_combo.connect("changed", self._on_selected_interval_changed)
         self.update_intervals()
 
     def graph_expose(self, widget, event):
-        context = self.graph_widget.window.cairo_create()
+        context = self.graph_widget.get_property('window').cairo_create()
         # set a clip region
-        context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
+        context.rectangle(0, 0, 290, 280)
         context.clip()
         self.graph.draw_to_context(context,
-                                   self.graph_widget.allocation.width,
-                                   self.graph_widget.allocation.height)
+                                   290,
+                                   280)
         # Do not propagate the event
         return False
 
@@ -181,13 +181,13 @@ class GraphsTab(Tab):
         liststore = Gtk.ListStore(int)
         for inter in intervals:
             liststore.append([inter])
-        # self.intervals_combo.set_model(liststore) TOFIX
+        self.intervals_combo.set_model(liststore)
         try:
             current = intervals.index(self.selected_interval)
         except:
             current = 0
         # should select the value saved in config
-        # self.intervals_combo.set_active(current) TOFIX
+        self.intervals_combo.set_active(current)
 
     def _on_selected_interval_changed(self, combobox):
         model = combobox.get_model()
@@ -230,7 +230,7 @@ class GtkUI(GtkPluginBase):
         component.get("Preferences").remove_page("Stats")
         component.get("PluginManager").deregister_hook("on_apply_prefs", self.on_apply_prefs)
         component.get("PluginManager").deregister_hook("on_show_prefs", self.on_show_prefs)
-        # self.torrent_details.remove_tab(self.graphs_tab.get_name()) TOFIX
+        self.torrent_details.remove_tab(self.graphs_tab.get_name())
 
     def on_apply_prefs(self):
         log.debug("applying prefs for Stats")
