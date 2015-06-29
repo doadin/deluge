@@ -20,6 +20,7 @@ from gi.repository import Gdk, GObject, Gtk
 
 warnings.filterwarnings('ignore')
 
+
 def is_ascii_value(keyval, ascii_key):
     try:
         # Set show/hide hidden files

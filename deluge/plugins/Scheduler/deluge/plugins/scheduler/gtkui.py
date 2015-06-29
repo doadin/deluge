@@ -66,7 +66,7 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
         # self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         self.context.rectangle(0, 0, 290, 280)
         self.context.clip()
-        
+
         # width = self.window.get_size()[0] TOFIX
         # height = self.window.get_size()[1] TOFIX
         width = 290
@@ -93,19 +93,19 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
         elif x < 0:
             x = 0
         if y <= 3:
-            y = 0 # Monday
+            y = 0  # Monday
         elif y > 3 and y <= 6:
-            y = 1 # Tuesday
+            y = 1  # Tuesday
         elif y >= 4 and y <= 9:
-            y = 2 # Wednsday
+            y = 2  # Wednsday
         elif y >= 10 and y <= 12:
-            y = 3 # Thursday
+            y = 3  # Thursday
         elif y >= 13 and y <= 15:
-            y = 4 # Friday
+            y = 4  # Friday
         elif y >= 16 and y <= 17:
-            y = 5 # Saturday
+            y = 5  # Saturday
         elif y >= 18 and y <= 22:
-            y = 6 # Sunday
+            y = 6  # Sunday
         elif y > 22:
             y = 6
         if y < 0:

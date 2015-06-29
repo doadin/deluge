@@ -118,7 +118,7 @@ class GraphsTab(Tab):
         # width = Gtk.DrawingArea.get_allocated_width(widget)
         # hight = Gtk.DrawingArea.get_allocated_hight(widget)
         alloc = Gtk.DrawingArea.get_allocation(widget)
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        w, h = alloc.width, alloc.height
         context.rectangle(0, 0, w, h)
         context.clip()
         self.graph.draw_to_context(context,

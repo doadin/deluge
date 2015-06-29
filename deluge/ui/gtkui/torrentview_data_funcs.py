@@ -102,6 +102,7 @@ def cell_data_statusicon(column, cell, model, row, data):
 def create_blank_pixbuf():
     return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
 
+
 def set_icon(icon, cell):
     if icon:
         pixbuf = icon.get_cached_icon()
@@ -116,7 +117,7 @@ def set_icon(icon, cell):
                 icon.set_cached_icon(pixbuf)
     else:
         pixbuf = icon_empty
-        #pixbuf = create_blank_pixbuf()
+        # pixbuf = create_blank_pixbuf()
 
     # Suppress Warning: g_object_set_qdata: assertion `G_IS_OBJECT (object)' failed
     with warnings.catch_warnings():

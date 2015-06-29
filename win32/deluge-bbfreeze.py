@@ -3,11 +3,10 @@ import os
 import shutil
 import sys
 
+import bbfreeze
 import deluge.common
 import icon
-import bbfreeze
-from bbfreeze import Freezer
-from bbfreeze import recipes
+from bbfreeze import Freezer, recipes
 from gi.repository import Gtk
 
 # Get build_version from installed deluge
