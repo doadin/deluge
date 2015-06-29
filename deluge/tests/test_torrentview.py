@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from twisted.trial import unittest
 
@@ -7,6 +9,8 @@ from deluge.configmanager import ConfigManager
 
 from . import common
 from .basetest import BaseTestCase
+
+print os.environ['DISPLAY']
 
 libs_available = True
 # Allow running other tests without GTKUI dependencies available
