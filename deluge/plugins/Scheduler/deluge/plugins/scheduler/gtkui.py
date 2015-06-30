@@ -63,14 +63,12 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
     # redraw the whole thing
     def expose(self, widget, event):
         self.context = self.window.cairo_create()
-        # self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-        self.context.rectangle(0, 0, 290, 280)
+        alloc = Gtk.Window.get_allocation(widget)
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        width = w
+        height = h
+        self.context.rectangle(0, 0, width, height)
         self.context.clip()
-
-        # width = self.window.get_size()[0] TOFIX
-        # height = self.window.get_size()[1] TOFIX
-        width = 290
-        height = 280
 
         for y in xrange(7):
             for x in xrange(24):
@@ -85,6 +83,8 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
 
     # coordinates --> which box
     def get_point(self, event):
+        # alloc = Gtk.Window.get_allocation(widget)
+        # x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         x = int((event.x * 0.5 / 145.0) / (6 / 145.0))
         y = int((event.y * 0.5 / 43.0) / (6 / 43.0))
 
@@ -92,23 +92,9 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
             x = 23
         elif x < 0:
             x = 0
-        if y <= 3:
-            y = 0  # Monday
-        elif y > 3 and y <= 6:
-            y = 1  # Tuesday
-        elif y >= 4 and y <= 9:
-            y = 2  # Wednsday
-        elif y >= 10 and y <= 12:
-            y = 3  # Thursday
-        elif y >= 13 and y <= 15:
-            y = 4  # Friday
-        elif y >= 16 and y <= 17:
-            y = 5  # Saturday
-        elif y >= 18 and y <= 22:
-            y = 6  # Sunday
-        elif y > 22:
+        if y > 6:
             y = 6
-        if y < 0:
+        elif y < 0:
             y = 0
 
         return [x, y]
