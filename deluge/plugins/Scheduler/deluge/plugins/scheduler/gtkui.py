@@ -83,10 +83,13 @@ class SchedulerSelectWidget(Gtk.DrawingArea):
 
     # coordinates --> which box
     def get_point(self, event):
-        # alloc = Gtk.Window.get_allocation(widget)
-        # x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        x = int((event.x * 0.5 / 145.0) / (6 / 145.0))
-        y = int((event.y * 0.5 / 43.0) / (6 / 43.0))
+        alloc = Gtk.Window.get_allocation(self)
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        width = w
+        height = h
+        # size = self.window.get_size()
+        x = int((event.x - width * 0.5 / 145.0) / (6 * width / 145.0))
+        y = int((event.y - height * 0.5 / 43.0) / (6 * height / 43.0))
 
         if x > 23:
             x = 23
