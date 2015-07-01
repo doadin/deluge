@@ -270,9 +270,7 @@ class GtkUI(GtkPluginBase):
         client.stats.set_config(config)
 
     def on_show_prefs(self):
-        gtkconf = {}
         for graph, colors in self.config['colors'].items():
-            gtkconf[graph] = {}
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
