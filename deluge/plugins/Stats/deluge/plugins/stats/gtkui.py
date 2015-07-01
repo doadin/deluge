@@ -260,7 +260,7 @@ class GtkUI(GtkPluginBase):
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    gtkconf[graph][value] = str(color_btn.get_rgba())
+                    gtkconf[graph][value] = color_btn.get_rgba()
                 except:
                     gtkconf[graph][value] = DEFAULT_CONF['colors'][graph][value]
         self.config['colors'] = gtkconf
