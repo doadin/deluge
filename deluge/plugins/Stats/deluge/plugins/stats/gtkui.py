@@ -28,17 +28,33 @@ from .graph import Graph, size_formatter_scale
 
 log = logging.getLogger(__name__)
 
+#DEFAULT_CONF = {'version': 1,
+#                'colors': {
+#                    'bandwidth_graph': {'upload_rate': Gdk.Color.to_string(Gdk.Color(red=65535, green=59881, blue=20303)),
+#                                        'download_rate': Gdk.Color.to_string(Gdk.Color(red=65535, green=55255, blue=0)),
+#                                        },
+#                    'connections_graph': {'dht_nodes': Gdk.Color.to_string(Gdk.Color(red=65535, green=65535, blue=65535)),
+#                                          'dht_cache_nodes': Gdk.Color.to_string(Gdk.Color(red=65535, green=55255, blue=0)),
+#                                          'dht_torrents': Gdk.Color.to_string(Gdk.Color(red=65535, green=59881, blue=20303)),
+#                                          'num_connections': Gdk.Color.to_string(Gdk.Color(red=65535, green=65535, blue=65535)),
+#                                          },
+#                    'seeds_graph': {'num_peers': Gdk.Color.to_string(Gdk.Color(red=65535, green=55255, blue=0)),
+#                                    },
+#                }
+#                }
+#print DEFAULT_CONF
+
 DEFAULT_CONF = {'version': 1,
                 'colors': {
-                    'bandwidth_graph': {'upload_rate': str(Gdk.Color(red=65535, green=59881, blue=20303)),
-                                        'download_rate': str(Gdk.Color(red=65535, green=55255, blue=0)),
+                    'bandwidth_graph': {'upload_rate': Gdk.RGBA(red=0.541176, green=0.886275, blue=0.203922, alpha=1.000000),
+                                        'download_rate': Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000),
                                         },
-                    'connections_graph': {'dht_nodes': str(Gdk.Color(red=65535, green=65535, blue=65535)),
-                                          'dht_cache_nodes': str(Gdk.Color(red=65535, green=55255, blue=0)),
-                                          'dht_torrents': str(Gdk.Color(red=65535, green=59881, blue=20303)),
-                                          'num_connections': str(Gdk.Color(red=65535, green=65535, blue=65535)),
+                    'connections_graph': {'dht_nodes': Gdk.RGBA(red=0.988235, green=0.686275, blue=0.243137, alpha=1.000000),
+                                          'dht_cache_nodes': Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000),
+                                          'dht_torrents': Gdk.RGBA(red=0.541176, green=0.886275, blue=0.203922, alpha=1.000000),
+                                          'num_connections': Gdk.RGBA(red=0.800000, green=0.000000, blue=0.000000, alpha=1.000000),
                                           },
-                    'seeds_graph': {'num_peers': str(Gdk.Color(red=65535, green=55255, blue=0)),
+                    'seeds_graph': {'num_peers': Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000),
                                     },
                 }
                 }
@@ -244,7 +260,7 @@ class GtkUI(GtkPluginBase):
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    gtkconf[graph][value] = str(color_btn.get_color())
+                    gtkconf[graph][value] = str(color_btn.get_rgba())
                 except:
                     gtkconf[graph][value] = DEFAULT_CONF['colors'][graph][value]
         self.config['colors'] = gtkconf
@@ -254,11 +270,15 @@ class GtkUI(GtkPluginBase):
         client.stats.set_config(config)
 
     def on_show_prefs(self):
+        gtkconf = {}
         for graph, colors in self.config['colors'].items():
+            gtkconf[graph] = {}
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    color_btn.set_color(Gdk.Color(color))
+                    #alloc = Gtk.Window.get_allocation(widget)
+                    #x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+                    color_btn.set_color(Gdk.rgba.to_string(color))
                 except:
                     log.debug("Unable to set %s %s %s" % (graph, value, color))
         client.stats.get_config().addCallback(self.cb_get_config)

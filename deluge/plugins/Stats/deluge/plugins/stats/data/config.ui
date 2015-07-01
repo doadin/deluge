@@ -32,6 +32,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(19,105,220)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -71,6 +72,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(138,226,52)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -112,6 +114,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(252,175,62)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -139,6 +142,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(19,105,220)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -190,6 +194,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(138,226,52)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -205,6 +210,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(204,0,0)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -234,6 +240,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="rgba">rgb(19,105,220)</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
