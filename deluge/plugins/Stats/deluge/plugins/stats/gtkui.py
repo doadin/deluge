@@ -82,10 +82,10 @@ def int_str(number):
 def gtk_to_graph_color(color):
     """Turns a Gdk.Color into a tuple with range 0-1 as used by the graph"""
     max_val = float(65535)
-    gtk_color = Gdk.Color(red=0, green=0, blue=0)
-    red = gtk_color.red / max_val
-    green = gtk_color.green / max_val
-    blue = gtk_color.blue / max_val
+    gtk_color = color
+    red = gtk_color.red
+    green = gtk_color.green
+    blue = gtk_color.blue
     return (red, green, blue)
 
 
@@ -276,9 +276,8 @@ class GtkUI(GtkPluginBase):
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    #alloc = Gtk.Window.get_allocation(widget)
-                    #x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-                    color_btn.set_color(Gdk.rgba.to_string(color))
+                    col_gdk_color = color.to_color()
+                    color_btn.set_color(col_gdk_color)
                 except:
                     log.debug("Unable to set %s %s %s" % (graph, value, color))
         client.stats.get_config().addCallback(self.cb_get_config)
