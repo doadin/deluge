@@ -28,21 +28,6 @@ from .graph import Graph, size_formatter_scale
 
 log = logging.getLogger(__name__)
 
-#DEFAULT_CONF = {'version': 1,
-#                'colors': {
-#                    'bandwidth_graph': {'upload_rate': Gdk.Color.to_string(Gdk.Color(red=65535, green=59881, blue=20303)),
-#                                        'download_rate': Gdk.Color.to_string(Gdk.Color(red=65535, green=55255, blue=0)),
-#                                        },
-#                    'connections_graph': {'dht_nodes': Gdk.Color.to_string(Gdk.Color(red=65535, green=65535, blue=65535)),
-#                                          'dht_cache_nodes': Gdk.Color.to_string(Gdk.Color(red=65535, green=55255, blue=0)),
-#                                          'dht_torrents': Gdk.Color.to_string(Gdk.Color(red=65535, green=59881, blue=20303)),
-#                                          'num_connections': Gdk.Color.to_string(Gdk.Color(red=65535, green=65535, blue=65535)),
-#                                          },
-#                    'seeds_graph': {'num_peers': Gdk.Color.to_string(Gdk.Color(red=65535, green=55255, blue=0)),
-#                                    },
-#                }
-#                }
-#print DEFAULT_CONF
 
 DEFAULT_CONF = {'version': 1,
                 'colors': {
@@ -131,8 +116,6 @@ class GraphsTab(Tab):
     def graph_expose(self, widget, event):
         context = self.graph_widget.get_property('window').cairo_create()
         # set a clip region
-        # width = Gtk.DrawingArea.get_allocated_width(widget)
-        # hight = Gtk.DrawingArea.get_allocated_hight(widget)
         alloc = Gtk.DrawingArea.get_allocation(widget)
         w, h = alloc.width, alloc.height
         context.rectangle(0, 0, w, h)
@@ -261,7 +244,6 @@ class GtkUI(GtkPluginBase):
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
                     gtkconf[graph][value] = str(color_btn.get_rgba())
-                    print gtkconf[graph][value]
                 except:
                     gtkconf[graph][value] = DEFAULT_CONF['colors'][graph][value]
         self.config['colors'] = gtkconf
@@ -275,7 +257,7 @@ class GtkUI(GtkPluginBase):
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    col_gdk_color = str(color.to_color())
+                    col_gdk_color = eval(color).to_color()
                     color_btn.set_color(col_gdk_color)
                 except:
                     log.debug("Unable to set %s %s %s" % (graph, value, color))
