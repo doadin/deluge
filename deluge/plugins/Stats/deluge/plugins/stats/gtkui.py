@@ -46,15 +46,15 @@ log = logging.getLogger(__name__)
 
 DEFAULT_CONF = {'version': 1,
                 'colors': {
-                    'bandwidth_graph': {'upload_rate': Gdk.RGBA(red=0.541176, green=0.886275, blue=0.203922, alpha=1.000000),
-                                        'download_rate': Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000),
+                    'bandwidth_graph': {'upload_rate': str(Gdk.RGBA(red=0.541176, green=0.886275, blue=0.203922, alpha=1.000000)),
+                                        'download_rate': str(Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000)),
                                         },
-                    'connections_graph': {'dht_nodes': Gdk.RGBA(red=0.988235, green=0.686275, blue=0.243137, alpha=1.000000),
-                                          'dht_cache_nodes': Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000),
-                                          'dht_torrents': Gdk.RGBA(red=0.541176, green=0.886275, blue=0.203922, alpha=1.000000),
-                                          'num_connections': Gdk.RGBA(red=0.800000, green=0.000000, blue=0.000000, alpha=1.000000),
+                    'connections_graph': {'dht_nodes': str(Gdk.RGBA(red=0.988235, green=0.686275, blue=0.243137, alpha=1.000000)),
+                                          'dht_cache_nodes': str(Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000)),
+                                          'dht_torrents': str(Gdk.RGBA(red=0.541176, green=0.886275, blue=0.203922, alpha=1.000000)),
+                                          'num_connections': str(Gdk.RGBA(red=0.800000, green=0.000000, blue=0.000000, alpha=1.000000)),
                                           },
-                    'seeds_graph': {'num_peers': Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000),
+                    'seeds_graph': {'num_peers': str(Gdk.RGBA(red=0.074510, green=0.411765, blue=0.862745, alpha=1.000000)),
                                     },
                 }
                 }
@@ -82,7 +82,7 @@ def int_str(number):
 def gtk_to_graph_color(color):
     """Turns a Gdk.Color into a tuple with range 0-1 as used by the graph"""
     max_val = float(65535)
-    gtk_color = color
+    gtk_color = eval(color)
     red = gtk_color.red
     green = gtk_color.green
     blue = gtk_color.blue
@@ -260,7 +260,8 @@ class GtkUI(GtkPluginBase):
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    gtkconf[graph][value] = color_btn.get_rgba()
+                    gtkconf[graph][value] = str(color_btn.get_rgba())
+                    print gtkconf[graph][value]
                 except:
                     gtkconf[graph][value] = DEFAULT_CONF['colors'][graph][value]
         self.config['colors'] = gtkconf
@@ -274,7 +275,7 @@ class GtkUI(GtkPluginBase):
             for value, color in colors.items():
                 try:
                     color_btn = self.main_builder.get_object("%s_%s_color" % (graph, value))
-                    col_gdk_color = color.to_color()
+                    col_gdk_color = str(color.to_color())
                     color_btn.set_color(col_gdk_color)
                 except:
                     log.debug("Unable to set %s %s %s" % (graph, value, color))
