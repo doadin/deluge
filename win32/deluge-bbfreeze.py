@@ -6,8 +6,8 @@ import sys
 import bbfreeze
 import deluge.common
 import icon
-from bbfreeze import Freezer, recipes # NOQA
-from gi.repository import Gtk # NOQA
+from bbfreeze import Freezer, recipes  # NOQA
+from gi.repository import Gtk  # NOQA
 
 # Get build_version from installed deluge
 build_version = deluge.common.get_version()
