@@ -48,7 +48,7 @@ class TrackerIconsTestCase(BaseTestCase):
 
     def test_get_ubuntu_ico(self):
         # ubuntu.com has inline css which causes HTMLParser issues
-        icon = TrackerIcon(os.path.join(dirname, "ubuntu.ico"))
+        icon = TrackerIcon(os.path.join(dirname, "ubuntu.png"))
         d = self.icons.fetch("www.ubuntu.com")
         d.addCallback(self.assertNotIdentical, None)
         d.addCallback(self.assertEquals, icon)
@@ -58,13 +58,6 @@ class TrackerIconsTestCase(BaseTestCase):
         # openbittorrent.com has an incorrect type (image/gif)
         icon = TrackerIcon(os.path.join(dirname, "openbt.png"))
         d = self.icons.fetch("openbittorrent.com")
-        d.addCallback(self.assertNotIdentical, None)
-        d.addCallback(self.assertEquals, icon)
-        return d
-
-    def test_get_publicbt_ico(self):
-        icon = TrackerIcon(os.path.join(dirname, "publicbt.ico"))
-        d = self.icons.fetch("publicbt.org")
         d.addCallback(self.assertNotIdentical, None)
         d.addCallback(self.assertEquals, icon)
         return d
