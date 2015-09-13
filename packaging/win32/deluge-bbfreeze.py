@@ -18,7 +18,6 @@ import shutil
 import sys
 
 import bbfreeze
-import gtk
 from win32verstamp import stamp
 
 import deluge.common

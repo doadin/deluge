@@ -107,7 +107,7 @@ def create_plugin():
     write_file(src, "webui.py", WEBUI)
     write_file(src, "core.py", CORE)
     write_file(src, "common.py", COMMON)
-    write_file(data_dir, "config.glade", GLADE)
+    write_file(data_dir, "config.ui", GLADE)
     write_file(data_dir, "%s.js" % safe_name, DEFAULT_JS)
 
     # add an input parameter for this?
@@ -224,7 +224,7 @@ def get_resource(filename):
 """
 
 GTKUI = """
-import gtk
+from gi.repository import Gtk
 import logging
 
 from deluge.ui.client import client
@@ -238,9 +238,10 @@ log = logging.getLogger(__name__)
 
 class GtkUI(GtkPluginBase):
     def enable(self):
-        self.glade = gtk.glade.XML(get_resource("config.glade"))
+        self.main_builder = Gtk.Builder()
+        self.main_builder.add_from_file(get_resource("config.ui"))
 
-        component.get("Preferences").add_page("%(name)s", self.glade.get_widget("prefs_box"))
+        component.get("Preferences").add_page("%(name)s", self.main_builder.get_object("prefs_box"))
         component.get("PluginManager").register_hook("on_apply_prefs", self.on_apply_prefs)
         component.get("PluginManager").register_hook("on_show_prefs", self.on_show_prefs)
 
@@ -252,7 +253,7 @@ class GtkUI(GtkPluginBase):
     def on_apply_prefs(self):
         log.debug("applying prefs for %(name)s")
         config = {
-            "test":self.glade.get_widget("txt_test").get_text()
+            "test":self.main_builder.get_object("txt_test").get_text()
         }
         client.%(safe_name)s.set_config(config)
 
@@ -264,33 +265,33 @@ class GtkUI(GtkPluginBase):
         self.glade.get_widget("txt_test").set_text(config["test"])
 """
 
-GLADE = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Aug  8 23:34:44 2008 -->
-<glade-interface>
-  <widget class="GtkWindow" id="window1">
+GLADE = """<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkWindow" id="window1">
     <child>
-      <widget class="GtkHBox" id="prefs_box">
+      <object class="GtkHBox" id="prefs_box">
         <property name="visible">True</property>
         <child>
-          <widget class="GtkLabel" id="label1">
+          <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
             <property name="label" translatable="yes">Test config value:</property>
-          </widget>
+          </object>
         </child>
         <child>
-          <widget class="GtkEntry" id="txt_test">
+          <object class="GtkEntry" id="txt_test">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-          </widget>
+          </object>
           <packing>
             <property name="position">1</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-</glade-interface>
+  </object>
+</interface>
 """
 
 WEBUI = """
