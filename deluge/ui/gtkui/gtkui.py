@@ -15,15 +15,14 @@ import signal
 import sys
 import time
 
-import gobject
-import gtk
-from twisted.internet import defer, gtk2reactor
+from gi.repository import GObject, Gdk, Gtk
+from twisted.internet import defer, gtk3reactor
 from twisted.internet.error import ReactorAlreadyInstalledError
 from twisted.internet.task import LoopingCall
 
 try:
     # Install twisted reactor, before any other modules import reactor.
-    reactor = gtk2reactor.install()
+    reactor = gtk3reactor.install()
 except ReactorAlreadyInstalledError as ex:
     # Running unit tests so trial already installed a rector
     from twisted.internet import reactor
@@ -56,7 +55,7 @@ from deluge.ui.tracker_icons import TrackerIcons
 from deluge.ui.util import lang
 
 
-gobject.set_prgname('deluge')
+GObject.set_prgname('deluge')
 
 log = logging.getLogger(__name__)
 
@@ -68,6 +67,7 @@ except ImportError:
 
     def getproctitle():
         return
+
 
 
 DEFAULT_PREFS = {
@@ -176,9 +176,6 @@ class GtkUI(object):
         self.queuedtorrents = QueuedTorrents()
         self.ipcinterface = IPCInterface(args.torrents)
 
-        # Initialize gdk threading
-        gtk.gdk.threads_init()
-
         # We make sure that the UI components start once we get a core URI
         client.set_disconnect_callback(self.__on_disconnect)
 
@@ -197,7 +194,7 @@ class GtkUI(object):
         self.statusbar = StatusBar()
         self.addtorrentdialog = AddTorrentDialog()
 
-        if deluge.common.osx_check() and gtk.gdk.WINDOWING == 'quartz':
+        if deluge.common.osx_check() and Gdk.WINDOWING == 'quartz':
             def nsapp_open_file(osxapp, filename):
                 # Ignore command name which is raised at app launch (python opening main script).
                 if filename == sys.argv[0]:
@@ -290,7 +287,7 @@ class GtkUI(object):
 
         if self.config['standalone']:
             def on_dialog_response(response):
-                if response != gtk.RESPONSE_YES:
+                if response != Gtk.ResponseType.YES:
                     # The user does not want to turn Standalone Mode off, so just quit
                     self.mainwindow.quit()
                     return

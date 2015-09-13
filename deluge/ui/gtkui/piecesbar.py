@@ -11,9 +11,8 @@ from __future__ import division
 
 from math import pi
 
-import gtk
-import pango
-import pangocairo
+
+from gi.repository import Gdk, Gtk, Pango, PangoCairo
 from cairo import FORMAT_ARGB32, Context, ImageSurface
 
 from deluge.configmanager import ConfigManager
@@ -21,17 +20,15 @@ from deluge.configmanager import ConfigManager
 COLOR_STATES = ['missing', 'waiting', 'downloading', 'completed']
 
 
-class PiecesBar(gtk.DrawingArea):
-    # Draw in response to an expose-event
-    __gsignals__ = {'expose-event': 'override'}
+class PiecesBar(Gtk.DrawingArea):
 
     def __init__(self):
-        gtk.DrawingArea.__init__(self)
+        Gtk.DrawingArea.__init__(self)
         # Get progress bar styles, in order to keep font consistency
-        pb = gtk.ProgressBar()
+        pb = Gtk.ProgressBar()
         pb_style = pb.get_style()
-        self.text_font = pb_style.font_desc
-        self.text_font.set_weight(pango.WEIGHT_BOLD)
+        self.__text_font = pb_style.font_desc
+        self.__text_font.set_weight(Pango.Weight.BOLD)
         # Done with the ProgressBar styles, don't keep refs of it
         del pb, pb_style
 
@@ -48,8 +45,12 @@ class PiecesBar(gtk.DrawingArea):
         self.cr = None
 
         self.connect('size-allocate', self.do_size_allocate_event)
-        self.set_colormap(gtk.gdk.colormap_get_system())
+        self.connect("draw", self.expose)
+        self.set_visual(Gdk.Visual.get_best())
         self.show()
+
+    def expose(self, widget, event):
+        return False
 
     def do_size_allocate_event(self, widget, size):
         self.prev_width = self.width
@@ -149,18 +150,18 @@ class PiecesBar(gtk.DrawingArea):
 
         if self.resized() or self.text != self.prev_text or self.text_overlay is None:
             # Need to recreate the cache drawing
-            self.text_overlay = ImageSurface(FORMAT_ARGB32, self.width, self.height)
-            ctx = Context(self.text_overlay)
-            pg = pangocairo.CairoContext(ctx)
+            self.__text_overlay = cairo.ImageSurface(cairo.FORMAT_ARGB32, self.__width, self.__height)
+            ctx = cairo.Context(self.__text_overlay)
+            pg = PangoCairo.CairoContext(ctx)
             pl = pg.create_layout()
             pl.set_font_description(self.text_font)
             pl.set_width(-1)  # No text wrapping
             pl.set_text(self.text)
             plsize = pl.get_size()
-            text_width = plsize[0] // pango.SCALE
-            text_height = plsize[1] // pango.SCALE
-            area_width_without_text = self.width - text_width
-            area_height_without_text = self.height - text_height
+            text_width = plsize[0] / Pango.SCALE
+            text_height = plsize[1] / Pango.SCALE
+            area_width_without_text = self.__width - text_width
+            area_height_without_text = self.__height - text_height
             ctx.move_to(area_width_without_text // 2, area_height_without_text // 2)
             ctx.set_source_rgb(1, 1, 1)
             pg.update_layout(pl)

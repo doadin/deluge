@@ -15,3 +15,4 @@ deluge.pot
 .build_data*
 osx/app
 RELEASE-VERSION
+deluge/scripts/create_plugin.py
