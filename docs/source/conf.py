@@ -55,7 +55,10 @@ class Mock(object):
 
 MOCK_MODULES = ['deluge.ui.gtkui.gtkui', 'deluge._libtorrent',
                 'libtorrent', 'psyco',
-                'pygtk', 'gtk', 'gobject', 'gtk.gdk', 'pango', 'cairo', 'pangocairo', 'chardet']
+                'twisted.web', 'twisted.web.client', 'twisted.web.error',
+                'win32file', 'win32event', 'win32gui', 'win32api', 'win32con', '_winreg',
+                'gi.repository', 'Gtk', 'GObject', 'Gtk.gdk', 'gi.repository.pango', 'gi.repository.cairo',
+                'gi.repository.pangocairo', 'chardet']
 
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
