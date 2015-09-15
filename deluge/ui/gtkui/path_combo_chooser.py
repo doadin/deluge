@@ -693,23 +693,10 @@ class PathChooserPopup(object):
 
     def on_popup_window_button_press_event(self, window, event):
         # If we're clicking outside of the window close the popup
-        hide = False
-        # Also if the intersection of self and the event is empty, hide
-        # the path_list
-        if (tuple(self.popup_window.allocation.intersect(
-                gdk.Rectangle(x=int(event.x), y=int(event.y),
-                              width=1, height=1))) == (0, 0, 0, 0)):
-            hide = True
-        # Toplevel is the window that received the event, and parent is the
-        # path_list window. If they are not the same, means the popup should
-        # be hidden. This is necessary for when the event happens on another
-        # widget
-        toplevel = event.window.get_toplevel()
-        parent = self.popup_window.window
+        allocation = self.popup_window.get_allocation()
 
-        if toplevel != parent:
-            hide = True
-        if hide:
+        if ((event.x < allocation.x or event.x > allocation.width) or
+           (event.y < allocation.y or event.y > allocation.height)):
             self.popdown()
 
 
