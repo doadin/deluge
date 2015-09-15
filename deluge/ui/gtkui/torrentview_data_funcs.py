@@ -25,6 +25,7 @@ icon_inactive = GdkPixbuf.Pixbuf.new_from_file(common.get_pixmap('inactive16.png
 icon_alert = GdkPixbuf.Pixbuf.new_from_file(common.get_pixmap('alert16.png'))
 icon_queued = GdkPixbuf.Pixbuf.new_from_file(common.get_pixmap('queued16.png'))
 icon_checking = GdkPixbuf.Pixbuf.new_from_file(common.get_pixmap('checking16.png'))
+icon_empty = GdkPixbuf.Pixbuf.new_from_file(common.get_pixmap('empty16.png'))
 
 # Holds the info for which status icon to display based on TORRENT_STATE
 ICON_STATE = {
@@ -84,9 +85,7 @@ def cell_data_statusicon(column, cell, model, row, data):
 
 
 def create_blank_pixbuf():
-    i = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
-    i.fill(0x00000000)
-    return i
+    return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
 
 
 def set_icon(icon, cell):
@@ -97,11 +96,11 @@ def set_icon(icon, cell):
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(icon.get_filename(), 16, 16)
             except GObject.GError:
                 # Failed to load the pixbuf (Bad image file), so set a blank pixbuf
-                pixbuf = create_blank_pixbuf()
+                pixbuf = icon_empty
             finally:
                 icon.set_cached_icon(pixbuf)
     else:
-        pixbuf = create_blank_pixbuf()
+        pixbuf = icon_empty
 
     # Suppress Warning: g_object_set_qdata: assertion `G_IS_OBJECT (object)' failed
     with warnings.catch_warnings():
