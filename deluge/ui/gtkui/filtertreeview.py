@@ -249,9 +249,9 @@ class FilterTreeView(component.Component):
         return self.get_transparent_pix(16, 16)
 
     def get_transparent_pix(self, width, height):
-        pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, width, height)
-        pix.fill(0x0000000)
-        return pix
+        # Should really give back a properly size pixbuf...
+        from deluge.ui.gtkui import torrentview_data_funcs as funcs
+        return funcs.icon_empty
 
     def set_row_image(self, cat, value, filename):
         pix = None
