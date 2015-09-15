@@ -53,7 +53,7 @@ build_version = deluge.common.get_version()
 python_path = os.path.dirname(sys.executable)
 if python_path.endswith("Scripts"):
     python_path = python_path[:-8]
-gtk_root = os.path.join(gtk.__path__[0], "..", "runtime")
+gtk_root = os.path.join(os.path.dirname(sys.executable), "\\Lib\\site-packages\\gnome")
 build_dir = os.path.join("build-win32", "deluge-bbfreeze-" + build_version)
 
 if DEBUG:
@@ -137,11 +137,8 @@ shutil.copytree(gtk_locale, os.path.join(build_dir, 'share/locale'), ignore=igno
 # Copy gtk theme files.
 theme_include_list = [
     [gtk_root, "share/icons/hicolor/index.theme"],
-    [gtk_root, "lib/gtk-2.0/2.10.0/engines"],
     [gtk_root, "share/themes/MS-Windows"],
-    ["DelugeStart Theme", "lib/gtk-2.0/2.10.0/engines/libmurrine.dll"],
     ["DelugeStart Theme", "share/themes/DelugeStart"],
-    ["DelugeStart Theme", "etc/gtk-2.0/gtkrc"]
 ]
 for path_root, path in theme_include_list:
     full_path = os.path.join(path_root, path)
