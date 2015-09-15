@@ -902,7 +902,7 @@ def setup_translations(setup_gettext=True, setup_pygtk=False):
 
             if windows_check():
                 import ctypes
-                libintl = ctypes.cdll.intl
+                libintl = ctypes.cdll.LoadLibrary('libintl-8.dll')
                 libintl.bindtextdomain(domain, translations_path.encode(sys.getfilesystemencoding()))
                 libintl.textdomain(domain)
                 libintl.bind_textdomain_codeset(domain, "UTF-8")
