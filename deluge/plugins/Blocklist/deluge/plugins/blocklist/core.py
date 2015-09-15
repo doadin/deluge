@@ -170,6 +170,7 @@ class Core(CorePluginBase):
 
         """
         needs_blocklist_import = False
+        self.blocklist = self.core.session.get_ip_filter()
         for key in config.keys():
             if key == 'whitelisted':
                 saved = set(self.config[key])
