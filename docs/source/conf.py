@@ -52,7 +52,8 @@ MOCK_MODULES = ['deluge.ui.languages', 'deluge.ui.countries', 'deluge.ui.gtkui.g
                 'libtorrent', 'psyco', 'rencode',
                 'twisted.web', 'twisted.web.client', 'twisted.web.error',
                 'win32file', 'win32event', 'win32gui', 'win32api', 'win32con', '_winreg',
-                'pygtk', "gtk", "gobject", "gtk.gdk", "pango", "cairo", "pangocairo", "chardet"]
+                'gi.repository', "Gtk", "GObject", "Gtk.gdk", "gi.repository.pango", "gi.repository.cairo",
+                "gi.repository.pangocairo", "chardet"]
 
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
