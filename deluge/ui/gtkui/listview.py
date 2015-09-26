@@ -120,7 +120,9 @@ class ListView(object):
                 for attr, value in kw.iteritems():
                     self.add_attribute(renderer, attr, value)
             else:
-                self.set_attributes(renderer, **kw)
+                Gtk.CellLayout.clear_attributes(self, renderer)
+                for (name, value) in kw.iteritems():
+                    Gtk.CellLayout.add_attribute(self, renderer, name, value)
 
     def __init__(self, treeview_widget=None, state_file=None):
         log.debug('ListView initialized..')
