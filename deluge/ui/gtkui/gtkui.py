@@ -234,7 +234,7 @@ class GtkUI(object):
         reactor.run()
         # Reactor is not running. Any async callbacks (Deferreds) can no longer
         # be processed from this point on.
-        gtk.gdk.threads_leave()
+        Gdk.threads_leave()
 
     def shutdown(self, *args, **kwargs):
         log.debug('GTKUI shutting down...')
