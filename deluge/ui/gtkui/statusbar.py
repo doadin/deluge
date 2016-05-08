@@ -422,7 +422,7 @@ class StatusBar(component.Component):
             self.max_download_speed,
             _('K/s'), show_notset=True, show_other=True)
         menu.show_all()
-        menu.popup(None, None, None, menu.show_all, event.button, event.time)
+        menu.popup(None, None, self._on_download_item_clicked, menu.show_all, event.button, event.time)
 
     def _on_set_download_speed(self, widget):
         log.debug('_on_set_download_speed')
@@ -435,7 +435,7 @@ class StatusBar(component.Component):
             self.max_upload_speed,
             _('K/s'), show_notset=True, show_other=True)
         menu.show_all()
-        menu.popup(None, None, None, menu.show_all, event.button, event.time)
+        menu.popup(None, None, self._on_upload_item_clicked, menu.show_all, event.button, event.time)
 
     def _on_set_upload_speed(self, widget):
         log.debug('_on_set_upload_speed')
@@ -447,7 +447,7 @@ class StatusBar(component.Component):
             self._on_set_connection_limit,
             self.max_connections_global, show_notset=True, show_other=True)
         menu.show_all()
-        menu.popup(None, None, None, menu.show_all, event.button, event.time)
+        menu.popup(None, None, self._on_connection_item_clicked, menu.show_all, event.button, event.time)
 
     def _on_set_connection_limit(self, widget):
         log.debug('_on_set_connection_limit')
