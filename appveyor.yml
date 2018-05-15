@@ -1,17 +1,48 @@
 environment:
-  PYTHON_VERSION: "2.7.x"
-  PYTHON_ARCH: "32"
-  APPVEYOR_SAVE_CACHE_ON_ERROR: true
 
   matrix:
     # See: http://www.appveyor.com/docs/installed-software#python
-    - TOXENV: flake8
-    - TOXENV: trial
-    - TOXENV: pydef
-    - TOXENV: pygtkui
-    - TOXENV: plugins
-    - TOXENV: docs
-    - PYTHON_VERSION: "2.7.x"
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      TOXENV: pydef
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      TOXENV: flake8
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      TOXENV: docs
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      TOXENV: trial
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      TOXENV: pygtkui
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      TOXENV: plugins
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
 
 pull_requests:
   do_not_increment_build_number: true
@@ -29,57 +60,47 @@ install:
       throw "There are newer queued builds for this pull request, failing early." }
 
   - "python -m pip install --upgrade pip"
-  - if defined TOXENV (
-    pip install
-    tox
-    pywin32
-    certifi
-    )
-  - if not defined TOXENV (
-    pip install
-    slimit
-    twisted[tls]
-    chardet
-    mako
-    pyxdg
-    pillow
-    slimit
-    setproctitle
-    pywin32
-    certifi
-    pygame
-    bbfreeze
-    pefile
+  - if NOT DEFINED TOXENV (
+      pip install bbfreeze pefile tox pywin32 slimit twisted[tls] chardet mako pyxdg pillow slimit pygame
     )
 
-  - echo "Installing pygtk...."
+  - if DEFINED TOXENV (
+      pip install tox
+    )
+
   - if not exist pygtk-all-in-one-2.24.2.win32-py2.7.msi (
-    echo "Downloading pygtk...."
-    & appveyor-retry appveyor DownloadFile "https://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/pygtk-all-in-one-2.24.2.win32-py2.7.msi"
+      ECHO "Downloading pygtk...."
+      & appveyor-retry appveyor DownloadFile "https://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/pygtk-all-in-one-2.24.2.win32-py2.7.msi"
     )
-  - cmd: msiexec /i pygtk-all-in-one-2.24.2.win32-py2.7.msi /quiet /qn /norestart TARGETDIR=C:\Python27 INSTALLLEVEL=3
 
-  - echo "Installing openssl...."
+  - ECHO "Installing pygtk...."
+  - cmd: msiexec /i pygtk-all-in-one-2.24.2.win32-py2.7.msi /quiet /qn /norestart TARGETDIR=C:\Python27 INSTALLLEVEL=3
   - if not exist openssl-1.1.0f-vs2008.7z (
-    echo "Downloading openssl...."
-    & appveyor-retry appveyor DownloadFile "https://www.npcglib.org/~stathis/downloads/openssl-1.1.0f-vs2008.7z"
+      ECHO "Downloading openssl...."
+      & appveyor-retry appveyor DownloadFile "https://www.npcglib.org/~stathis/downloads/openssl-1.1.0f-vs2008.7z"
     )
+
+  - ECHO "Installing openssl...."
   - "7z x -oc:\\ -aoa openssl-1.1.0f-vs2008.7z"
   - "rename c:\\openssl-1.1.0f-vs2008 openssl-1.1"
   - "copy c:\\openssl-1.1\\bin\\libsslMD.dll c:\\openssl-1.1\\bin\\libssl-1_1.dll"
   - "copy c:\\openssl-1.1\\bin\\libcryptoMD.dll c:\\openssl-1.1\\bin\\libcrypto-1_1.dll"
 
-  - echo "Installing libtorrent...."
   - if not exist libtorrent.pyd (
-    echo "Downloading libtorrent...."
-    & appveyor-retry appveyor DownloadFile "https://github.com/doadin/libtorrent/releases/download/1.1.7.test/libtorrent.pyd"
+      ECHO "Downloading libtorrent...."
+      & appveyor-retry appveyor DownloadFile "https://github.com/doadin/libtorrent/releases/download/1.1.7.test/libtorrent.pyd"
     )
+
+  - ECHO "Installing libtorrent...."
   - "copy /Y libtorrent.pyd c:\\Python27\\Lib\\site-packages\\libtorrent.pyd"
   - "SET PATH=%TOXENV%;%PYTHON%;%PYTHON%\\Scripts;c:\\openssl-1.1\\bin;C:\\Program Files (x86)\\NSIS;%PATH%"
 
+  - ECHO "Python Verison"
   - "python --version"
-  - 'python -c "import struct; print(struct.calcsize(\"P\") * 8)"'
-  - 'python -c "import libtorrent; print(libtorrent.__version__)"'
+  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+  - ECHO "libtorrent Verison"
+  - "python -c \"import libtorrent; print(libtorrent.__version__)\""
+  - ECHO "OpenSSL Verison"
   - openssl version -v
 
 cache:
@@ -91,17 +112,17 @@ cache:
 build: false
 
 test_script:
-  - if defined TOXENV tox
+  - IF DEFINED TOXENV tox -e %TOXENV%
 
 after_test:
-  - if not defined TOXENV python setup.py build && python setup.py install
+  - IF NOT DEFINED TOXENV %CMD_IN_ENV% python setup.py build
+  - IF NOT DEFINED TOXENV %CMD_IN_ENV% python setup.py install
   - cd %APPVEYOR_BUILD_FOLDER%\\packaging\\win32
-  - if not defined TOXENV deluge-bbfreeze.py debug
-  - if not defined TOXENV makensis deluge-win32-installer.nsi
-  - if not defined TOXENV 7z a deluge-win32.zip build-win32 "-x!*.exe"
+  - IF NOT DEFINED TOXENV deluge-bbfreeze.py debug
+
+  - IF NOT DEFINED TOXENV makensis %APPVEYOR_BUILD_FOLDER%\\packaging\\win32\\deluge-win32-installer.nsi
 
 artifacts:
-  - path: packaging\win32\deluge-win32.zip
   - path: packaging\win32\build-win32\*.exe
 
 #on_success:
