@@ -24,7 +24,9 @@ from deluge.core.rpcserver import RPCServer, export
 from deluge.error import DaemonRunningError
 
 if windows_check():
-    from win32api import SetConsoleCtrlHandler
+    import ctypes
+    import signal
+    SetConsoleCtrlHandler = ctypes.windll.kernel32.SetConsoleCtrlHandler
     from win32con import CTRL_CLOSE_EVENT, CTRL_SHUTDOWN_EVENT
 
 log = logging.getLogger(__name__)

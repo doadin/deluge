@@ -675,12 +675,14 @@ class DelugeWeb(component.Component):
         # Twisted doesn't handle windows specific signals so we still
         # need to attach to those to handle the close correctly.
         if common.windows_check():
-            from win32api import SetConsoleCtrlHandler
-            from win32con import CTRL_CLOSE_EVENT, CTRL_SHUTDOWN_EVENT
+            import ctypes
+            import signal
+            SetConsoleCtrlHandler = ctypes.windll.kernel32.SetConsoleCtrlHandler
 
             def win_handler(ctrl_type):
                 log.debug('ctrl type: %s', ctrl_type)
-                if ctrl_type == CTRL_CLOSE_EVENT or ctrl_type == CTRL_SHUTDOWN_EVENT:
+                if ctrl_type == signal.CTRL_C_EVENT or \
+                   ctrl_type == signal.CTRL_BREAK_EVENT:
                     self.shutdown()
                     return 1
 

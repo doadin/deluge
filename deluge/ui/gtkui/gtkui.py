@@ -156,8 +156,8 @@ class GtkUI(object):
             reactor.stop()
 
         if windows_check():
-            from win32api import SetConsoleCtrlHandler
-
+            import ctypes
+            SetConsoleCtrlHandler = ctypes.windll.kernel32.SetConsoleCtrlHandler
             SetConsoleCtrlHandler(on_die, True)
             log.debug('Win32 "die" handler registered')
         elif osx_check() and WINDOWING == 'quartz':
