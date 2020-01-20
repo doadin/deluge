@@ -9,12 +9,13 @@
 #
 
 # Script version; displayed when running the installer
-!define DELUGE_INSTALLER_VERSION "1.0"
+!define DELUGE_INSTALLER_VERSION "2.0"
 
 # Deluge program information
 !define PROGRAM_NAME "Deluge"
 # Detect version from file
 !searchparse /file VERSION.tmp `build_version = "` PROGRAM_VERSION `"`
+!searchparse /file VERSION.tmp `build_bitness = "` PROGRAM_BITNESS `"`
 !ifndef PROGRAM_VERSION
    !error "Program Version Undefined"
 !endif
@@ -22,9 +23,9 @@
 !define LICENSE_FILEPATH "..\..\LICENSE"
 
 # Python files generated with bbfreeze
-!define BUILD_DIR "build-win32"
-!define BBFREEZE_DIR "${BUILD_DIR}\deluge-bbfreeze-${PROGRAM_VERSION}"
-!define INSTALLER_FILENAME "deluge-${PROGRAM_VERSION}-win32-setup.exe"
+!define BUILD_DIR "build"
+#!define BBFREEZE_DIR "${BUILD_DIR}\deluge-bbfreeze-${PROGRAM_VERSION}"
+!define INSTALLER_FILENAME "deluge-${PROGRAM_VERSION}-${PROGRAM_BITNESS}-setup.exe"
 
 # Set default compressor
 SetCompressor /FINAL /SOLID lzma
