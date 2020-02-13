@@ -905,10 +905,10 @@ def free_space(path):
 
 
 def is_ip(ip):
-    """A test to see if 'ip' is a valid IPv4 or IPv6 address.
+    """A test to see if 'ip' is a valid IPv4 or IPv6 address or network interface.
 
     Args:
-        ip (str): The IP to test.
+        ip (str): The IP or interface to test.
 
     Returns:
         bool: Whether IP is valid is not.
@@ -918,10 +918,12 @@ def is_ip(ip):
         True
         >>> is_ip("2001:db8::")
         True
+        >>> is_ip("eth0")
+        True
 
     """
 
-    return is_ipv4(ip) or is_ipv6(ip)
+    return is_ipv4(ip) or is_ipv6(ip) or is_net_interface(ip)
 
 
 def is_ipv4(ip):
@@ -983,6 +985,38 @@ def is_ipv6(ip):
             pass
 
     return False
+
+def is_net_interface(ip):
+    """A test to see if 'ip' is a valid network interface.
+
+    Args:
+        ip (str): The Interface to test. eg. eth0 linux. GUID on Windows.
+
+    Returns:
+        bool: Whether Interface is valid or not.
+
+    Examples:
+        >>> is_net_interface("eth0")
+        True
+        >>> is_net_interface("7A30AE62-23ZA-3744-Z844-A5B042524871")
+        True
+
+    """
+
+    import netifaces
+    try:
+        import netifaces
+    except ImportError:
+        log.error('Unable to verify interfaces. Module netifaces missing')
+        return True
+    if windows_check() and not ip.isupper():
+        log.error('Interface is not uppercase you might be looking for: %s', ip.upper())
+        return False       
+    if ip in netifaces.interfaces():
+        return True
+    else:
+        log.error('Interface not found!')
+        return False
 
 
 def decode_bytes(byte_str, encoding='utf8'):
