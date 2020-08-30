@@ -20,5 +20,4 @@ deluge/ui/web/js/extjs/ext-extensions*.js
 *.appdata.xml
 .build_data*
 osx/app
-RELEASE-VERSION
 .venv*
