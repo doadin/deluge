@@ -104,9 +104,8 @@ for module in stdlib:
 hiddenimports += collect_submodules('twisted', filter=lambda name: 'test' not in name)
 datas += copy_metadata('twisted', recursive=True)
 
-# Copy UI/Plugin and translation files to where pyinstaller expects
-package_data = collect_data_files('deluge')
-datas += package_data
+# Copy UI/Plugin files to where pyinstaller expects
+datas += [('../../deluge/ui', 'deluge/ui'), ('../../deluge/plugins', 'deluge/plugins'), ('../../deluge_src/build/lib/deluge/i18n', 'deluge/i18n')]
 
 icon = [src for src, dest in package_data if src.endswith('deluge.ico')][0]
 
