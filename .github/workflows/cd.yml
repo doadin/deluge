@@ -2,13 +2,6 @@ name: Package
 
 on:
   push:
-    tags:
-      - "deluge-*"
-      - "!deluge*-dev*"
-    branches:
-      - develop
-  pull_request:
-    types: [labeled, opened, synchronize, reopened]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +13,6 @@ on:
 jobs:
   windows_package:
     runs-on: windows-2022
-    if: (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'package'))
     strategy:
       matrix:
         arch: [x64, x86]
