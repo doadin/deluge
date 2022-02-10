@@ -72,8 +72,22 @@ def get_pixbuf(filename: str, size: int = 0) -> Pixbuf:
     """
     # Skip ico and gif that cause Pixbuf crash on Windows
     # https://dev.deluge-torrent.org/ticket/3501
-    if windows_check() and filename.endswith(('.ico', '.gif')):
-        return create_blank_pixbuf(size)
+    if (
+        filename.endswith('.ico')
+        or filename.endswith('.gif')
+        or filename.endswith('.bmp')
+    ):
+        log.warning(
+            'Converting tracker icon to avoid crash in gdkpixbuf: {}'.format(filename)
+        )
+        try:
+            from PIL import Image
+
+            img = Image.open(filename)
+            img.save(filename + '.png', 'png', sizes=size)
+            filename = filename + '.png'
+        except (OSError, ValueError, UnidentifiedImageError):  # noqa: F821 # fmt: off
+            return create_blank_pixbuf(size)
 
     if not os.path.isabs(filename):
         filename = get_pixmap(filename)
