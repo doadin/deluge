@@ -151,7 +151,7 @@ for e, d in executables.items():
         hookspath=[],
         hooksconfig={},
         runtime_hooks=runtime_hooks,
-        excludes=[],
+        excludes=['gi.repository.Gst','gi.repository.GstAudio','gi.repository.GstVideo','gi.repository.GstBase','gi.repository.GstPbutils'],
         win_no_prefer_redirects=False,
         win_private_assemblies=False,
         cipher=None,
