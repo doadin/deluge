@@ -16,8 +16,8 @@ jobs:
     strategy:
       matrix:
         arch: [x64, x86]
-        python: ["3.9"]
-        libtorrent: [2.0.7, 1.2.19]
+        python: ["3.9", "3.10"]
+        libtorrent: [2.0.6, 1.2.15]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
