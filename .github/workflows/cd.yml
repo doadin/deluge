@@ -59,7 +59,7 @@ jobs:
         run: >
           python -m pip install
           --only-binary=pillow
-          twisted[tls]==22.8.0
+          twisted[tls]@http://github.com/doadin/twisted/releases/download/test/twisted-23.8.0.post0-py3-none-any.whl
           libtorrent==${{ matrix.libtorrent }}
           pyinstaller
           pygame
