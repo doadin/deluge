@@ -59,7 +59,7 @@ jobs:
         run: >
           python -m pip install
           --only-binary=pillow
-          twisted[tls]==22.8.0
+          twisted[tls]
           libtorrent==${{ matrix.libtorrent }}
           pyinstaller
           pygame
