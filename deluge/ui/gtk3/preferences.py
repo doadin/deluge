@@ -9,6 +9,7 @@
 
 import logging
 import os
+import re
 from hashlib import sha1 as sha
 from urllib.parse import urlparse
 
@@ -686,13 +687,41 @@ class Preferences(component.Component):
             'chk_random_outgoing_ports'
         ).get_active()
         incoming_address = self.builder.get_object('entry_interface').get_text().strip()
-        if client.core.is_valid_interface(incoming_address) or not incoming_address:
+        if deluge.common.is_interface(incoming_address) or not incoming_address:
+            if deluge.common.windows_check:
+                if deluge.common.is_interface(incoming_address):
+                    regex = '^{[0-9A-Z]{8}-([0-9A-Z]{4}-){3}[0-9A-Z]{12}}$'
+                    # if is_interface is true and doesnt match what a GUID would look like
+                    # It is a nice name find what GUID belongs to the nice name for use in LT
+                    if (
+                        not bool(re.search(regex, str(incoming_address)))
+                    ):
+                        incoming_address = (
+                            deluge.common.convert_win_ifaddr_nice_name_to_name(
+                                incoming_address
+                            )
+                        )
             new_core_config['listen_interface'] = incoming_address
         outgoing_address = (
             self.builder.get_object('entry_outgoing_interface').get_text().strip()
         )
-        if client.core.is_valid_interface(outgoing_address) or not outgoing_address:
-            new_core_config['outgoing_interface'] = outgoing_address
+        if deluge.common.is_interface(outgoing_address) or not outgoing_address:
+            if deluge.common.windows_check:
+                if deluge.common.is_interface(outgoing_address):
+                    regex = '^{[0-9A-Z]{8}-([0-9A-Z]{4}-){3}[0-9A-Z]{12}}$'
+                    # if is_interface is true and doesnt match what a GUID would look like
+                    # It is a nice name find what GUID belongs to the nice name for use in LT
+                    if (
+                        not bool(re.search(regex, str(outgoing_address)))
+                    ):
+                        outgoing_address = (
+                            deluge.common.convert_win_ifaddr_nice_name_to_name(
+                                outgoing_address
+                            )
+                        )
+            new_core_config['outgoing_interface'] = (
+                self.builder.get_object('entry_outgoing_interface').get_text().strip()
+            )
         new_core_config['peer_tos'] = self.builder.get_object(
             'entry_peer_tos'
         ).get_text()

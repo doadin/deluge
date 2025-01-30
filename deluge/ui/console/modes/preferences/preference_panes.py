@@ -7,7 +7,9 @@
 #
 
 import logging
+import re
 
+from deluge.common import convert_win_ifaddr_nice_name_to_name, is_interface, windows_check
 from deluge.decorators import overrides
 from deluge.i18n import get_languages
 from deluge.ui.client import client
@@ -90,17 +92,11 @@ class BasePreferencePane(BaseInputPane, BaseWindow, PopupsHandler):
                     )
                 elif ipt.name == 'listen_interface':
                     listen_interface = ipt.get_value().strip()
-                    if (
-                        client.core.is_valid_interface(listen_interface)
-                        or not listen_interface
-                    ):
+                    if is_interface(listen_interface) or not listen_interface:
                         conf_dict['listen_interface'] = listen_interface
                 elif ipt.name == 'outgoing_interface':
                     outgoing_interface = ipt.get_value().strip()
-                    if (
-                        client.core.is_valid_interface(outgoing_interface)
-                        or not outgoing_interface
-                    ):
+                    if is_interface(outgoing_interface) or not outgoing_interface:
                         conf_dict['outgoing_interface'] = outgoing_interface
                 elif ipt.name.startswith('proxy_'):
                     if ipt.name == 'proxy_type':
