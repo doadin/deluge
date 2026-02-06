@@ -106,6 +106,46 @@ jobs:
           uv pip install -e .
 
       - name: Test with pytest
+        shell: pwsh
         run: |
-          python -c 'import libtorrent as lt; print(lt.__version__)';
-          pytest -v -m "not (todo or gtkui or security)" deluge
+          echo "Checking libtorrent import..."
+      
+          @"
+          import sys, os, ctypes, importlib.util
+          
+          print("Python:", sys.version)
+          
+          try:
+              import libtorrent as lt
+              print("libtorrent version:", lt.__version__)
+              sys.exit(0)
+          except Exception as e:
+              print("Failed to import libtorrent:", e)
+          
+          print("\n=== Deep DLL diagnostics ===")
+          
+          spec = importlib.util.find_spec("libtorrent")
+          if not spec or not spec.origin:
+              print("Could not locate libtorrent.pyd")
+              sys.exit(1)
+          
+          dll_path = spec.origin
+          print("libtorrent binary:", dll_path)
+          
+          # Enable Windows error mode so dependent DLL names are shown
+          try:
+              ctypes.windll.kernel32.SetErrorMode(0x0001 | 0x0002 | 0x8000)
+          except Exception:
+              pass
+          
+          try:
+              ctypes.CDLL(dll_path)
+              print("Loaded successfully (unexpected)")
+          except OSError as ose:
+              print("DLL load error:", ose)
+          
+          print("=== End diagnostics ===")
+          "@ | python -
+          
+              pytest -v -m "not (todo or gtkui or security)" deluge
+
