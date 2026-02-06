@@ -73,34 +73,20 @@ jobs:
           python -m pip install .
           python setup.py install_scripts
 
+      - name: Install OpenSSL 1.1.1 using Chocolatey
+        run: choco install openssl --version 1.1.1.2100
+        shell: powershell
+        # Note: The exact version number (e.g., 1.1.1.2000) may vary over time.
+  
+      - name: Verify OpenSSL version
+        run: |
+          openssl version
+        shell: powershell
+
       - name: Freeze Deluge
         working-directory: packaging/win
         run: |
           pyinstaller --clean delugewin.spec --distpath freeze
-
-      - name: Install OpenSSL 1.1 (x64)
-        if: ${{ matrix.arch == 'x64' }}
-        run: |
-          curl -L -o openssl.exe https://slproweb.com/download/Win64OpenSSL-1_1_1w.exe
-          openssl.exe /silent /verysilent /sp- /suppressmsgboxes
-
-      - name: Install OpenSSL 1.1 (x86)
-        if: ${{ matrix.arch == 'x86' }}
-        run: |
-          curl -L -o openssl.exe https://slproweb.com/download/Win32OpenSSL-1_1_1w.exe
-          openssl.exe /silent /verysilent /sp- /suppressmsgboxes
-
-      - name: Copy OpenSSL DLLs x86
-        if: ${{ matrix.arch == 'x86' }}
-        run: |
-          cp "C:/Program Files (x86)/OpenSSL-Win32/bin/libssl-1_1.dll" packaging/win/freeze/Deluge/
-          cp "C:/Program Files (x86)/OpenSSL-Win32/bin/libcrypto-1_1.dll" packaging/win/freeze/Deluge/
-
-      - name: Copy OpenSSL DLLs x64
-        if: ${{ matrix.arch == 'x64' }}
-        run: |
-          cp "C:/Program Files/OpenSSL-Win64/bin/libssl-1_1-x64.dll" packaging/win/freeze/Deluge/
-          cp "C:/Program Files/OpenSSL-Win64/bin/libcrypto-1_1-x64.dll" packaging/win/freeze/Deluge/
 
       - name: Verify Deluge exes
         working-directory: packaging/win/freeze/Deluge/
