@@ -47,12 +47,12 @@ jobs:
       - name: Install GTK
         run: |
           $WebClient = New-Object System.Net.WebClient
-          $WebClient.DownloadFile("https://github.com/doadin/gvsbuild-release/releases/download/latest/gvsbuild-py${{ matrix.python }}-vs17-${{ matrix.arch }}.zip","C:\GTK.zip")
+          $WebClient.DownloadFile("https://github.com/wingtk/gvsbuild/releases/download/2026.1.0/GTK3_Gvsbuild_2026.1.0_x64.zip","C:\GTK.zip")
           7z x C:\GTK.zip -oc:\GTK
           echo "C:\GTK\release\lib" | Out-File -FilePath $env:GITHUB_PATH -Append
           echo "C:\GTK\release\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
           echo "C:\GTK\release" | Out-File -FilePath $env:GITHUB_PATH -Append
-          python -m pip install --no-index --find-links="C:\GTK\release\python" pycairo PyGObject
+          python -m pip install --no-index --find-links="C:\GTK\python" pycairo PyGObject
 
       - name: Install Python dependencies
         # Pillow no longer provides 32-bit wheels for Windows
