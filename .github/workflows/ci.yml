@@ -95,17 +95,42 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-        with:
-          enable-cache: true
+      #- name: Install uv
+      #  uses: astral-sh/setup-uv@v6
+      #  with:
+      #    enable-cache: true
+
+      - name: Install OpenSSL 1.1.1 using Chocolatey
+        run: choco install openssl --version 1.1.1.2100
+        shell: powershell
+        # Note: The exact version number (e.g., 1.1.1.2000) may vary over time.
+
+      - name: Verify OpenSSL version
+        run: |
+          openssl.exe version
+        shell: powershell
+
+      - name: Show PATH
+        shell: powershell
+        run: |
+          Write-Host "=== PATH ==="
+          $env:PATH -split ';' | ForEach-Object { Write-Host $_ }
+
+      - name: Verify Chocolatey OpenSSL install
+        shell: powershell
+        run: |
+          Write-Host "Checking Chocolatey OpenSSL directory..."
+          Get-ChildItem "C:\ProgramData\chocolatey\lib\openssl" -Recurse
 
       - name: Install dependencies
         run: |
-          uv pip install -r requirements-ci.txt
-          uv pip install -e .
+          pip install -r requirements-ci.txt
+          pip install -e .
 
       - name: Test with pytest
+        shell: powershell
         run: |
+          echo "C:\ProgramData\chocolatey\lib\openssl\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           python -c 'import libtorrent as lt; print(lt.__version__)';
           pytest -v -m "not (todo or gtkui or security)" deluge
