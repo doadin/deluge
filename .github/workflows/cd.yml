@@ -17,8 +17,8 @@ jobs:
     if: (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'package'))
     strategy:
       matrix:
-        arch: [x64, x86]
-        python: ["3.9"]
+        arch: [x64]
+        python: ["3.10"]
         libtorrent: [2.0.7, 1.2.19]
 
     steps:
@@ -54,6 +54,20 @@ jobs:
           echo "C:\GTK\release\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
           echo "C:\GTK\release" | Out-File -FilePath $env:GITHUB_PATH -Append
           python -m pip install --no-index --find-links="C:\GTK\release\python" pycairo PyGObject
+      - name: Download Twisted wheel artifact
+        shell: pwsh
+        run: |
+          $url = "https://productionresultssa0.blob.core.windows.net/actions-results/2f46cc44-b7f8-401f-b75d-d3d8581efda7/workflow-job-run-9b7c8e33-5bdd-5798-812b-56365bbfc035/artifacts/f99d7c6c289929169d69519d7ef52b8b85f5d7b28955db9d79cb5fa87007e590.zip?rscd=attachment%3B+filename%3D%22twisted-wheel-py3.10-x64.zip%22&se=2026-02-09T07%3A31%3A21Z&sig=iv06YRu3DKIg7oJ%2FNq4IJGG%2F9D3Xv%2B3AAR%2FCikG6ADw%3D&ske=2026-02-09T09%3A47%3A38Z&skoid=ca7593d4-ee42-46cd-af88-8b886a2f84eb&sks=b&skt=2026-02-09T05%3A47%3A38Z&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skv=2025-11-05&sp=r&spr=https&sr=b&st=2026-02-09T07%3A21%3A16Z&sv=2025-11-05"
+          $headers = @{ Authorization = "Bearer ${{ secrets.GITHUB_TOKEN }}" }
+          Invoke-WebRequest -Uri $url -Headers $headers -OutFile twisted_artifact.zip
+
+      - name: Extract Twisted wheel
+        run: |
+          mkdir twisted-wheel
+          tar -xf twisted_artifact.zip -C twisted-wheel
+
+      - name: Install Twisted wheel
+        run: pip install twisted-wheel/*.whl
 
       - name: Install Python dependencies
         # Pillow no longer provides 32-bit wheels for Windows
