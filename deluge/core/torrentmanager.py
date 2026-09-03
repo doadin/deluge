@@ -457,16 +457,13 @@ class TorrentManager(component.Component):
             self.prefetching_metadata[torrent_id].alert_deferred.cancel()
 
         # Check for renamed files and if so, rename them in the torrent_info before adding.
-        if options['mapped_files'] and torrent_info:
+        renamed_files = {}
+        if options['mapped_files']:
             for index, fname in options['mapped_files'].items():
                 fname = sanitize_filepath(decode_bytes(fname))
                 if log.isEnabledFor(logging.DEBUG):
                     log.debug('renaming file index %s to %s', index, fname)
-                try:
-                    torrent_info.rename_file(index, fname.encode('utf8'))
-                except TypeError:
-                    torrent_info.rename_file(index, fname)
-            add_torrent_params['ti'] = torrent_info
+                renamed_files[index] = fname
 
         if log.isEnabledFor(logging.DEBUG):
             log.debug('options: %s', options)
@@ -477,8 +474,18 @@ class TorrentManager(component.Component):
             add_torrent_params['name'] = options['name']
         if options['pre_allocate_storage']:
             add_torrent_params['storage_mode'] = lt.storage_mode_t.storage_mode_allocate
+             
         if resume_data:
-            add_torrent_params['resume_data'] = resume_data
+            try:
+                resume = lt.read_resume_data(resume_data)
+            except RuntimeError as ex:
+                log.warning( 
+                    'Failed to parse resume data for %s, ignoring it: %s',
+                    torrent_id, ex,
+                )
+         
+        if renamed_files:
+            add_torrent_params['renamed_files'] = renamed_files
 
         # Set flags: enable duplicate_is_error & override_resume_data, disable auto_managed.
         add_torrent_params['flags'] = (
