@@ -422,6 +422,10 @@ class TorrentManager(component.Component):
     ):
         """Create the add_torrent_params dict for adding torrent to libtorrent."""
         add_torrent_params = {}
+        #if torrent_info:
+        #    log.error("torrent info", magnet, options, resume_data)
+        #if magnet:
+        #    log.error("magnet", magnet, options, resume_data)
         if torrent_info:
             add_torrent_params['ti'] = torrent_info
             name = torrent_info.name()
@@ -433,6 +437,13 @@ class TorrentManager(component.Component):
             torrent_id = str(torrent_info.info_hash())
         elif magnet:
             magnet_info = get_magnet_info(magnet)
+            #Format of the magnet dict::
+            #{
+            #    "name": the torrent name,
+            #    "info_hash": the torrents info_hash,
+            #    "files_tree": empty value for magnet links
+            #    "trackers": empty value for magnet links
+            #}
             if magnet_info:
                 add_torrent_params['name'] = magnet_info['name']
                 add_torrent_params['trackers'] = list(magnet_info['trackers'])
@@ -465,6 +476,26 @@ class TorrentManager(component.Component):
                 except TypeError:
                     torrent_info.rename_file(index, fname)
             add_torrent_params['ti'] = torrent_info
+        renamed_files = {}
+        #if VersionSplit(LT_VERSION) > VersionSplit('2.0.14.0'):
+        if isinstance(resume_data, (bytes, bytearray)):
+            resume = lt.read_resume_data(resume_data)
+            params = {}
+            for attr in dir(resume):
+                if attr.startswith("_"):
+                    continue
+                try:
+                    value = getattr(resume, attr)
+                    params[attr] = value
+                except Exception:
+                    pass
+            #log.error('params: %s', params)
+            if isinstance(params, dict):
+                for index, fname in params['renamed_files'].items():
+                    log.error('renaming file index %s to %s', index, fname)
+                    fname = sanitize_filepath(decode_bytes(fname))
+                    renamed_files[index] = fname
+            add_torrent_params['renamed_files'] = renamed_files
 
         if log.isEnabledFor(logging.DEBUG):
             log.debug('options: %s', options)
@@ -475,7 +506,7 @@ class TorrentManager(component.Component):
             add_torrent_params['name'] = options['name']
         if options['pre_allocate_storage']:
             add_torrent_params['storage_mode'] = lt.storage_mode_t.storage_mode_allocate
-        if resume_data:
+        if resume_data and VersionSplit(LT_VERSION) <= VersionSplit('2.0.14.0'):
             add_torrent_params['resume_data'] = resume_data
 
         # Set flags: enable duplicate_is_error & override_resume_data, disable auto_managed.
@@ -486,6 +517,19 @@ class TorrentManager(component.Component):
             add_torrent_params['flags'] |= lt.torrent_flags.seed_mode
         if options['super_seeding']:
             add_torrent_params['flags'] |= lt.torrent_flags.super_seeding
+        #if VersionSplit(LT_VERSION) > VersionSplit('2.0.14.0'):
+        if resume_data:
+            if isinstance(resume_data, (bytes, bytearray)):
+                resume = lt.read_resume_data(lt.bencode(resume_data))
+                for attr in dir(resume):
+                    if attr.startswith("_"):
+                        continue
+                    try:
+                        value = getattr(resume, attr)
+                        add_torrent_params[attr] = value
+                    except Exception:
+                        pass
+        log.error('add_torrent_params: %s', add_torrent_params)
 
         return torrent_id, add_torrent_params
 
